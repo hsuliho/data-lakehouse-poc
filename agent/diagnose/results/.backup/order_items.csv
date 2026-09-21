@@ -1,0 +1,4 @@
+order_item_id,order_id,product_id,quantity,unit_price,changed_at,event_id,is_deleted
+125,58,3,4,20.37,2026-01-26 01:00:00,2d4adebb0fcfcac0,false
+126,58,8,3,171.79,2026-01-26 01:00:00,4249b322eab7e1ec,false
+113,52,11,1,49.9,2026-01-26 18:00:00,0d01d34847b8efaf,false

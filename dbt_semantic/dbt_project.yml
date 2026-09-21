@@ -1,0 +1,7 @@
+name: ecommerce_semantic
+version: "1.0"
+profile: ecommerce_semantic
+model-paths: ["models"]
+models:
+  ecommerce_semantic:
+    +materialized: view

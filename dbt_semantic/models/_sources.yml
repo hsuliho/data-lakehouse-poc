@@ -1,0 +1,7 @@
+version: 2
+sources:
+  - name: published
+    database: iceberg
+    schema: dwh_spark
+    tables:
+      - name: fact_orders

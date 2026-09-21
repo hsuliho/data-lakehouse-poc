@@ -1,0 +1,11 @@
+product_id,name,category,price,updated_at
+1,Product 1,books,147.3,2026-01-10 09:01:00
+2,Product 2,books,194.76,2026-01-10 09:02:00
+3,Product 3,sports,20.37,2026-01-10 09:03:00
+4,Product 4,home,166.73,2026-01-10 09:04:00
+5,Product 5,home,117.58,2026-01-10 09:05:00
+6,Product 6,books,13.94,2026-01-10 09:06:00
+7,Product 7,toys,155.75,2026-01-10 09:07:00
+8,Product 8,books,171.79,2026-01-10 09:08:00
+9,Product 9,books,79.12,2026-01-10 09:09:00
+10,Product 10,sports,128.96,2026-01-10 09:10:00

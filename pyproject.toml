@@ -1,0 +1,35 @@
+[project]
+name = "lakehouse-poc"
+version = "0.1.0"
+description = "Iceberg + Trino + Spark lakehouse POC: pipeline scripts, dbt, semantic layer and agent"
+requires-python = ">=3.11"
+dependencies = [
+    "trino==0.339.0",          # ingestion loader and every check script talk to Trino with this client
+    "requests==2.34.2",        # Superset and DataHub GraphQL helpers
+    "certifi==2026.7.22",
+]
+
+[dependency-groups]
+# dbt-spark over the Spark Thrift Server (PyHive is only the HiveServer2 client, not Hive storage); MetricFlow = semantic layer (`mf`)
+dbt = [
+    "dbt-core==1.12.5",
+    "dbt-spark[PyHive]==1.11.0",
+    "dbt-metricflow",
+    "dbt-trino==1.10.4",       # MetricFlow runs on Trino (it does not support the spark adapter)
+]
+# the agent: LangGraph + Gemini; versions taken from a known-good run of the same stack
+agent = [
+    "langgraph==1.2.11",
+    "langgraph-checkpoint-sqlite==3.1.1",
+    "langchain-google-genai==4.4.0",
+    "python-dotenv==1.2.3",
+]
+orchestration = [
+    "dagster>=1.13.23",
+    "dagster-dbt>=0.29.23",
+    "dagster-webserver>=1.13.23",
+]
+
+[tool.uv]
+default-groups = ["dbt", "agent"]
+package = false            # scripts, not an installable package

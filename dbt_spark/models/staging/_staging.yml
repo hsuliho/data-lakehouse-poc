@@ -1,0 +1,65 @@
+version: 2
+
+# Validity and referential checks on cleaned data. error = would corrupt keys or money; warn = descriptive.
+models:
+  - name: stg_orders
+    meta: {owner: data-platform}
+    columns:
+      - name: order_status
+        data_tests:
+          - accepted_values:
+              arguments: {values: [created, paid, shipped, completed, cancelled]}
+              config: {severity: error}
+      - name: ordered_at
+        data_tests: [not_null]
+      - name: customer_id
+        data_tests:
+          - relationships:
+              arguments: {to: ref('stg_customers'), field: customer_id}
+  - name: stg_order_items
+    meta: {owner: data-platform}
+    columns:
+      - name: unit_price
+        data_tests:
+          - accepted_range:
+              arguments: {min_value: 0}
+              config: {severity: error}
+      - name: quantity
+        data_tests:
+          - accepted_range:
+              arguments: {min_value: 1}
+      - name: order_id
+        data_tests:
+          - relationships:
+              arguments: {to: ref('stg_orders'), field: order_id}
+      - name: product_id
+        data_tests:
+          - relationships:
+              arguments: {to: ref('stg_products'), field: product_id}
+  - name: stg_customers
+    meta: {owner: data-platform}
+    columns:
+      - name: membership_tier
+        data_tests:
+          - accepted_values:
+              arguments: {values: [bronze, silver, gold]}
+              config: {severity: warn}
+      - name: city
+        meta: {pii: true}
+        data_tests:
+          - not_null:
+              config: {severity: warn}
+      - name: customer_name
+        meta: {pii: true}
+  - name: stg_products
+    meta: {owner: data-platform}
+    columns:
+      - name: category
+        data_tests:
+          - accepted_values:
+              arguments: {values: [books, toys, home, sports]}
+              config: {severity: warn}
+      - name: price
+        data_tests:
+          - accepted_range:
+              arguments: {min_value: 0}

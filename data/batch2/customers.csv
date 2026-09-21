@@ -1,0 +1,6 @@
+customer_id,name,city,membership_tier,updated_at
+1,Customer 1,Taipei,gold,2026-01-22 09:00:00
+2,Customer 2,Kaohsiung,bronze,2026-01-23 09:00:00
+21,Customer 21,Taichung,bronze,2026-01-24 08:00:00
+22,Customer 22,Taipei,bronze,2026-01-24 08:00:00
+23,Customer 23,Kaohsiung,bronze,2026-01-24 08:00:00

@@ -1,0 +1,21 @@
+customer_id,name,city,membership_tier,updated_at
+1,Customer 1,Taipei,silver,2026-01-10 08:01:00
+2,Customer 2,Taipei,bronze,2026-01-10 08:02:00
+3,Customer 3,Taichung,bronze,2026-01-10 08:03:00
+4,Customer 4,Taipei,bronze,2026-01-10 08:04:00
+5,Customer 5,Hsinchu,silver,2026-01-10 08:05:00
+6,Customer 6,Taipei,bronze,2026-01-10 08:06:00
+7,Customer 7,Taipei,bronze,2026-01-10 08:07:00
+8,Customer 8,Taichung,bronze,2026-01-10 08:08:00
+9,Customer 9,Hsinchu,bronze,2026-01-10 08:09:00
+10,Customer 10,Hsinchu,silver,2026-01-10 08:10:00
+11,Customer 11,Taichung,silver,2026-01-10 08:11:00
+12,Customer 12,Hsinchu,silver,2026-01-10 08:12:00
+13,Customer 13,Taipei,bronze,2026-01-10 08:13:00
+14,Customer 14,Tainan,silver,2026-01-10 08:14:00
+15,Customer 15,Kaohsiung,bronze,2026-01-10 08:15:00
+16,Customer 16,Taichung,silver,2026-01-10 08:16:00
+17,Customer 17,Taipei,bronze,2026-01-10 08:17:00
+18,Customer 18,Tainan,bronze,2026-01-10 08:18:00
+19,Customer 19,Kaohsiung,silver,2026-01-10 08:19:00
+20,Customer 20,Hsinchu,silver,2026-01-10 08:20:00

@@ -1,0 +1,22 @@
+# physical tables, straight from the Iceberg REST catalog (the same catalog Trino and Spark use)
+source:
+  type: iceberg
+  config:
+    env: DEV
+    catalog:
+      lakehouse:
+        type: rest
+        uri: http://localhost:8181
+        s3.endpoint: http://localhost:9000
+        s3.access-key-id: admin
+        s3.secret-access-key: password
+        s3.region: us-east-1
+        s3.force-virtual-addressing: false
+    namespace_pattern:
+      allow: ["ods", "dwh_spark"]      # not the scratch schema (cmp) or the JDBC placeholder (default)
+    profiling:
+      enabled: false
+sink:
+  type: datahub-rest
+  config:
+    server: http://localhost:8082

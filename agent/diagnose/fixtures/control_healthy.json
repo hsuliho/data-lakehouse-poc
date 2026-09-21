@@ -1,0 +1,133 @@
+{
+ "meta": {
+  "fault": "control_healthy",
+  "expected": "no_problem_found",
+  "note": "nothing injected; the run is a plain rerun of a completed date",
+  "dt": "2026-01-30"
+ },
+ "calls": {
+  "run_summary|[[\"2026-01-30\", \"\"], {}]": {
+   "found": true,
+   "run_id": "0e7ecaf7-f0ec-4c15-af19-2b9962d4508d",
+   "status": "SUCCESS",
+   "partition": "2026-01-30",
+   "started_utc": "2026-09-21T05:30:05.368800+00:00",
+   "ended_utc": "2026-09-21T05:30:55.188846+00:00",
+   "steps": {
+    "ods__customers_raw": "success",
+    "ods__order_items_raw": "success",
+    "ods__orders_raw": "success",
+    "ods__products_raw": "success",
+    "ods__customers": "success",
+    "scd2__dim_customer": "success",
+    "ods__order_items": "success",
+    "ods__orders": "success",
+    "ods__products": "success",
+    "scd2__dim_product": "success",
+    "dbt_models": "success",
+    "cross_table_checks": "success"
+   },
+   "error": null,
+   "data_checks": {
+    "checks_run": 47,
+    "failing": []
+   }
+  },
+  "service_health|[[], {}]": {
+   "dagster": {
+    "container": "Up 32 minutes",
+    "endpoint": "ok"
+   },
+   "trino": {
+    "container": "Up 21 minutes (healthy)",
+    "endpoint": "ok"
+   },
+   "catalog": {
+    "container": "Up 19 minutes (healthy)",
+    "endpoint": "ok"
+   },
+   "spark": {
+    "container": "Up 18 minutes",
+    "endpoint": "ok"
+   },
+   "minio": {
+    "container": "Up 2 hours",
+    "endpoint": "ok"
+   }
+  },
+  "delivery_check|[[\"2026-01-30\"], {}]": {
+   "dt": "2026-01-30",
+   "folder_exists": true,
+   "success_marker": true,
+   "tables": {
+    "customers": {
+     "rows": 1,
+     "columns_match_contract": true,
+     "duplicate_event_ids": 0,
+     "changed_at_after_delivery_day": 0
+    },
+    "products": {
+     "rows": 2,
+     "columns_match_contract": true,
+     "duplicate_event_ids": 0,
+     "changed_at_after_delivery_day": 0
+    },
+    "orders": {
+     "rows": 7,
+     "columns_match_contract": true,
+     "duplicate_event_ids": 0,
+     "changed_at_after_delivery_day": 0
+    },
+    "order_items": {
+     "rows": 7,
+     "columns_match_contract": true,
+     "duplicate_event_ids": 0,
+     "changed_at_after_delivery_day": 0
+    }
+   },
+   "loader_would_accept": true
+  },
+  "partition_status|[[], {}]": {
+   "completed_dates": [
+    "2026-01-29",
+    "2026-01-30",
+    "2026-01-31"
+   ],
+   "landing_dates_not_completed": []
+  },
+  "run_summary|[[\"\", \"\"], {}]": {
+   "found": true,
+   "run_id": "0e7ecaf7-f0ec-4c15-af19-2b9962d4508d",
+   "status": "SUCCESS",
+   "partition": "2026-01-30",
+   "started_utc": "2026-09-21T05:30:05.368800+00:00",
+   "ended_utc": "2026-09-21T05:30:55.188846+00:00",
+   "steps": {
+    "ods__customers_raw": "success",
+    "ods__order_items_raw": "success",
+    "ods__orders_raw": "success",
+    "ods__products_raw": "success",
+    "ods__customers": "success",
+    "scd2__dim_customer": "success",
+    "ods__order_items": "success",
+    "ods__orders": "success",
+    "ods__products": "success",
+    "scd2__dim_product": "success",
+    "dbt_models": "success",
+    "cross_table_checks": "success"
+   },
+   "error": null,
+   "data_checks": {
+    "checks_run": 47,
+    "failing": []
+   }
+  },
+  "_docker_ps|[[], {}]": "data-lakehouse-poc-dagster-webserver-1|Up 32 minutes\ndata-lakehouse-poc-dagster-daemon-1|Up 32 minutes\ndata-lakehouse-poc-superset-1|Up 2 hours (healthy)\ndata-lakehouse-poc-spark-thrift-1|Up 18 minutes\ndata-lakehouse-poc-trino-1|Up 21 minutes (healthy)\ndata-lakehouse-poc-iceberg-rest-1|Up 19 minutes (healthy)\ndata-lakehouse-poc-mc-1|Exited (0) 32 minutes ago\ndata-lakehouse-poc-catalog-init-1|Exited (0) 32 minutes ago\ndata-lakehouse-poc-minio-1|Up 2 hours\ndatahub-datahub-actions-quickstart-1|Up 13 hours\ndatahub-datahub-gms-quickstart-1|Up 13 hours (healthy)\ndatahub-frontend-quickstart-1|Up 13 hours (healthy)\ndatahub-system-update-quickstart-1|Exited (0) 13 hours ago\ndatahub-mysql-1|Up 13 hours (healthy)\ndatahub-kafka-broker-1|Up 13 hours (healthy)\ndatahub-opensearch-1|Up 13 hours (healthy)\nadmiring_robinson|Exited (1) 2 weeks ago\nstream-trading-data-archi-api-1|Exited (2) 4 weeks ago\nstream-trading-data-archi-flink-taskmanager-1|Exited (143) 4 weeks ago\nstream-trading-data-archi-flink-jobmanager-1|Exited (143) 4 weeks ago\nstream-trading-data-archi-ingestion-1|Exited (2) 4 weeks ago\nstream-trading-data-archi-kafka-init-1|Exited (0) 5 weeks ago\nstream-trading-data-archi-redis-1|Exited (0) 4 weeks ago\nstream-trading-data-archi-kafka-1|Exited (143) 4 weeks ago\n",
+  "_list_landing|[[\"2026-01-30\"], {}]": "[\"_SUCCESS\", \"customers.csv\", \"order_items.csv\", \"orders.csv\", \"products.csv\"]",
+  "_list_landing|[[\"\"], {}]": "{\"error\": \"landing does not exist\"}",
+  "_read_landing_file|[[\"2026-01-30\", \"orders.csv\", 8], {}]": "[\"order_id,customer_id,order_status,ordered_at,changed_at,event_id,is_deleted\", \"61,1,paid,2026-01-29 23:59:59.999999,2026-01-30 12:00:00,575d846f604d6bfd,false\", \"62,1,paid,2026-01-30 00:00:00,2026-01-30 12:00:00,a0360aab798a08cc,false\", \"63,1,paid,2026-01-30 00:00:00.000001,2026-01-30 12:00:00,72f9da2dc067d6ec,false\", \"64,1,paid,2026-01-30T08:00:00+08:00,2026-01-30 12:00:00,5050f2a34390bdee,false\", \"65,1,paid,2026-01-29T23:59:59+08:00,2026-01-30 12:00:00,df51b10932eccfcf,false\", \"66,1,paid,2026-01-29T16:00:00Z,2026-01-30 12:00:00,bb33b435ef59836b,false\", \"67,1,paid,2026-01-29 15:59:59.999999,2026-01-30 12:00:00,11bfdd7498b30e25,false\"]",
+  "_read_landing_file|[[\"2026-01-30\", \"order_items.csv\", 8], {}]": "[\"order_item_id,order_id,product_id,quantity,unit_price,changed_at,event_id,is_deleted\", \"131,61,7,1,155.75,2026-01-30 12:00:00,cc8dad692f24f482,false\", \"132,62,7,1,155.75,2026-01-30 12:00:00,f645bb627cf88d16,false\", \"133,63,7,1,155.75,2026-01-30 12:00:00,71090d237b026e99,false\", \"134,64,7,1,155.75,2026-01-30 12:00:00,00f379b9ee535e15,false\", \"135,65,7,1,155.75,2026-01-30 12:00:00,6fcfa9d0ba1808a7,false\", \"136,66,7,1,155.75,2026-01-30 12:00:00,905c32ad06f5263b,false\", \"137,67,7,1,155.75,2026-01-30 12:00:00,6dad25958efdb439,false\"]",
+  "_read_landing_file|[[\"2026-01-30\", \"customers.csv\", 8], {}]": "[\"customer_id,name,city,membership_tier,changed_at,event_id,is_deleted\", \"24,,,,2026-01-27 10:00:00,bed0c552cf2d8798,true\"]",
+  "_read_landing_file|[[\"2026-01-30\", \"products.csv\", 8], {}]": "[\"product_id,name,category,price,changed_at,event_id,is_deleted\", \"5,Product 5,toys,117.58,2026-01-18 12:00:00,aa393c6c8dea3c6c,false\", \"7,Product 7,sports,155.75,2026-01-30 00:00:00,fa3db2d4f16359ca,false\"]"
+ }
+}

@@ -1,0 +1,36 @@
+version: 2
+
+# EXIT GATE: what we publish.
+models:
+  - name: fact_orders
+    meta: {owner: data-platform}
+    columns:
+      - name: order_item_id
+        data_tests: [not_null, unique]
+      - name: product_sk
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: {to: "source('scd2', 'dim_product')", field: product_sk}
+      - name: customer_sk
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: {to: "source('scd2', 'dim_customer')", field: customer_sk}
+      - name: line_amount   # symptom of upstream dirt; already an error at staging, so only warn here
+        data_tests:
+          - accepted_range:
+              arguments: {min_value: 0}
+              config: {severity: warn}
+  - name: dws_daily_revenue
+    meta: {owner: data-platform}
+    columns:
+      - name: revenue
+        data_tests: [not_null]
+  - name: ads_category_revenue_rank
+    meta: {owner: data-platform}
+    columns:
+      - name: category
+        data_tests: [not_null, unique]
+      - name: revenue_rank
+        data_tests: [not_null]

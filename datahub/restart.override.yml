@@ -1,0 +1,8 @@
+# every long-running DataHub service comes back after a Colima restart (system-update is a one-shot and is not listed)
+services:
+  datahub-actions-quickstart: {restart: unless-stopped}
+  datahub-gms-quickstart: {restart: unless-stopped}
+  frontend-quickstart: {restart: unless-stopped}
+  kafka-broker: {restart: unless-stopped}
+  mysql: {restart: unless-stopped}
+  opensearch: {restart: unless-stopped}

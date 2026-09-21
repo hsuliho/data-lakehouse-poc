@@ -1,0 +1,129 @@
+{
+ "meta": {
+  "fault": "future_timestamp",
+  "expected": "timestamp_out_of_window",
+  "note": "orders.csv: a changed_at at the start of the next day",
+  "dt": "2026-01-30"
+ },
+ "calls": {
+  "run_summary|[[\"2026-01-30\", \"\"], {}]": {
+   "found": true,
+   "run_id": "5a59afdf-bdf9-4af0-9b59-79a52ab995be",
+   "status": "FAILURE",
+   "partition": "2026-01-30",
+   "started_utc": "2026-09-21T05:31:20.251534+00:00",
+   "ended_utc": "2026-09-21T05:31:20.899179+00:00",
+   "steps": {
+    "ods__customers_raw": "failed",
+    "ods__order_items_raw": "failed",
+    "ods__orders_raw": "failed",
+    "ods__products_raw": "failed"
+   },
+   "error": {
+    "step": "ods__products_raw",
+    "message": "dagster._core.definitions.events.Failure: load.py exited 2: REJECTED: dt=2026-01-30 orders: changed_at 2026-01-31 00:00:00 is after the delivery day (event 575d846f604d6bfd)\n"
+   },
+   "data_checks": {
+    "checks_run": 0,
+    "failing": []
+   }
+  },
+  "service_health|[[], {}]": {
+   "dagster": {
+    "container": "Up 32 minutes",
+    "endpoint": "ok"
+   },
+   "trino": {
+    "container": "Up 21 minutes (healthy)",
+    "endpoint": "ok"
+   },
+   "catalog": {
+    "container": "Up 20 minutes (healthy)",
+    "endpoint": "ok"
+   },
+   "spark": {
+    "container": "Up 19 minutes",
+    "endpoint": "ok"
+   },
+   "minio": {
+    "container": "Up 2 hours",
+    "endpoint": "ok"
+   }
+  },
+  "delivery_check|[[\"2026-01-30\"], {}]": {
+   "dt": "2026-01-30",
+   "folder_exists": true,
+   "success_marker": true,
+   "tables": {
+    "customers": {
+     "rows": 1,
+     "columns_match_contract": true,
+     "duplicate_event_ids": 0,
+     "changed_at_after_delivery_day": 0
+    },
+    "products": {
+     "rows": 2,
+     "columns_match_contract": true,
+     "duplicate_event_ids": 0,
+     "changed_at_after_delivery_day": 0
+    },
+    "orders": {
+     "rows": 7,
+     "columns_match_contract": true,
+     "duplicate_event_ids": 0,
+     "changed_at_after_delivery_day": 1
+    },
+    "order_items": {
+     "rows": 7,
+     "columns_match_contract": true,
+     "duplicate_event_ids": 0,
+     "changed_at_after_delivery_day": 0
+    }
+   },
+   "loader_would_accept": false,
+   "loader_reason": "dt=2026-01-30 orders: changed_at 2026-01-31 00:00:00 is after the delivery day (event 575d846f604d6bfd)"
+  },
+  "partition_status|[[], {}]": {
+   "completed_dates": [
+    "2026-01-29",
+    "2026-01-30",
+    "2026-01-31"
+   ],
+   "landing_dates_not_completed": []
+  },
+  "known_issues|[[\"{\\\"step\\\": \\\"ods__products_raw\\\", \\\"message\\\": \\\"dagster._core.definitions.events.Failure: load.py exited 2: REJECTED: dt=2026-01-30 orders: changed_at 2026-01-31 00:00:00 is after the delivery day (event 575d846f604d6bfd)\\\\n\\\"}\"], {}]": [
+   "REPORT.md: **驗證**(`scripts/check_delivery.py`,預期值由 Python 直接從 landing 檔案獨立推導):現況 4 張表、兩個維度的版本(商品 15、客戶 26)都與獨立推導完全相等;亂序沒有覆蓋較新的狀態;重複只留一筆;已刪除的客戶只剩一個已關閉版本;重放 3 天不改任何列也不改 `_loaded_at`;缺 `_SUCCESS`、欄位漂移、`changed_at` 晚於交付日三種交付都被拒收且沒有寫入任何東西。",
+   "REPORT.md: - 資產從「三個腳本」改成 17 個表層級資產:`ods/<t>_raw`、`ods/<t>`(4 張表)、`scd2/dim_product`、`scd2/dim_customer`,加上 `dagster-dbt` 從 manifest 產生的 `stg_*`、`fact_orders`、`dws_daily_revenue`、`ads_category_revenue_rank`。我們的資產與 dbt 的 source 用同一個資產鍵,兩段在表名上接起來。47 個 dbt 測試都成為所屬資料表上的檢查(`da",
+   "REPORT.md: 5. **Colima 虛擬機的時鐘每 10 秒來回跳約 1 秒**:Lima 把它對齊 Mac、`systemd-timesyncd` 對齊網路,而 Mac 自己慢約 1 秒(三個 NTP 伺服器一致,`time.apple.com` 在這個網路連不上)。暫停 `systemd-timesyncd` 後不再往前跳(25 秒 4 次 → 1 次)。結果:Dagster 甘特圖偶爾出現結束早於開始(191 個步驟裡 8 個)。未修(擁有者判斷影響小)。**風險**:Trino 的 `_loaded_at` 與 Spa"
+  ],
+  "run_summary|[[\"\", \"\"], {}]": {
+   "found": true,
+   "run_id": "5a59afdf-bdf9-4af0-9b59-79a52ab995be",
+   "status": "FAILURE",
+   "partition": "2026-01-30",
+   "started_utc": "2026-09-21T05:31:20.251534+00:00",
+   "ended_utc": "2026-09-21T05:31:20.899179+00:00",
+   "steps": {
+    "ods__customers_raw": "failed",
+    "ods__order_items_raw": "failed",
+    "ods__orders_raw": "failed",
+    "ods__products_raw": "failed"
+   },
+   "error": {
+    "step": "ods__products_raw",
+    "message": "dagster._core.definitions.events.Failure: load.py exited 2: REJECTED: dt=2026-01-30 orders: changed_at 2026-01-31 00:00:00 is after the delivery day (event 575d846f604d6bfd)\n"
+   },
+   "data_checks": {
+    "checks_run": 0,
+    "failing": []
+   }
+  },
+  "_docker_ps|[[], {}]": "data-lakehouse-poc-dagster-webserver-1|Up 33 minutes\ndata-lakehouse-poc-dagster-daemon-1|Up 33 minutes\ndata-lakehouse-poc-superset-1|Up 2 hours (healthy)\ndata-lakehouse-poc-spark-thrift-1|Up 19 minutes\ndata-lakehouse-poc-trino-1|Up 21 minutes (healthy)\ndata-lakehouse-poc-iceberg-rest-1|Up 20 minutes (healthy)\ndata-lakehouse-poc-mc-1|Exited (0) 33 minutes ago\ndata-lakehouse-poc-catalog-init-1|Exited (0) 33 minutes ago\ndata-lakehouse-poc-minio-1|Up 2 hours\ndatahub-datahub-actions-quickstart-1|Up 13 hours\ndatahub-datahub-gms-quickstart-1|Up 13 hours (healthy)\ndatahub-frontend-quickstart-1|Up 13 hours (healthy)\ndatahub-system-update-quickstart-1|Exited (0) 13 hours ago\ndatahub-mysql-1|Up 13 hours (healthy)\ndatahub-kafka-broker-1|Up 13 hours (healthy)\ndatahub-opensearch-1|Up 13 hours (healthy)\nadmiring_robinson|Exited (1) 2 weeks ago\nstream-trading-data-archi-api-1|Exited (2) 4 weeks ago\nstream-trading-data-archi-flink-taskmanager-1|Exited (143) 4 weeks ago\nstream-trading-data-archi-flink-jobmanager-1|Exited (143) 4 weeks ago\nstream-trading-data-archi-ingestion-1|Exited (2) 4 weeks ago\nstream-trading-data-archi-kafka-init-1|Exited (0) 5 weeks ago\nstream-trading-data-archi-redis-1|Exited (0) 4 weeks ago\nstream-trading-data-archi-kafka-1|Exited (143) 4 weeks ago\n",
+  "_list_landing|[[\"2026-01-30\"], {}]": "[\"_SUCCESS\", \"customers.csv\", \"order_items.csv\", \"orders.csv\", \"products.csv\"]",
+  "_list_landing|[[\"\"], {}]": "{\"error\": \"landing does not exist\"}",
+  "_read_landing_file|[[\"2026-01-30\", \"orders.csv\", 8], {}]": "[\"order_id,customer_id,order_status,ordered_at,changed_at,event_id,is_deleted\", \"61,1,paid,2026-01-29 23:59:59.999999,2026-01-31 00:00:00,575d846f604d6bfd,false\", \"62,1,paid,2026-01-30 00:00:00,2026-01-30 12:00:00,a0360aab798a08cc,false\", \"63,1,paid,2026-01-30 00:00:00.000001,2026-01-30 12:00:00,72f9da2dc067d6ec,false\", \"64,1,paid,2026-01-30T08:00:00+08:00,2026-01-30 12:00:00,5050f2a34390bdee,false\", \"65,1,paid,2026-01-29T23:59:59+08:00,2026-01-30 12:00:00,df51b10932eccfcf,false\", \"66,1,paid,2026-01-29T16:00:00Z,2026-01-30 12:00:00,bb33b435ef59836b,false\", \"67,1,paid,2026-01-29 15:59:59.999999,2026-01-30 12:00:00,11bfdd7498b30e25,false\"]",
+  "_read_landing_file|[[\"2026-01-30\", \"order_items.csv\", 8], {}]": "[\"order_item_id,order_id,product_id,quantity,unit_price,changed_at,event_id,is_deleted\", \"131,61,7,1,155.75,2026-01-30 12:00:00,cc8dad692f24f482,false\", \"132,62,7,1,155.75,2026-01-30 12:00:00,f645bb627cf88d16,false\", \"133,63,7,1,155.75,2026-01-30 12:00:00,71090d237b026e99,false\", \"134,64,7,1,155.75,2026-01-30 12:00:00,00f379b9ee535e15,false\", \"135,65,7,1,155.75,2026-01-30 12:00:00,6fcfa9d0ba1808a7,false\", \"136,66,7,1,155.75,2026-01-30 12:00:00,905c32ad06f5263b,false\", \"137,67,7,1,155.75,2026-01-30 12:00:00,6dad25958efdb439,false\"]",
+  "_read_landing_file|[[\"2026-01-30\", \"customers.csv\", 8], {}]": "[\"customer_id,name,city,membership_tier,changed_at,event_id,is_deleted\", \"24,,,,2026-01-27 10:00:00,bed0c552cf2d8798,true\"]",
+  "_read_landing_file|[[\"2026-01-30\", \"products.csv\", 8], {}]": "[\"product_id,name,category,price,changed_at,event_id,is_deleted\", \"5,Product 5,toys,117.58,2026-01-18 12:00:00,aa393c6c8dea3c6c,false\", \"7,Product 7,sports,155.75,2026-01-30 00:00:00,fa3db2d4f16359ca,false\"]"
+ }
+}

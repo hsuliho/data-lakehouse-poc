@@ -1,0 +1,82 @@
+version: 2
+
+models:
+  - name: orders_semantic
+    meta: {owner: data-platform}
+    description: "One row per order item: what was ordered, when, in which status, and the category and membership tier that applied at order time."
+    semantic_model:
+      enabled: true
+      name: order_items
+    agg_time_dimension: ordered_at
+    columns:
+      - name: order_item_id
+        entity: {type: primary, name: order_item}
+      - name: order_id
+        entity: {type: foreign, name: sales_order}
+      - name: customer_id
+        entity: {type: foreign, name: customer}
+      - name: ordered_at
+        description: "When the order was placed (UTC instant)."
+        granularity: day
+        dimension: {type: time}
+      - name: ordered_date_taipei
+        description: "The calendar day of the order in Taipei time (UTC+8). Use this for 'yesterday' / 'last week' questions from Taiwan."
+        granularity: day
+        dimension: {type: time}
+      - name: ordered_date_utc
+        description: "The calendar day of the order in UTC. Use only when the user explicitly asks for UTC."
+        granularity: day
+        dimension: {type: time}
+      - name: order_status
+        dimension: {type: categorical}
+      - name: is_revenue_order
+        description: "True when the order's status is paid, shipped or completed (the only statuses that count as revenue)."
+        dimension: {type: categorical}
+      - name: product_category
+        description: "Product category as of the order time (a later reclassification does not rewrite history)."
+        dimension: {type: categorical}
+      - name: customer_membership_tier
+        description: "The customer's membership tier as of the order time."
+        dimension: {type: categorical}
+
+    metrics:
+      - name: revenue
+        label: Revenue
+        description: "Sum of quantity x charged unit price over order items whose order is paid, shipped or completed."
+        type: simple
+        agg: sum
+        expr: "case when is_revenue_order then line_amount else 0 end"
+      - name: orders
+        label: Orders
+        description: "Number of distinct orders that count toward revenue (paid, shipped or completed)."
+        type: simple
+        agg: count_distinct
+        expr: "case when is_revenue_order then order_id end"
+      - name: items_sold
+        label: Items sold
+        description: "Total quantity over order items that count toward revenue."
+        type: simple
+        agg: sum
+        expr: "case when is_revenue_order then quantity else 0 end"
+      - name: customers
+        label: Customers
+        description: "Number of distinct customers with at least one order that counts toward revenue."
+        type: simple
+        agg: count_distinct
+        expr: "case when is_revenue_order then customer_id end"
+
+  - name: metricflow_time_spine
+    meta: {owner: data-platform}
+    time_spine:
+      standard_granularity_column: date_day
+    columns:
+      - name: date_day
+        granularity: day
+
+metrics:
+  - name: average_order_value
+    label: Average order value
+    description: "Revenue divided by orders."
+    type: ratio
+    numerator: revenue
+    denominator: orders

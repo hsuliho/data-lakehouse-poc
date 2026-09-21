@@ -1,0 +1,14 @@
+# Dagster instance for the POC: state in $DAGSTER_HOME (a host directory, kept across restarts). One run at a time (ADR 0015 decision 6).
+telemetry:
+  enabled: false
+run_coordinator:
+  module: dagster.core.run_coordinator
+  class: QueuedRunCoordinator
+  config:
+    max_concurrent_runs: 1
+# A run whose worker died (a container restart in the middle of it) stays STARTED forever and, with a queue limit of 1, blocks every later run.
+# With monitoring on, a run that has not started within 5 minutes or has run for more than 10 minutes (one date takes about a minute) is marked failed.
+run_monitoring:
+  enabled: true
+  start_timeout_seconds: 300
+  max_runtime_seconds: 600

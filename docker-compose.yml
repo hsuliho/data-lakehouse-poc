@@ -1,0 +1,119 @@
+services:
+  minio:
+    restart: unless-stopped
+    image: quay.io/minio/minio:RELEASE.2025-09-07T16-13-09Z
+    command: ["server", "/data", "--console-address", ":9001"]
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: password
+    ports: ["9000:9000", "9001:9001"]
+    volumes: ["minio-data:/data"]
+
+  mc:  # one-shot: create the warehouse bucket
+    image: quay.io/minio/mc:RELEASE.2025-08-13T08-35-41Z
+    depends_on: [minio]
+    entrypoint: >
+      /bin/sh -c "until mc alias set m http://minio:9000 admin password; do sleep 1; done;
+      mc mb --ignore-existing m/warehouse"
+
+  catalog-init:  # one-shot: the volume is root-owned, the catalog runs as user 'iceberg'
+    image: apache/iceberg-rest-fixture:1.10.1
+    user: root
+    entrypoint: ["chown", "iceberg:iceberg", "/catalog"]
+    volumes: ["catalog-data:/catalog"]
+
+  iceberg-rest:
+    restart: unless-stopped
+    image: apache/iceberg-rest-fixture:1.10.1
+    depends_on: [mc, catalog-init]
+    environment:
+      AWS_ACCESS_KEY_ID: admin
+      AWS_SECRET_ACCESS_KEY: password
+      AWS_REGION: us-east-1
+      CATALOG_WAREHOUSE: s3://warehouse/
+      CATALOG_IO__IMPL: org.apache.iceberg.aws.s3.S3FileIO
+      CATALOG_S3_ENDPOINT: http://minio:9000
+      CATALOG_S3_PATH__STYLE__ACCESS: "true"
+      CATALOG_URI: "jdbc:sqlite:/catalog/iceberg_catalog.db?busy_timeout=30000&journal_mode=WAL"  # default URI is in /tmp (lost on recreate); SQLite needs a busy timeout for concurrent commits
+    ports: ["8181:8181"]
+    volumes: ["catalog-data:/catalog"]
+
+  trino:
+    restart: unless-stopped
+    image: trinodb/trino:483
+    depends_on: [iceberg-rest]
+    ports: ["8080:8080"]
+    volumes:
+      - ./trino/catalog:/etc/trino/catalog
+      - ./trino/access-control.properties:/etc/trino/access-control.properties:ro
+      - ./trino/rules.json:/etc/trino/rules.json:ro
+
+  spark-thrift:  # Spark ETL engine; dbt-spark connects to :10000
+    restart: unless-stopped
+    image: apache/spark:3.5.9
+    depends_on: [iceberg-rest]
+    working_dir: /tmp
+    command: >
+      /opt/spark/bin/spark-submit --class org.apache.spark.sql.hive.thriftserver.HiveThriftServer2
+      --name thrift --master local[2] spark-internal
+    environment:
+      AWS_ACCESS_KEY_ID: admin
+      AWS_SECRET_ACCESS_KEY: password
+      AWS_REGION: us-east-1
+    ports: ["10000:10000", "4040:4040"]
+    volumes:
+      - ./spark/spark-defaults.conf:/opt/spark/conf/spark-defaults.conf:ro
+      - ./spark/jars/iceberg-spark-runtime-3.5_2.12-1.10.1.jar:/opt/spark/jars/iceberg-spark-runtime-3.5_2.12-1.10.1.jar:ro
+      - ./spark/jars/iceberg-aws-bundle-1.10.1.jar:/opt/spark/jars/iceberg-aws-bundle-1.10.1.jar:ro
+
+  superset:  # BI layer: queries Trino only (never touches MinIO or the catalog directly). Local POC credentials.
+    restart: unless-stopped
+    build: ./superset
+    image: lakehouse-superset:6.1.0
+    depends_on: [trino]
+    environment:
+      SUPERSET_SECRET_KEY: poc-only-not-a-secret-change-me-0123456789
+    ports: ["8088:8088"]
+    volumes: ["superset-home:/app/superset_home"]
+    command: >
+      sh -c "superset db upgrade &&
+      superset fab create-admin --username admin --firstname a --lastname b --email admin@example.com --password admin || true;
+      superset init && /usr/bin/run-server.sh"
+
+  dagster-daemon:  # runs schedules and sensors and launches the queued runs (one at a time). Code is bind-mounted; no .env, so no API key in here.
+    restart: unless-stopped
+    build: {context: ., dockerfile: orchestration/Dockerfile}
+    image: lakehouse-dagster:1
+    depends_on: [trino, spark-thrift]
+    working_dir: /app
+    command: ["sh", "-c", "python -m orchestration.reap; exec dagster-daemon run -m orchestration.definitions"]   # first mark the runs the previous container left behind as cancelled
+    environment: &dagster-env
+      DAGSTER_HOME: /opt/dagster/home
+      TRINO_HOST: trino
+      SPARK_HOST: spark-thrift
+      LAKEHOUSE_NOW: "${LAKEHOUSE_NOW:-}"        # a fixed clock for tests, empty = the real one
+      SENSOR_INTERVAL: "${SENSOR_INTERVAL:-5}"   # seconds between delivery checks
+    volumes: &dagster-volumes
+      - dagster-home:/opt/dagster/home           # run history, event log, sensor cursors (SQLite) survive container recreation
+      - ./orchestration/dagster.yaml:/opt/dagster/home/dagster.yaml:ro
+      - ./orchestration:/app/orchestration
+      - ./scripts:/app/scripts
+      - ./sql:/app/sql
+      - ./dbt_spark:/app/dbt_spark
+      - ./landing:/app/landing
+
+  dagster-webserver:  # http://localhost:3000: runs, partitions, backfill
+    restart: unless-stopped
+    image: lakehouse-dagster:1
+    depends_on: [dagster-daemon]
+    working_dir: /app
+    command: ["dagster-webserver", "-h", "0.0.0.0", "-p", "3000", "-m", "orchestration.definitions"]
+    environment: *dagster-env
+    volumes: *dagster-volumes
+    ports: ["3000:3000"]
+
+volumes:
+  dagster-home:
+  superset-home:
+  catalog-data:
+  minio-data:

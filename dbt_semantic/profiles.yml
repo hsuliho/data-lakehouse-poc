@@ -1,0 +1,8 @@
+# The semantic layer runs on Trino (MetricFlow does not support the spark adapter).
+# query = what `mf` and the agent use (read-only analyst: access rules and PII masks apply)
+# build = the only thing that writes: creates the contract view
+ecommerce_semantic:
+  target: query
+  outputs:
+    query: {type: trino, method: none, user: analyst, host: localhost, port: 8080, database: iceberg, schema: semantic, threads: 1}
+    build: {type: trino, method: none, user: engineer, host: localhost, port: 8080, database: iceberg, schema: semantic, threads: 1}

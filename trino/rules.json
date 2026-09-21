@@ -1,0 +1,171 @@
+{
+  "catalogs": [
+    {
+      "user": "engineer",
+      "catalog": ".*",
+      "allow": "all"
+    },
+    {
+      "user": "analyst",
+      "catalog": "iceberg",
+      "allow": "read-only"
+    },
+    {
+      "user": "diagnoser",
+      "catalog": "iceberg",
+      "allow": "read-only"
+    },
+    {
+      "catalog": ".*",
+      "allow": "none"
+    }
+  ],
+  "schemas": [
+    {
+      "user": "engineer",
+      "owner": true
+    },
+    {
+      "user": "analyst",
+      "catalog": "iceberg",
+      "schema": "dwh_spark",
+      "owner": false
+    },
+    {
+      "user": "analyst",
+      "catalog": "iceberg",
+      "schema": "semantic",
+      "owner": false
+    },
+    {
+      "user": "diagnoser",
+      "catalog": "iceberg",
+      "schema": "ods",
+      "owner": false
+    },
+    {
+      "user": "diagnoser",
+      "catalog": "iceberg",
+      "schema": "dwh_spark",
+      "owner": false
+    },
+    {
+      "user": "diagnoser",
+      "catalog": "iceberg",
+      "schema": "dwh_spark_dbt_test__audit",
+      "owner": false
+    },
+    {
+      "user": "diagnoser",
+      "catalog": "iceberg",
+      "schema": "ops",
+      "owner": false
+    }
+  ],
+  "tables": [
+    {
+      "user": "engineer",
+      "privileges": [
+        "SELECT",
+        "INSERT",
+        "DELETE",
+        "UPDATE",
+        "OWNERSHIP",
+        "GRANT_SELECT"
+      ]
+    },
+    {
+      "user": "diagnoser",
+      "catalog": "iceberg",
+      "schema": "ods",
+      "table": "customers|customers_raw",
+      "privileges": [
+        "SELECT"
+      ],
+      "columns": [
+        {
+          "name": "name",
+          "mask": "'REDACTED'"
+        },
+        {
+          "name": "city",
+          "mask": "'REDACTED'"
+        }
+      ]
+    },
+    {
+      "user": "diagnoser",
+      "catalog": "iceberg",
+      "schema": "dwh_spark",
+      "table": "dim_customer",
+      "privileges": [
+        "SELECT"
+      ],
+      "columns": [
+        {
+          "name": "customer_name",
+          "mask": "'REDACTED'"
+        },
+        {
+          "name": "city",
+          "mask": "'REDACTED'"
+        }
+      ]
+    },
+    {
+      "user": "diagnoser",
+      "catalog": "iceberg",
+      "schema": "ods|dwh_spark|ops",
+      "table": ".*",
+      "privileges": [
+        "SELECT"
+      ]
+    },
+    {
+      "user": "diagnoser",
+      "catalog": "iceberg",
+      "schema": "dwh_spark_dbt_test__audit",
+      "table": "(?!.*customer).*",
+      "privileges": [
+        "SELECT"
+      ]
+    },
+    {
+      "user": "analyst",
+      "catalog": "iceberg",
+      "schema": "dwh_spark",
+      "table": "dim_customer",
+      "privileges": [
+        "SELECT"
+      ],
+      "columns": [
+        {
+          "name": "customer_name",
+          "mask": "'REDACTED'"
+        },
+        {
+          "name": "city",
+          "mask": "'REDACTED'"
+        }
+      ]
+    },
+    {
+      "user": "analyst",
+      "catalog": "iceberg",
+      "schema": "dwh_spark",
+      "table": "fact_orders|dim_product|dws_daily_revenue|ads_category_revenue_rank",
+      "privileges": [
+        "SELECT"
+      ]
+    },
+    {
+      "user": "analyst",
+      "catalog": "iceberg",
+      "schema": "semantic",
+      "table": "orders_semantic|metricflow_time_spine",
+      "privileges": [
+        "SELECT"
+      ]
+    }
+  ]
+}

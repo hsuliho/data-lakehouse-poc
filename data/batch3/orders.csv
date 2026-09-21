@@ -1,0 +1,2 @@
+order_id,customer_id,order_status,ordered_at,updated_at
+1,1,completed,2026-01-15 10:00:00,2026-01-29 09:00:00

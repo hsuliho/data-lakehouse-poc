@@ -1,0 +1,62 @@
+version: 2
+
+# ENTRY GATE: what the upstream delivery must satisfy before we transform it.
+sources:
+  - name: ods
+    schema: ods
+    meta: {owner: data-platform}
+    loaded_at_field: _loaded_at
+    freshness:   # timeliness: is the pipeline still loading? (to force a failure: --vars '{fresh_period: minute, fresh_warn: 1, fresh_error: 1}')
+      warn_after: {count: "{{ var('fresh_warn', 12) }}", period: "{{ var('fresh_period', 'hour') }}"}
+      error_after: {count: "{{ var('fresh_error', 24) }}", period: "{{ var('fresh_period', 'hour') }}"}
+    tables:
+      - name: customers
+        columns:
+          - name: customer_id
+            data_tests: [not_null, unique]
+          - name: name
+            meta: {pii: true}
+          - name: city
+            meta: {pii: true}
+      - name: products
+        columns:
+          - name: product_id
+            data_tests: [not_null, unique]
+      - name: orders
+        columns:
+          - name: order_id
+            data_tests: [not_null, unique]
+          - name: customer_id
+            data_tests: [not_null]
+      - name: order_items
+        columns:
+          - name: order_item_id
+            data_tests: [not_null, unique]
+          - name: order_id
+            data_tests: [not_null]
+          - name: product_id
+            data_tests: [not_null]
+      - name: orders_raw   # every Change record as delivered; duplicate deliveries (same event_id) are expected and dropped when the state is derived, so only warn
+        freshness: null
+        columns:
+          - name: event_id
+            data_tests:
+              - unique:
+                  config: {severity: warn}
+
+  - name: scd2   # hand-written SCD2 dimensions (sql/scd2), not managed by dbt
+    schema: dwh_spark
+    meta: {owner: data-platform}
+    tables:
+      - name: dim_product
+        columns:
+          - name: product_sk
+            data_tests: [not_null, unique]
+      - name: dim_customer
+        columns:
+          - name: customer_sk
+            data_tests: [not_null, unique]
+          - name: customer_name
+            meta: {pii: true}
+          - name: city
+            meta: {pii: true}

@@ -1,0 +1,160 @@
+{
+ "meta": {
+  "fault": "illegal_status",
+  "expected": "data_quality_status",
+  "note": "orders.csv: an existing order gets status 'refunded' (a new bad value in a test that already has one known bad row)",
+  "dt": "2026-01-30"
+ },
+ "calls": {
+  "run_summary|[[\"2026-01-30\", \"\"], {}]": {
+   "found": true,
+   "run_id": "90736b6e-8498-48ac-baa2-2fddab7eb9b5",
+   "status": "FAILURE",
+   "partition": "2026-01-30",
+   "started_utc": "2026-09-21T05:34:02.892751+00:00",
+   "ended_utc": "2026-09-21T05:35:28.149926+00:00",
+   "steps": {
+    "ods__customers_raw": "success",
+    "ods__order_items_raw": "success",
+    "ods__orders_raw": "success",
+    "ods__products_raw": "success",
+    "ods__customers": "success",
+    "scd2__dim_customer": "success",
+    "ods__order_items": "success",
+    "ods__orders": "success",
+    "ods__products": "success",
+    "scd2__dim_product": "success",
+    "dbt_models": "failed"
+   },
+   "error": {
+    "step": "dbt_models",
+    "message": "dagster._core.errors.DagsterAssetCheckFailedError: 1 blocking asset check failed with ERROR severity:\nstg_orders: accepted_values_stg_orders_order_status__created__paid__shipped__completed__cancelled\n"
+   },
+   "data_checks": {
+    "checks_run": 39,
+    "failing": [
+     {
+      "asset": "stg_orders",
+      "check": "accepted_values_stg_orders_order_status__created__paid__shipped__completed__cancelled",
+      "severity": "ERROR",
+      "failed_rows": "2",
+      "status": "fail"
+     }
+    ]
+   }
+  },
+  "service_health|[[], {}]": {
+   "dagster": {
+    "container": "Up 37 minutes",
+    "endpoint": "ok"
+   },
+   "trino": {
+    "container": "Up 3 minutes (healthy)",
+    "endpoint": "ok"
+   },
+   "catalog": {
+    "container": "Up 2 minutes (healthy)",
+    "endpoint": "ok"
+   },
+   "spark": {
+    "container": "Up About a minute",
+    "endpoint": "ok"
+   },
+   "minio": {
+    "container": "Up 2 hours",
+    "endpoint": "ok"
+   }
+  },
+  "delivery_check|[[\"2026-01-30\"], {}]": {
+   "dt": "2026-01-30",
+   "folder_exists": true,
+   "success_marker": true,
+   "tables": {
+    "customers": {
+     "rows": 1,
+     "columns_match_contract": true,
+     "duplicate_event_ids": 0,
+     "changed_at_after_delivery_day": 0
+    },
+    "products": {
+     "rows": 2,
+     "columns_match_contract": true,
+     "duplicate_event_ids": 0,
+     "changed_at_after_delivery_day": 0
+    },
+    "orders": {
+     "rows": 7,
+     "columns_match_contract": true,
+     "duplicate_event_ids": 0,
+     "changed_at_after_delivery_day": 0
+    },
+    "order_items": {
+     "rows": 7,
+     "columns_match_contract": true,
+     "duplicate_event_ids": 0,
+     "changed_at_after_delivery_day": 0
+    }
+   },
+   "loader_would_accept": true
+  },
+  "partition_status|[[], {}]": {
+   "completed_dates": [
+    "2026-01-29",
+    "2026-01-30",
+    "2026-01-31"
+   ],
+   "landing_dates_not_completed": []
+  },
+  "known_issues|[[\"{\\\"step\\\": \\\"dbt_models\\\", \\\"message\\\": \\\"dagster._core.errors.DagsterAssetCheckFailedError: 1 blocking asset check failed with ERROR severity:\\\\nstg_orders: accepted_values_stg_orders_order_status__created__paid__shipped__completed__cancelled\\\\n\\\"}accepted_values_stg_orders_order_status__created__paid__shipped__completed__cancelled\"], {}]": [
+   "REPORT.md: 6. **資料檢查失敗會讓 run 失敗,但資料已經寫好了**:`dagster-dbt` 把 ERROR 嚴重度的 dbt 測試當成擋住步驟的檢查,`dbt_models` 失敗、run 變紅;但我的程式先跑完所有模型才跑測試,所以事實表、DWS、ADS 已經帶著壞資料更新。這是「檢查不擋下游」的實例。",
+   "docs/RESEARCH_REPORT.md: - **severity**:`error` = 會弄壞主鍵或金額(唯一 / 非空 / 關聯、單價、訂單狀態);`warn` = 描述性或下游症狀(`city` 空值、會員等級、類別、`line_amount` 為負、批次表的重複 key)。`dbt test` 有 `error` 就回傳 exit code 1。",
+   "docs/RESEARCH_REPORT.md: | A-45 | severity:錯誤 = 弄壞主鍵或金額;警告 = 描述性或下游症狀 | 全部 error | 分級決定「要不要中斷」 | 目前 `replay.sh` 不執行測試,error 不會中斷 | 階段 6 |",
+   "REPORT.md: - `sql/scd2/*.sql`:`create_dim`、`stage`、`two_step`、`single_merge` 四個模板;`scripts/scd2.py` 負責填入維度參數並用 Spark 執行;`scripts/check_stage5.py` 是驗收。",
+   "REPORT.md: **severity 分級**:`error` = 會弄壞主鍵或金額(唯一/非空/關聯、單價、訂單狀態);`warn` = 描述性或下游症狀(客戶 `city` 空值、會員等級、類別、`line_amount` 為負、批次表的重複 key)。`dbt test` 只要有 `error` 就回傳 exit code 1,`warn` 不影響。"
+  ],
+  "run_summary|[[\"\", \"\"], {}]": {
+   "found": true,
+   "run_id": "90736b6e-8498-48ac-baa2-2fddab7eb9b5",
+   "status": "FAILURE",
+   "partition": "2026-01-30",
+   "started_utc": "2026-09-21T05:34:02.892751+00:00",
+   "ended_utc": "2026-09-21T05:35:28.149926+00:00",
+   "steps": {
+    "ods__customers_raw": "success",
+    "ods__order_items_raw": "success",
+    "ods__orders_raw": "success",
+    "ods__products_raw": "success",
+    "ods__customers": "success",
+    "scd2__dim_customer": "success",
+    "ods__order_items": "success",
+    "ods__orders": "success",
+    "ods__products": "success",
+    "scd2__dim_product": "success",
+    "dbt_models": "failed"
+   },
+   "error": {
+    "step": "dbt_models",
+    "message": "dagster._core.errors.DagsterAssetCheckFailedError: 1 blocking asset check failed with ERROR severity:\nstg_orders: accepted_values_stg_orders_order_status__created__paid__shipped__completed__cancelled\n"
+   },
+   "data_checks": {
+    "checks_run": 39,
+    "failing": [
+     {
+      "asset": "stg_orders",
+      "check": "accepted_values_stg_orders_order_status__created__paid__shipped__completed__cancelled",
+      "severity": "ERROR",
+      "failed_rows": "2",
+      "status": "fail"
+     }
+    ]
+   }
+  },
+  "_docker_ps|[[], {}]": "data-lakehouse-poc-dagster-webserver-1|Up 37 minutes\ndata-lakehouse-poc-dagster-daemon-1|Up 37 minutes\ndata-lakehouse-poc-superset-1|Up 2 hours (healthy)\ndata-lakehouse-poc-spark-thrift-1|Up About a minute\ndata-lakehouse-poc-trino-1|Up 3 minutes (healthy)\ndata-lakehouse-poc-iceberg-rest-1|Up 2 minutes (healthy)\ndata-lakehouse-poc-mc-1|Exited (0) 37 minutes ago\ndata-lakehouse-poc-catalog-init-1|Exited (0) 37 minutes ago\ndata-lakehouse-poc-minio-1|Up 2 hours\ndatahub-datahub-actions-quickstart-1|Up 13 hours\ndatahub-datahub-gms-quickstart-1|Up 13 hours (healthy)\ndatahub-frontend-quickstart-1|Up 13 hours (healthy)\ndatahub-system-update-quickstart-1|Exited (0) 13 hours ago\ndatahub-mysql-1|Up 13 hours (healthy)\ndatahub-kafka-broker-1|Up 13 hours (healthy)\ndatahub-opensearch-1|Up 13 hours (healthy)\nadmiring_robinson|Exited (1) 2 weeks ago\nstream-trading-data-archi-api-1|Exited (2) 4 weeks ago\nstream-trading-data-archi-flink-taskmanager-1|Exited (143) 4 weeks ago\nstream-trading-data-archi-flink-jobmanager-1|Exited (143) 4 weeks ago\nstream-trading-data-archi-ingestion-1|Exited (2) 4 weeks ago\nstream-trading-data-archi-kafka-init-1|Exited (0) 5 weeks ago\nstream-trading-data-archi-redis-1|Exited (0) 4 weeks ago\nstream-trading-data-archi-kafka-1|Exited (143) 4 weeks ago\n",
+  "_list_landing|[[\"2026-01-30\"], {}]": "[\"_SUCCESS\", \"customers.csv\", \"order_items.csv\", \"orders.csv\", \"products.csv\"]",
+  "_list_landing|[[\"\"], {}]": "{\"error\": \"landing does not exist\"}",
+  "_read_landing_file|[[\"2026-01-30\", \"orders.csv\", 8], {}]": "[\"order_id,customer_id,order_status,ordered_at,changed_at,event_id,is_deleted\", \"61,1,refunded,2026-01-29 23:59:59.999999,2026-01-30 12:00:00,575d846f604d6bfd,false\", \"62,1,paid,2026-01-30 00:00:00,2026-01-30 12:00:00,a0360aab798a08cc,false\", \"63,1,paid,2026-01-30 00:00:00.000001,2026-01-30 12:00:00,72f9da2dc067d6ec,false\", \"64,1,paid,2026-01-30T08:00:00+08:00,2026-01-30 12:00:00,5050f2a34390bdee,false\", \"65,1,paid,2026-01-29T23:59:59+08:00,2026-01-30 12:00:00,df51b10932eccfcf,false\", \"66,1,paid,2026-01-29T16:00:00Z,2026-01-30 12:00:00,bb33b435ef59836b,false\", \"67,1,paid,2026-01-29 15:59:59.999999,2026-01-30 12:00:00,11bfdd7498b30e25,false\"]",
+  "_read_landing_file|[[\"2026-01-30\", \"order_items.csv\", 8], {}]": "[\"order_item_id,order_id,product_id,quantity,unit_price,changed_at,event_id,is_deleted\", \"131,61,7,1,155.75,2026-01-30 12:00:00,cc8dad692f24f482,false\", \"132,62,7,1,155.75,2026-01-30 12:00:00,f645bb627cf88d16,false\", \"133,63,7,1,155.75,2026-01-30 12:00:00,71090d237b026e99,false\", \"134,64,7,1,155.75,2026-01-30 12:00:00,00f379b9ee535e15,false\", \"135,65,7,1,155.75,2026-01-30 12:00:00,6fcfa9d0ba1808a7,false\", \"136,66,7,1,155.75,2026-01-30 12:00:00,905c32ad06f5263b,false\", \"137,67,7,1,155.75,2026-01-30 12:00:00,6dad25958efdb439,false\"]",
+  "_read_landing_file|[[\"2026-01-30\", \"customers.csv\", 8], {}]": "[\"customer_id,name,city,membership_tier,changed_at,event_id,is_deleted\", \"24,,,,2026-01-27 10:00:00,bed0c552cf2d8798,true\"]",
+  "_read_landing_file|[[\"2026-01-30\", \"products.csv\", 8], {}]": "[\"product_id,name,category,price,changed_at,event_id,is_deleted\", \"5,Product 5,toys,117.58,2026-01-18 12:00:00,aa393c6c8dea3c6c,false\", \"7,Product 7,sports,155.75,2026-01-30 00:00:00,fa3db2d4f16359ca,false\"]"
+ }
+}

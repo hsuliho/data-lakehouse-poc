@@ -1,0 +1,23 @@
+# the semantic layer's contract views (dbt_semantic/): lineage from the published fact table, owner, columns.
+# Only these two models are ingested: the project's source `published.fact_orders` is the SAME DataHub entity as the fact model
+# of the main dbt project, and ingesting it here as a source would overwrite what that project already wrote.
+source:
+  type: dbt
+  config:
+    manifest_path: /dbt_semantic/manifest.json
+    catalog_path: /dbt_semantic/catalog.json
+    target_platform: iceberg
+    include_database_name: false          # names are <schema>.<table>, like the iceberg source and the main dbt project
+    env: DEV
+    node_name_pattern:                    # the semantic MODEL `order_items` is not a table; without this it appears as a phantom dataset
+      deny: [".*order_items$"]
+    entities_enabled: {models: "YES", sources: "NO", seeds: "NO", snapshots: "NO", test_definitions: "NO", test_results: "NO"}
+    meta_mapping:
+      owner:
+        match: ".*"
+        operation: add_owner
+        config: {owner_type: group, owner_category: TECHNICAL_OWNER}
+sink:
+  type: datahub-rest
+  config:
+    server: http://localhost:8082

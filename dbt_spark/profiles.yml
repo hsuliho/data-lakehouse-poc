@@ -1,0 +1,13 @@
+ecommerce_spark:
+  target: dev
+  outputs:
+    dev:
+      type: spark
+      method: thrift
+      host: "{{ env_var('SPARK_HOST', 'localhost') }}"  # the compose service name inside Docker
+      port: 10000
+      user: spark
+      schema: dwh_spark
+      threads: 1
+      connect_retries: 3
+      connect_timeout: 60

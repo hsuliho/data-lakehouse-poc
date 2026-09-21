@@ -1,0 +1,24 @@
+# lineage (model -> model, source -> model), owners, PII tags and test / freshness results, from the dbt artifacts
+source:
+  type: dbt
+  config:
+    manifest_path: /dbt/manifest.json
+    catalog_path: /dbt/catalog.json
+    run_results_paths: [/dbt/run_results.json]
+    sources_path: /dbt/sources.json
+    target_platform: iceberg            # dbt-spark writes Iceberg tables; names come out as <schema>.<table>, like the iceberg source
+    env: DEV
+    meta_mapping:
+      owner:
+        match: ".*"
+        operation: add_owner
+        config: {owner_type: group, owner_category: TECHNICAL_OWNER}
+    column_meta_mapping:
+      pii:
+        match: true
+        operation: add_tag
+        config: {tag: PII}
+sink:
+  type: datahub-rest
+  config:
+    server: http://localhost:8082

@@ -1,0 +1,4 @@
+product_id,name,category,price,updated_at
+1,Product 1,books,162.03,2026-01-22 10:00:00
+11,Product 11,home,49.9,2026-01-22 10:30:00
+3,Product 3,home,20.37,2026-01-24 09:00:00

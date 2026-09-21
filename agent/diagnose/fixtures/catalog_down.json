@@ -1,0 +1,130 @@
+{
+ "meta": {
+  "fault": "catalog_down",
+  "expected": "infra_catalog",
+  "note": "the Iceberg REST catalog container is stopped",
+  "dt": "2026-01-30"
+ },
+ "calls": {
+  "run_summary|[[\"2026-01-30\", \"\"], {}]": {
+   "found": true,
+   "run_id": "56336435-11ae-4e46-90c1-84bb81f981bc",
+   "status": "FAILURE",
+   "partition": "2026-01-30",
+   "started_utc": "2026-09-21T05:32:10.833264+00:00",
+   "ended_utc": "2026-09-21T05:33:23.171393+00:00",
+   "steps": {
+    "ods__customers_raw": "failed",
+    "ods__order_items_raw": "failed",
+    "ods__orders_raw": "failed",
+    "ods__products_raw": "failed"
+   },
+   "error": {
+    "step": "ods__products_raw",
+    "message": "dagster._core.definitions.events.Failure: load.py exited 1:   File \"/opt/venv/lib/python3.11/site-packages/trino/client.py\", line 1012, in execute\n    new_rows = self.fetch()\n               ^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.11/site-packages/trino/client.py\", line 1066, in fetch\n    status = self._request.process(response)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.11/site-packages/trino/client.py\", line 756, in process\n    raise self._process_error(response[\"error\"], response.get(\"id\"))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.11/site-packages/trino/client.py\", line 721, in _process_error\n    raise exceptions.TrinoExternalError(error, query_id)\ntrino.exceptions.TrinoExternalError: TrinoExternalError(type=EXTERNAL, name=ICEBERG_CATALOG_ERROR, message=\"Failed to load view 'products_raw'\", query_id=20260921_053323_00013_stfe2)\n"
+   },
+   "data_checks": {
+    "checks_run": 0,
+    "failing": []
+   }
+  },
+  "service_health|[[], {}]": {
+   "dagster": {
+    "container": "Up 35 minutes",
+    "endpoint": "ok"
+   },
+   "trino": {
+    "container": "Up About a minute (healthy)",
+    "endpoint": "ok"
+   },
+   "catalog": {
+    "container": "Exited (143) About a minute ago",
+    "endpoint": "URLError: <urlopen error [Errno 61] Connection refused>"
+   },
+   "spark": {
+    "container": "Up 21 minutes",
+    "endpoint": "ok"
+   },
+   "minio": {
+    "container": "Up 2 hours",
+    "endpoint": "ok"
+   }
+  },
+  "delivery_check|[[\"2026-01-30\"], {}]": {
+   "dt": "2026-01-30",
+   "folder_exists": true,
+   "success_marker": true,
+   "tables": {
+    "customers": {
+     "rows": 1,
+     "columns_match_contract": true,
+     "duplicate_event_ids": 0,
+     "changed_at_after_delivery_day": 0
+    },
+    "products": {
+     "rows": 2,
+     "columns_match_contract": true,
+     "duplicate_event_ids": 0,
+     "changed_at_after_delivery_day": 0
+    },
+    "orders": {
+     "rows": 7,
+     "columns_match_contract": true,
+     "duplicate_event_ids": 0,
+     "changed_at_after_delivery_day": 0
+    },
+    "order_items": {
+     "rows": 7,
+     "columns_match_contract": true,
+     "duplicate_event_ids": 0,
+     "changed_at_after_delivery_day": 0
+    }
+   },
+   "loader_would_accept": true
+  },
+  "partition_status|[[], {}]": {
+   "completed_dates": [
+    "2026-01-29",
+    "2026-01-30",
+    "2026-01-31"
+   ],
+   "landing_dates_not_completed": []
+  },
+  "known_issues|[[\"{\\\"step\\\": \\\"ods__products_raw\\\", \\\"message\\\": \\\"dagster._core.definitions.events.Failure: load.py exited 1:   File \\\\\\\"/opt/venv/lib/python3.11/site-packages/trino/client.py\\\\\\\", line 1012, in execute\\\\n    new_rows = self.fetch()\\\\n               ^^^^^^^^^^^^\\\\n  File \\\\\\\"/opt/venv/lib/python3.11/site-packages/trino/client.py\\\\\\\", line 1066, in fetch\\\\n    status = self._request.process(response)\\\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/opt/venv/lib/python3.11/site-packages/trino/client.py\\\\\\\", line 756, in process\\\\n    raise self._process_error(response[\\\\\\\"error\\\\\\\"], response.get(\\\\\\\"id\\\\\\\"))\\\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/opt/venv/lib/python3.11/site-packages/trino/client.py\\\\\\\", line 721, in _process_error\\\\n    raise exceptions.TrinoExternalError(error, query_id)\\\\ntrino.exceptions.TrinoExternalError: TrinoExternalError(type=EXTERNAL, name=ICEBERG_CATALOG_ERROR, message=\\\\\\\"Failed to load view 'products_raw'\\\\\\\", query_id=20260921_053323_00013_stfe2)\\\\n\\\"}\"], {}]": [
+   "docs/RESEARCH_REPORT.md: | 51 | 我又用了系統的 `python3` 而不是專案的 `.venv` | 匯入失敗 `No module named 'langchain_core'`(多次) | 所有腳本一律 `.venv/bin/python`;`pyproject.toml` / `uv.lock` 是唯一的環境定義 |",
+   "docs/RESEARCH_REPORT.md: | A-20 | Python 3.11 venv;Trino client 0.339.0;PyHive 0.7.0 | — | — | — | ADR 0001 |",
+   "REPORT.md: - `pip install dbt-trino` 失敗:`dbt-core-experimental-parser` 的建置程式要從 GitHub 下載預編譯檔,這個 Python 找不到 SSL 憑證(`CERTIFICATE_VERIFY_FAILED`)。解法:`SSL_CERT_FILE=$(python -c 'import certifi;print(certifi.where())')`,不關閉驗證。",
+   "REPORT.md: 4. **REST catalog 回傳舊指標(第二次觀察)**:重置後重建同名表,Trino 讀不到(`Failed to load table`,catalog 指向已不存在的舊 metadata 檔 `00005-…`;MinIO 上只有 `00000`、`00001`)。重啟 catalog 即恢復。第一次是 view,這次是表,原因仍不明。",
+   "docs/RESEARCH_REPORT.md: - Trino client 的 session 時區固定為 `UTC` 並斷言(`load.py`);Spark 的 `session.timeZone=Etc/UTC` 明確寫入設定,並由 `scd2.py`、dbt `on-run-start` hook、一個測試分別斷言。"
+  ],
+  "run_summary|[[\"\", \"\"], {}]": {
+   "found": true,
+   "run_id": "56336435-11ae-4e46-90c1-84bb81f981bc",
+   "status": "FAILURE",
+   "partition": "2026-01-30",
+   "started_utc": "2026-09-21T05:32:10.833264+00:00",
+   "ended_utc": "2026-09-21T05:33:23.171393+00:00",
+   "steps": {
+    "ods__customers_raw": "failed",
+    "ods__order_items_raw": "failed",
+    "ods__orders_raw": "failed",
+    "ods__products_raw": "failed"
+   },
+   "error": {
+    "step": "ods__products_raw",
+    "message": "dagster._core.definitions.events.Failure: load.py exited 1:   File \"/opt/venv/lib/python3.11/site-packages/trino/client.py\", line 1012, in execute\n    new_rows = self.fetch()\n               ^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.11/site-packages/trino/client.py\", line 1066, in fetch\n    status = self._request.process(response)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.11/site-packages/trino/client.py\", line 756, in process\n    raise self._process_error(response[\"error\"], response.get(\"id\"))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.11/site-packages/trino/client.py\", line 721, in _process_error\n    raise exceptions.TrinoExternalError(error, query_id)\ntrino.exceptions.TrinoExternalError: TrinoExternalError(type=EXTERNAL, name=ICEBERG_CATALOG_ERROR, message=\"Failed to load view 'products_raw'\", query_id=20260921_053323_00013_stfe2)\n"
+   },
+   "data_checks": {
+    "checks_run": 0,
+    "failing": []
+   }
+  },
+  "_docker_ps|[[], {}]": "data-lakehouse-poc-dagster-webserver-1|Up 35 minutes\ndata-lakehouse-poc-dagster-daemon-1|Up 35 minutes\ndata-lakehouse-poc-superset-1|Up 2 hours (healthy)\ndata-lakehouse-poc-spark-thrift-1|Up 21 minutes\ndata-lakehouse-poc-trino-1|Up About a minute (healthy)\ndata-lakehouse-poc-iceberg-rest-1|Exited (143) About a minute ago\ndata-lakehouse-poc-mc-1|Exited (0) 35 minutes ago\ndata-lakehouse-poc-catalog-init-1|Exited (0) 35 minutes ago\ndata-lakehouse-poc-minio-1|Up 2 hours\ndatahub-datahub-actions-quickstart-1|Up 13 hours\ndatahub-datahub-gms-quickstart-1|Up 13 hours (healthy)\ndatahub-frontend-quickstart-1|Up 13 hours (healthy)\ndatahub-system-update-quickstart-1|Exited (0) 13 hours ago\ndatahub-mysql-1|Up 13 hours (healthy)\ndatahub-kafka-broker-1|Up 13 hours (healthy)\ndatahub-opensearch-1|Up 13 hours (healthy)\nadmiring_robinson|Exited (1) 2 weeks ago\nstream-trading-data-archi-api-1|Exited (2) 4 weeks ago\nstream-trading-data-archi-flink-taskmanager-1|Exited (143) 4 weeks ago\nstream-trading-data-archi-flink-jobmanager-1|Exited (143) 4 weeks ago\nstream-trading-data-archi-ingestion-1|Exited (2) 4 weeks ago\nstream-trading-data-archi-kafka-init-1|Exited (0) 5 weeks ago\nstream-trading-data-archi-redis-1|Exited (0) 4 weeks ago\nstream-trading-data-archi-kafka-1|Exited (143) 4 weeks ago\n",
+  "_list_landing|[[\"2026-01-30\"], {}]": "[\"_SUCCESS\", \"customers.csv\", \"order_items.csv\", \"orders.csv\", \"products.csv\"]",
+  "_list_landing|[[\"\"], {}]": "{\"error\": \"landing does not exist\"}",
+  "_read_landing_file|[[\"2026-01-30\", \"orders.csv\", 8], {}]": "[\"order_id,customer_id,order_status,ordered_at,changed_at,event_id,is_deleted\", \"61,1,paid,2026-01-29 23:59:59.999999,2026-01-30 12:00:00,575d846f604d6bfd,false\", \"62,1,paid,2026-01-30 00:00:00,2026-01-30 12:00:00,a0360aab798a08cc,false\", \"63,1,paid,2026-01-30 00:00:00.000001,2026-01-30 12:00:00,72f9da2dc067d6ec,false\", \"64,1,paid,2026-01-30T08:00:00+08:00,2026-01-30 12:00:00,5050f2a34390bdee,false\", \"65,1,paid,2026-01-29T23:59:59+08:00,2026-01-30 12:00:00,df51b10932eccfcf,false\", \"66,1,paid,2026-01-29T16:00:00Z,2026-01-30 12:00:00,bb33b435ef59836b,false\", \"67,1,paid,2026-01-29 15:59:59.999999,2026-01-30 12:00:00,11bfdd7498b30e25,false\"]",
+  "_read_landing_file|[[\"2026-01-30\", \"order_items.csv\", 8], {}]": "[\"order_item_id,order_id,product_id,quantity,unit_price,changed_at,event_id,is_deleted\", \"131,61,7,1,155.75,2026-01-30 12:00:00,cc8dad692f24f482,false\", \"132,62,7,1,155.75,2026-01-30 12:00:00,f645bb627cf88d16,false\", \"133,63,7,1,155.75,2026-01-30 12:00:00,71090d237b026e99,false\", \"134,64,7,1,155.75,2026-01-30 12:00:00,00f379b9ee535e15,false\", \"135,65,7,1,155.75,2026-01-30 12:00:00,6fcfa9d0ba1808a7,false\", \"136,66,7,1,155.75,2026-01-30 12:00:00,905c32ad06f5263b,false\", \"137,67,7,1,155.75,2026-01-30 12:00:00,6dad25958efdb439,false\"]",
+  "_read_landing_file|[[\"2026-01-30\", \"customers.csv\", 8], {}]": "[\"customer_id,name,city,membership_tier,changed_at,event_id,is_deleted\", \"24,,,,2026-01-27 10:00:00,bed0c552cf2d8798,true\"]",
+  "_read_landing_file|[[\"2026-01-30\", \"products.csv\", 8], {}]": "[\"product_id,name,category,price,changed_at,event_id,is_deleted\", \"5,Product 5,toys,117.58,2026-01-18 12:00:00,aa393c6c8dea3c6c,false\", \"7,Product 7,sports,155.75,2026-01-30 00:00:00,fa3db2d4f16359ca,false\"]"
+ }
+}

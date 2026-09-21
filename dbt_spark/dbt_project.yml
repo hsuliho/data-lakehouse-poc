@@ -1,0 +1,13 @@
+name: ecommerce_spark
+version: "1.0"
+profile: ecommerce_spark
+model-paths: ["models"]
+on-run-start:
+  - "{{ assert_utc_session() }}"
+models:
+  ecommerce_spark:
+    +file_format: iceberg
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table
