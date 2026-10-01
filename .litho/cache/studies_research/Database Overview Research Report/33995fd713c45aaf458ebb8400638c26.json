@@ -1,0 +1,606 @@
+{
+  "data": {
+    "database_projects": [
+      {
+        "name": "lakehouse-poc",
+        "project_path": ".",
+        "target_platform": "Apache Iceberg / Trino / Spark",
+        "table_count": 7,
+        "view_count": 12,
+        "procedure_count": 0,
+        "function_count": 0,
+        "references": []
+      }
+    ],
+    "tables": [
+      {
+        "schema": "ods",
+        "name": "customers",
+        "columns": [
+          {
+            "name": "customer_id",
+            "data_type": "BIGINT",
+            "nullable": false,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "name",
+            "data_type": "VARCHAR",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "city",
+            "data_type": "VARCHAR",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "membership_tier",
+            "data_type": "VARCHAR",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "changed_at",
+            "data_type": "TIMESTAMP",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "event_id",
+            "data_type": "VARCHAR",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "is_deleted",
+            "data_type": "BOOLEAN",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "false"
+          }
+        ],
+        "primary_key": [
+          "customer_id"
+        ],
+        "description": "原始客户信息表（ODS层）",
+        "source_path": "data/batch1/customers.csv"
+      },
+      {
+        "schema": "ods",
+        "name": "orders",
+        "columns": [
+          {
+            "name": "order_id",
+            "data_type": "BIGINT",
+            "nullable": false,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "customer_id",
+            "data_type": "BIGINT",
+            "nullable": false,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "order_status",
+            "data_type": "VARCHAR",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "ordered_at",
+            "data_type": "TIMESTAMP",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "updated_at",
+            "data_type": "TIMESTAMP",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "changed_at",
+            "data_type": "TIMESTAMP",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "event_id",
+            "data_type": "VARCHAR",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "is_deleted",
+            "data_type": "BOOLEAN",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "false"
+          }
+        ],
+        "primary_key": [
+          "order_id"
+        ],
+        "description": "原始订单表（ODS层）",
+        "source_path": "data/batch1/orders.csv"
+      },
+      {
+        "schema": "ods",
+        "name": "order_items",
+        "columns": [
+          {
+            "name": "order_item_id",
+            "data_type": "BIGINT",
+            "nullable": false,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "order_id",
+            "data_type": "BIGINT",
+            "nullable": false,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "product_id",
+            "data_type": "BIGINT",
+            "nullable": false,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "quantity",
+            "data_type": "INTEGER",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "unit_price",
+            "data_type": "DECIMAL(10,2)",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "changed_at",
+            "data_type": "TIMESTAMP",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "event_id",
+            "data_type": "VARCHAR",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "is_deleted",
+            "data_type": "BOOLEAN",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "false"
+          }
+        ],
+        "primary_key": [
+          "order_item_id"
+        ],
+        "description": "原始订单明细表（ODS层）",
+        "source_path": "data/batch1/order_items.csv"
+      },
+      {
+        "schema": "ods",
+        "name": "products",
+        "columns": [
+          {
+            "name": "product_id",
+            "data_type": "BIGINT",
+            "nullable": false,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "name",
+            "data_type": "VARCHAR",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "category",
+            "data_type": "VARCHAR",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "price",
+            "data_type": "DECIMAL(10,2)",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "changed_at",
+            "data_type": "TIMESTAMP",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "event_id",
+            "data_type": "VARCHAR",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "is_deleted",
+            "data_type": "BOOLEAN",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "false"
+          }
+        ],
+        "primary_key": [
+          "product_id"
+        ],
+        "description": "原始产品目录表（ODS层）",
+        "source_path": "data/batch1/products.csv"
+      },
+      {
+        "schema": "dwh",
+        "name": "dim_customer",
+        "columns": [
+          {
+            "name": "surrogate_key",
+            "data_type": "BIGINT",
+            "nullable": false,
+            "is_identity": true,
+            "default_value": "null"
+          },
+          {
+            "name": "customer_id",
+            "data_type": "BIGINT",
+            "nullable": false,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "name",
+            "data_type": "VARCHAR",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "city",
+            "data_type": "VARCHAR",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "membership_tier",
+            "data_type": "VARCHAR",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "valid_from",
+            "data_type": "TIMESTAMP",
+            "nullable": false,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "is_current",
+            "data_type": "TIMESTAMP",
+            "nullable": false,
+            "is_identity": false,
+            "default_value": "null"
+          }
+        ],
+        "primary_key": [
+          "surrogate_key"
+        ],
+        "description": "SCD Type 2 客户缓慢变化维度表",
+        "source_path": "sql/scd2/create_dim.sql"
+      },
+      {
+        "schema": "marts",
+        "name": "fact_orders",
+        "columns": [
+          {
+            "name": "order_id",
+            "data_type": "BIGINT",
+            "nullable": false,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "order_item_id",
+            "data_type": "BIGINT",
+            "nullable": false,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "customer_id",
+            "data_type": "BIGINT",
+            "nullable": false,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "product_id",
+            "data_type": "BIGINT",
+            "nullable": false,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "unit_price",
+            "data_type": "DECIMAL(10,2)",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "quantity",
+            "data_type": "INTEGER",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "line_amount",
+            "data_type": "DECIMAL(12,2)",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          }
+        ],
+        "primary_key": [
+          "order_item_id"
+        ],
+        "description": "订单明细事实表（Marts层）",
+        "source_path": "archive/dbt_trino/models/marts/fact_orders.sql"
+      },
+      {
+        "schema": "dws",
+        "name": "dws_daily_revenue",
+        "columns": [
+          {
+            "name": "revenue_date",
+            "data_type": "DATE",
+            "nullable": false,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "category",
+            "data_type": "VARCHAR",
+            "nullable": false,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "total_revenue",
+            "data_type": "DECIMAL(14,2)",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "order_count",
+            "data_type": "BIGINT",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          }
+        ],
+        "primary_key": [
+          "revenue_date",
+          "category"
+        ],
+        "description": "每日分类收入汇总表（DWS层）",
+        "source_path": "archive/dbt_trino/models/marts/dws_daily_revenue.sql"
+      }
+    ],
+    "views": [
+      {
+        "schema": "",
+        "name": "stg_customers",
+        "description": "清洗并规范化客户数据的Staging模型",
+        "referenced_tables": [
+          "ods.customers"
+        ],
+        "source_path": "archive/dbt_trino/models/staging/stg_customers.sql"
+      },
+      {
+        "schema": "",
+        "name": "stg_order_items",
+        "description": "提取订单明细的Staging模型",
+        "referenced_tables": [
+          "ods.order_items"
+        ],
+        "source_path": "archive/dbt_trino/models/staging/stg_order_items.sql"
+      },
+      {
+        "schema": "",
+        "name": "stg_orders",
+        "description": "清洗并格式化订单数据的Staging模型",
+        "referenced_tables": [
+          "ods.orders"
+        ],
+        "source_path": "archive/dbt_trino/models/staging/stg_orders.sql"
+      },
+      {
+        "schema": "",
+        "name": "stg_products",
+        "description": "标准化产品属性的Staging模型",
+        "referenced_tables": [
+          "ods.products"
+        ],
+        "source_path": "archive/dbt_trino/models/staging/stg_products.sql"
+      },
+      {
+        "schema": "",
+        "name": "ads_category_revenue_rank",
+        "description": "按总收入和订单数对产品类别进行排名的ADS模型",
+        "referenced_tables": [
+          "dws.dws_daily_revenue"
+        ],
+        "source_path": "archive/dbt_trino/models/marts/ads_category_revenue_rank.sql"
+      },
+      {
+        "schema": "",
+        "name": "metricflow_time_spine",
+        "description": "MetricFlow语义层日历时间主干模型",
+        "referenced_tables": [],
+        "source_path": "dbt_semantic/models/metricflow_time_spine.sql"
+      },
+      {
+        "schema": "",
+        "name": "orders_semantic",
+        "description": "语义层订单项转换模型，处理时区和过滤PII",
+        "referenced_tables": [
+          "marts.fact_orders"
+        ],
+        "source_path": "dbt_semantic/models/orders_semantic.sql"
+      }
+    ],
+    "stored_procedures": [],
+    "database_functions": [],
+    "table_relationships": [
+      {
+        "from_table": "ods.orders",
+        "from_columns": [
+          "customer_id"
+        ],
+        "to_table": "ods.customers",
+        "to_columns": [
+          "customer_id"
+        ],
+        "relationship_type": "ForeignKey",
+        "constraint_name": "fk_orders_customer"
+      },
+      {
+        "from_table": "ods.order_items",
+        "from_columns": [
+          "order_id"
+        ],
+        "to_table": "ods.orders",
+        "to_columns": [
+          "order_id"
+        ],
+        "relationship_type": "ForeignKey",
+        "constraint_name": "fk_order_items_order"
+      },
+      {
+        "from_table": "ods.order_items",
+        "from_columns": [
+          "product_id"
+        ],
+        "to_table": "ods.products",
+        "to_columns": [
+          "product_id"
+        ],
+        "relationship_type": "ForeignKey",
+        "constraint_name": "fk_order_items_product"
+      },
+      {
+        "from_table": "marts.fact_orders",
+        "from_columns": [
+          "customer_id"
+        ],
+        "to_table": "ods.customers",
+        "to_columns": [
+          "customer_id"
+        ],
+        "relationship_type": "Implicit",
+        "constraint_name": "fk_fact_orders_customer"
+      },
+      {
+        "from_table": "marts.fact_orders",
+        "from_columns": [
+          "product_id"
+        ],
+        "to_table": "ods.products",
+        "to_columns": [
+          "product_id"
+        ],
+        "relationship_type": "Implicit",
+        "constraint_name": "fk_fact_orders_product"
+      }
+    ],
+    "data_flows": [
+      {
+        "name": "每日收入汇总流水",
+        "source": "",
+        "destination": "dws_daily_revenue",
+        "operations": [
+          "INSERT",
+          "DELETE"
+        ],
+        "procedures_involved": [
+          "dws_daily_revenue.sql"
+        ]
+      },
+      {
+        "name": "订单事实表增量更新流",
+        "source": "",
+        "destination": "fact_orders",
+        "operations": [
+          "MERGE"
+        ],
+        "procedures_involved": [
+          "fact_orders.sql"
+        ]
+      },
+      {
+        "name": "SCD2缓慢变化维流水",
+        "source": "",
+        "destination": "dim_customer",
+        "operations": [
+          "MERGE",
+          "INSERT"
+        ],
+        "procedures_involved": [
+          "single_merge.sql",
+          "two_step.sql"
+        ]
+      }
+    ],
+    "confidence_score": 9.0
+  },
+  "timestamp": 1790849813,
+  "prompt_hash": "33995fd713c45aaf458ebb8400638c26",
+  "token_usage": {
+    "input_tokens": 10502,
+    "output_tokens": 2393,
+    "total_tokens": 12895
+  },
+  "model_name": null
+}

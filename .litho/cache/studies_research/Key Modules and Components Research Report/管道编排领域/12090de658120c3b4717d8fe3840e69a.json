@@ -1,0 +1,28 @@
+{
+  "data": {
+    "domain_name": "管道编排领域",
+    "module_name": "Dagster编排调度",
+    "module_description": "定义Dagster资产、pipeline、检查及调度触发逻辑",
+    "interaction": "The module interacts through CLI scripts (trigger.py, state.py, reap.py) to control and monitor the Dagster instance, Python definitions (definitions.py) to register assets and pipelines into the Dagster daemon/webserver, and YAML/Docker configurations to deploy and run the environment.",
+    "implementation": "The pipeline orchestration module is built using Dagster for data workflow management, asset definitions, and scheduling. Core files include definitions.py for declaring assets and partitions (ODS, SCD2, analytics), trigger.py for executing and triggering daily pipeline runs with optional fault injection, reap.py for cleaning up orphaned runs at startup, and state.py for inspecting instance status. Configuration is managed via dagster.yaml and Dockerfile.",
+    "associated_files": [
+      "./orchestration/Dockerfile",
+      "./orchestration/dagster.yaml",
+      "./orchestration/definitions.py",
+      "./orchestration/keys.py",
+      "./orchestration/reap.py",
+      "./orchestration/state.py",
+      "./orchestration/trigger.py"
+    ],
+    "flowchart_mermaid": "graph TD\n    A[Dagster Container / Dockerfile] --> B[Dagster Instance / dagster.yaml]\n    B --> C[Startup / reap.py]\n    C --> D[Asset Definitions / definitions.py]\n    D --> E[Key Tracking / keys.py]\n    D --> F[State Utilities / state.py]\n    D --> G[Pipeline Trigger / trigger.py]",
+    "sequence_diagram_mermaid": ""
+  },
+  "timestamp": 1790849786,
+  "prompt_hash": "12090de658120c3b4717d8fe3840e69a",
+  "token_usage": {
+    "input_tokens": 1283,
+    "output_tokens": 424,
+    "total_tokens": 1707
+  },
+  "model_name": null
+}

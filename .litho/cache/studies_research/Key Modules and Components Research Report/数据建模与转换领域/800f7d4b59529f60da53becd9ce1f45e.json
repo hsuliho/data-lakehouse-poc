@@ -1,0 +1,51 @@
+{
+  "data": {
+    "domain_name": "数据建模与转换领域",
+    "module_name": "dbt数据建模与语义层",
+    "module_description": "负责湖仓中的数据清洗、结构化转换、dbt建模（Staging、DWD、DWS、ADS层）以及语义模型构建。",
+    "interaction": "Interacts with upstream operational data stores (ODS) via schema definitions and provides structured analytical models (Staging, DWS, Marts, ADS) and semantic views consumed by data catalogs (DataHub) and BI tools.",
+    "implementation": "Implements data cleaning, structuring, transformation, and dimensional modeling using dbt projects across Spark and Trino engines. It defines staging models for raw data normalization, incremental facts and daily summaries in marts layers, and metric specifications using MetricFlow for semantic layer consistency.",
+    "associated_files": [
+      "archive/dbt_trino/dbt_project.yml",
+      "archive/dbt_trino/profiles.yml",
+      "archive/dbt_trino/models/marts/ads_category_revenue_rank.sql",
+      "archive/dbt_trino/models/marts/dws_daily_revenue.sql",
+      "archive/dbt_trino/models/marts/fact_orders.sql",
+      "archive/dbt_trino/models/staging/_sources.yml",
+      "archive/dbt_trino/models/staging/stg_customers.sql",
+      "archive/dbt_trino/models/staging/stg_order_items.sql",
+      "archive/dbt_trino/models/staging/stg_orders.sql",
+      "archive/dbt_trino/models/staging/stg_products.sql",
+      "datahub/recipes/dbt_semantic.yml",
+      "dbt_semantic/dbt_project.yml",
+      "dbt_semantic/profiles.yml",
+      "dbt_semantic/models/_sources.yml",
+      "dbt_semantic/models/metricflow_time_spine.sql",
+      "dbt_semantic/models/orders_semantic.sql",
+      "dbt_semantic/models/semantic.yml",
+      "dbt_spark/dbt_project.yml",
+      "dbt_spark/profiles.yml",
+      "dbt_spark/macros/time.sql",
+      "dbt_spark/models/marts/_marts.yml",
+      "dbt_spark/models/marts/ads_category_revenue_rank.sql",
+      "dbt_spark/models/marts/dws_daily_revenue.sql",
+      "dbt_spark/models/marts/fact_orders.sql",
+      "dbt_spark/models/staging/_sources.yml",
+      "dbt_spark/models/staging/_staging.yml",
+      "dbt_spark/models/staging/stg_customers.sql",
+      "dbt_spark/models/staging/stg_order_items.sql",
+      "dbt_spark/models/staging/stg_orders.sql",
+      "dbt_spark/models/staging/stg_products.sql"
+    ],
+    "flowchart_mermaid": "graph TD\n    ODS[ODS Raw Data Sources] --> STG[Staging Models stg_orders / stg_customers]\n    STG --> MART_FACT[Fact Orders fact_orders]\n    STG --> MART_DWS[Daily Revenue dws_daily_revenue]\n    MART_DWS --> MART_ADS[Category Revenue Rank ads_category_revenue_rank]\n    MART_FACT --> SEMANTIC[Semantic Layer orders_semantic]\n    SEMANTIC --> METRIC[MetricFlow Metrics]",
+    "sequence_diagram_mermaid": "sequenceDiagram\n    participant ODS as ODS Source\n    participant STG as Staging Layer\n    participant DWS as DWS / Marts\n    participant ADS as ADS Layer\n    participant SEM as Semantic Layer\n\n    ODS->>STG: Extract & Clean (stg_orders, stg_customers)\n    STG->>DWS: Aggregate & Incremental Load (fact_orders, dws_daily_revenue)\n    DWS->>ADS: Calculate Ranks & Metrics (ads_category_revenue_rank)\n    DWS->>SEM: Expose Contract Views (orders_semantic)\n    SEM->>SEM: MetricFlow Time Spine & Semantic Modeling"
+  },
+  "timestamp": 1790849790,
+  "prompt_hash": "800f7d4b59529f60da53becd9ce1f45e",
+  "token_usage": {
+    "input_tokens": 3238,
+    "output_tokens": 802,
+    "total_tokens": 4040
+  },
+  "model_name": null
+}

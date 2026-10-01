@@ -1,0 +1,34 @@
+{
+  "data": {
+    "summary": "The catalog directory holds configuration files for data lake catalog connectors, specifically defining Iceberg REST catalog connections and S3 storage settings.",
+    "importance_score": 0.65,
+    "key_files": [
+      "iceberg.properties"
+    ],
+    "file_insights": [
+      {
+        "name": "iceberg.properties",
+        "summary": "Configuration file for connecting an Iceberg connector to a REST catalog and MinIO S3 storage.",
+        "code_purpose": "config",
+        "source_summary": "Defines key-value configuration properties for the Iceberg connector, including REST catalog type, URI, native S3 enablement, endpoint, region, path-style access, and AWS credentials for MinIO.",
+        "detailed_description": "Contains Trino/Presto or Spark configuration properties for connecting to an Iceberg REST catalog and a MinIO S3-compatible object storage backend. Defines parameters such as connector type, catalog type, REST catalog URI, and S3 endpoint/credentials.",
+        "responsibilities": [
+          "Configure Iceberg connector settings",
+          "Specify REST catalog URI and type",
+          "Configure S3-compatible storage endpoints and credentials"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.75
+      }
+    ]
+  },
+  "timestamp": 1790849363,
+  "prompt_hash": "5abbb3308333944ca0a9ff7146c9cbc6",
+  "token_usage": {
+    "input_tokens": 810,
+    "output_tokens": 330,
+    "total_tokens": 1140
+  },
+  "model_name": null
+}

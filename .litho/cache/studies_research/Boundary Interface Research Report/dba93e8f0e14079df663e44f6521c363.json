@@ -1,0 +1,56 @@
+{
+  "data": {
+    "cli_boundaries": [
+      {
+        "command": "./datahub/dh.sh",
+        "description": "用于管理 DataHub Docker Compose 项目的 Bash 包装脚本，简化了 up、down、ps、logs、pull 等命令的操作。",
+        "arguments": [],
+        "options": [
+          {
+            "name": "action",
+            "short_name": null,
+            "description": "docker-compose 子命令或选项",
+            "required": true,
+            "default_value": null,
+            "value_type": "string"
+          }
+        ],
+        "examples": [
+          "./datahub/dh.sh up -d",
+          "./datahub/dh.sh logs"
+        ],
+        "source_location": "./datahub/dh.sh"
+      }
+    ],
+    "api_boundaries": [],
+    "router_boundaries": [],
+    "integration_suggestions": [
+      {
+        "integration_type": "Storage & Catalog Integration",
+        "description": "Trino / Spark 连接到 Iceberg 目录与 MinIO 对象存储的集成配置。",
+        "example_code": "connector.name=iceberg\\niceberg.catalog.type=rest\\niceberg.rest-catalog.uri=http://rest:8181\\ns3.endpoint=http://minio:9000",
+        "best_practices": [
+          "结合 Trino 查询引擎配置 Iceberg 目录，通过 REST 协议管理元数据。",
+          "确保配置 MinIO 的 S3 端点、凭证及路径样式访问（path-style access）。"
+        ]
+      },
+      {
+        "integration_type": "Orchestration Integration",
+        "description": "Dagster 数据流水线编排实例配置。",
+        "example_code": "run_coordinator:\\n  module: dagster.core.run_coordinator\\n  class: QueuedRunCoordinator",
+        "best_practices": [
+          "通过 Dagster 进行作业编排和调度，集成 dbt 建模和 Spark 数据处理作业。"
+        ]
+      }
+    ],
+    "confidence_score": 9.0
+  },
+  "timestamp": 1790849420,
+  "prompt_hash": "dba93e8f0e14079df663e44f6521c363",
+  "token_usage": {
+    "input_tokens": 5087,
+    "output_tokens": 378,
+    "total_tokens": 5465
+  },
+  "model_name": null
+}

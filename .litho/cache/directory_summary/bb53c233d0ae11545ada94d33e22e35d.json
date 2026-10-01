@@ -1,0 +1,39 @@
+{
+  "data": {
+    "summary": "Directory contains prepackaged Java archive dependencies (JARs) used for integration with AWS and Apache Iceberg.",
+    "importance_score": 0.5,
+    "key_files": [
+      "iceberg-aws-bundle-1.10.1.jar"
+    ],
+    "file_insights": [
+      {
+        "name": "iceberg-aws-bundle-1.10.1.jar",
+        "summary": "Java archive containing AWS SDK dependencies and S3 access grant utilities for Apache Iceberg.",
+        "code_purpose": "lib",
+        "source_summary": "A compiled Java archive (JAR) file containing packaged class files and resources for interacting with AWS S3 services via Apache Iceberg.",
+        "detailed_description": "Contains the bundled Java classes for Apache Iceberg and AWS SDK integration, specifically supporting S3 access grants and related cloud storage functionalities.",
+        "responsibilities": [
+          "Bundling AWS SDK dependencies for Iceberg",
+          "Providing S3 access grants cache functionality"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "software/amazon/awssdk/s3accessgrants/cache",
+            "is_external": true,
+            "dependency_type": "include"
+          }
+        ],
+        "importance_score": 0.7
+      }
+    ]
+  },
+  "timestamp": 1790849338,
+  "prompt_hash": "bb53c233d0ae11545ada94d33e22e35d",
+  "token_usage": {
+    "input_tokens": 889,
+    "output_tokens": 300,
+    "total_tokens": 1189
+  },
+  "model_name": null
+}

@@ -1,0 +1,46 @@
+{
+  "data": {
+    "summary": "The verify directory implements the verification agent (ADR 0020) responsible for evaluating graded test failures, diagnosing issues via fixed rules or models, comparing evaluation runs, and generating prompt suggestions.",
+    "importance_score": 0.85,
+    "key_files": [
+      "__main__.py"
+    ],
+    "file_insights": [
+      {
+        "name": "__main__.py",
+        "summary": "",
+        "code_purpose": "agent",
+        "source_summary": "Defines CLI commands for diagnose, suggest, compare, and regression testing using argparse and formatting results into paths.",
+        "detailed_description": "Implements the command-line interface and entry point for the verification agent, offering diagnostic, suggestion, comparison, and regression testing capabilities.",
+        "responsibilities": [
+          "Handle CLI commands for verification agent",
+          "Execute diagnosis and suggest workflows",
+          "Compare evaluation runs",
+          "Run regression tests"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "agent.verify.__main__",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "agent.verify.__main__",
+            "is_external": false,
+            "dependency_type": "from_import"
+          }
+        ],
+        "importance_score": 0.9
+      }
+    ]
+  },
+  "timestamp": 1790849116,
+  "prompt_hash": "de3dfaa74808b6d0b941f0e328d1d803",
+  "token_usage": {
+    "input_tokens": 2977,
+    "output_tokens": 319,
+    "total_tokens": 3296
+  },
+  "model_name": null
+}

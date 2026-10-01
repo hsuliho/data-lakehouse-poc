@@ -1,0 +1,126 @@
+{
+  "data": {
+    "core_dependencies": [
+      {
+        "from": "staging",
+        "to": "batch1",
+        "dependency_type": "Module",
+        "importance": 5,
+        "description": "Staging reads raw data from sources and partitions"
+      },
+      {
+        "from": "marts",
+        "to": "staging",
+        "dependency_type": "Module",
+        "importance": 5,
+        "description": "Marts builds upon staging models"
+      },
+      {
+        "from": "orchestration",
+        "to": "scripts",
+        "dependency_type": "Module",
+        "importance": 5,
+        "description": "Orchestration triggers scripts and data pipelines"
+      },
+      {
+        "from": "models",
+        "to": "dbt_semantic",
+        "dependency_type": "Module",
+        "importance": 4,
+        "description": "Models and semantic layers integrate with dbt config"
+      },
+      {
+        "from": "agent",
+        "to": "marts",
+        "dependency_type": "Module",
+        "importance": 4,
+        "description": "Agent uses semantic and raw tools for LLM queries"
+      },
+      {
+        "from": "diagnose",
+        "to": "orchestration",
+        "dependency_type": "Module",
+        "importance": 4,
+        "description": "Diagnose agent inspects data pipeline health and tables"
+      },
+      {
+        "from": "datahub",
+        "to": "recipes",
+        "dependency_type": "Module",
+        "importance": 3,
+        "description": "Recipes ingest metadata into DataHub"
+      }
+    ],
+    "architecture_layers": [
+      {
+        "name": "Data Sources and Partitions",
+        "components": [
+          "batch1",
+          "batch2",
+          "batch3",
+          "batch4",
+          "batch5",
+          "dt=2026-01-29",
+          "dt=2026-01-30",
+          "dt=2026-01-31"
+        ],
+        "level": 1
+      },
+      {
+        "name": "Transformation and Modeling Layer",
+        "components": [
+          "staging",
+          "marts",
+          "models",
+          "macros",
+          "dbt_trino",
+          "dbt_spark",
+          "dbt_semantic",
+          "scd2",
+          "scd2_batch"
+        ],
+        "level": 2
+      },
+      {
+        "name": "Orchestration and Infrastructure Layer",
+        "components": [
+          "orchestration",
+          "scripts",
+          "spark",
+          "catalog",
+          "trino",
+          "datahub",
+          "recipes"
+        ],
+        "level": 3
+      },
+      {
+        "name": "Application and Intelligence Layer",
+        "components": [
+          "agent",
+          "diagnose",
+          "verify",
+          "eval",
+          "reports",
+          "superset",
+          "figures"
+        ],
+        "level": 4
+      }
+    ],
+    "key_insights": [
+      "The project follows a modern lakehouse architecture with clear separation between raw data, dbt transformations, and orchestration.",
+      "Data pipelines are orchestrated via Dagster while transformations are handled by dbt across Trino and Spark backends.",
+      "Intelligence agents (agent, diagnose, verify) provide robust natural language interfaces and automated pipeline monitoring over the data warehouse.",
+      "Potential complexity exists in managing multiple experimental arms (raw vs semantic) and separate dbt configurations."
+    ]
+  },
+  "timestamp": 1790849365,
+  "prompt_hash": "bb1ef59807f64590ef611a47348d808b",
+  "token_usage": {
+    "input_tokens": 6884,
+    "output_tokens": 595,
+    "total_tokens": 7479
+  },
+  "model_name": null
+}

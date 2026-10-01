@@ -1,0 +1,116 @@
+{
+  "data": {
+    "summary": "The reports directory contains analytical SQL queries for data warehouse reporting, focusing on category revenue, customer tier performance, and Taipei timezone-adjusted daily revenue metrics.",
+    "importance_score": 0.8,
+    "key_files": [
+      "daily_revenue_taipei.sql",
+      "tier_summary.sql",
+      "customer_upgrade_before_after.sql",
+      "category_revenue_rank.sql"
+    ],
+    "file_insights": [
+      {
+        "name": "category_revenue_rank.sql",
+        "summary": "Queries all-time revenue and order counts grouped by category and rank.",
+        "code_purpose": "database",
+        "source_summary": "Selects revenue_rank, category, revenue, and order_count from iceberg.dwh_spark.ads_category_revenue_rank.",
+        "detailed_description": "Retrieves all-time revenue per category directly from the ADS table without day bucketing.",
+        "responsibilities": [
+          "Retrieve category revenue rank data"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "iceberg.dwh_spark.ads_category_revenue_rank",
+            "is_external": true,
+            "dependency_type": "use"
+          }
+        ],
+        "importance_score": 0.7
+      },
+      {
+        "name": "customer_upgrade_before_after.sql",
+        "summary": "Analyzes customer order statistics before and after membership tier upgrades.",
+        "code_purpose": "database",
+        "source_summary": "Joins fact_orders with dim_customer for customer_id = 1, grouping by membership tier and aggregating orders and revenue.",
+        "detailed_description": "Tracks customer upgrades and computes orders and revenue for a specific customer across membership tiers.",
+        "responsibilities": [
+          "Analyze customer order patterns across tier upgrades",
+          "Convert order timestamps to Taipei time"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "iceberg.dwh_spark.fact_orders",
+            "is_external": true,
+            "dependency_type": "use"
+          },
+          {
+            "name": "iceberg.dwh_spark.dim_customer",
+            "is_external": true,
+            "dependency_type": "use"
+          }
+        ],
+        "importance_score": 0.75
+      },
+      {
+        "name": "daily_revenue_taipei.sql",
+        "summary": "Computes daily revenue and orders per category using Taipei time conversion.",
+        "code_purpose": "database",
+        "source_summary": "Selects taipei_day and category, summing line amounts and counting distinct orders from fact_orders and dim_product.",
+        "detailed_description": "Aggregates daily revenue and orders per category by converting UTC order timestamps to Taipei local time at the edge.",
+        "responsibilities": [
+          "Aggregate daily revenue and order counts by category",
+          "Perform timezone conversion to Asia/Taipei"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "iceberg.dwh_spark.fact_orders",
+            "is_external": true,
+            "dependency_type": "use"
+          },
+          {
+            "name": "iceberg.dwh_spark.dim_product",
+            "is_external": true,
+            "dependency_type": "use"
+          }
+        ],
+        "importance_score": 0.8
+      },
+      {
+        "name": "tier_summary.sql",
+        "summary": "Provides a summary of order metrics and average order value segmented by historical customer membership tiers.",
+        "code_purpose": "database",
+        "source_summary": "Aggregates fact_orders joined with dim_customer grouped by membership_tier to calculate orders, revenue, and average order value.",
+        "detailed_description": "Summarizes total orders, revenue, and average order value grouped by the customer membership tier active at the time of ordering.",
+        "responsibilities": [
+          "Summarize revenue and order count by membership tier",
+          "Calculate average order value per tier"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "iceberg.dwh_spark.fact_orders",
+            "is_external": true,
+            "dependency_type": "use"
+          },
+          {
+            "name": "iceberg.dwh_spark.dim_customer",
+            "is_external": true,
+            "dependency_type": "use"
+          }
+        ],
+        "importance_score": 0.75
+      }
+    ]
+  },
+  "timestamp": 1790849348,
+  "prompt_hash": "83c5ad3b76fb74d76f0d5614bfe0a749",
+  "token_usage": {
+    "input_tokens": 1201,
+    "output_tokens": 887,
+    "total_tokens": 2088
+  },
+  "model_name": null
+}

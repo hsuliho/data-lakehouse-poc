@@ -149,7 +149,10 @@ def classify(f: dict) -> dict:
     if not f["tools"]:
         return hi("tool_choice", "no tool was called at all: the number cannot have come from the warehouse")
 
-    if f["derived"]:
+    # A derived answer is never in a tool result, so the usual test cannot apply. But that only points at the arithmetic
+    # when the model did NOT choose the inputs itself: an arm that writes its own SQL can just as easily have derived
+    # correctly from the wrong numbers, and the query is the thing it had full control over.
+    if f["derived"] and not f["model_wrote_the_query"]:
         return med("model_misread", "the expected value is derived, so no tool can return it: the parameters are right and "
                                     f"tool data came back, so the arithmetic that produced {f['submitted_value']} is where it went wrong")
     if f["golden_in_tools"]:

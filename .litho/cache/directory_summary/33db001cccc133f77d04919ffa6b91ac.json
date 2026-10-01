@@ -1,0 +1,121 @@
+{
+  "data": {
+    "summary": "The staging directory contains dbt source configurations and SQL models responsible for cleaning, standardizing, and preparing raw operational data tables (customers, products, orders, and order items) for downstream analytics. The files work together to define data sources and apply consistent transformations such as string trimming and lowercase normalization.",
+    "importance_score": 0.85,
+    "key_files": [
+      "_sources.yml",
+      "stg_customers.sql",
+      "stg_orders.sql",
+      "stg_products.sql",
+      "stg_order_items.sql"
+    ],
+    "file_insights": [
+      {
+        "name": "_sources.yml",
+        "summary": "Configuration file defining the operational data store (ods) sources and tables for dbt models.",
+        "code_purpose": "config",
+        "source_summary": "Defines version 2 sources for the 'ods' schema, listing source tables customers, products, orders, and order_items.",
+        "detailed_description": "Defines the source schema and tables for the operational data store (ods) within the staging layer. This acts as the configuration layer mapping raw source tables for downstream data transformations.",
+        "responsibilities": [
+          "Define project source schema",
+          "List raw source tables including customers, products, orders, and order_items"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.8
+      },
+      {
+        "name": "stg_customers.sql",
+        "summary": "Staging model for cleaning and standardizing customer data from the ods source.",
+        "code_purpose": "model",
+        "source_summary": "Executes a SQL select query against the ods.customers source table, applying string trimming and lowercase normalization to specific fields.",
+        "detailed_description": "Transforms the raw customer source table by cleaning string fields, trimming names and cities, normalizing membership tiers, and selecting relevant columns.",
+        "responsibilities": [
+          "Clean and trim customer names and cities",
+          "Normalize membership tiers to lower case",
+          "Select customer identifier and update timestamps"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "source('ods', 'customers')",
+            "is_external": true,
+            "dependency_type": "use"
+          }
+        ],
+        "importance_score": 0.85
+      },
+      {
+        "name": "stg_order_items.sql",
+        "summary": "Staging model for pulling order item details from the ods source.",
+        "code_purpose": "model",
+        "source_summary": "Executes a SQL select query against the ods.order_items source table to extract order item attributes.",
+        "detailed_description": "Extracts order item details from the raw ods source, preserving identifiers, quantities, unit prices, and update timestamps.",
+        "responsibilities": [
+          "Extract order item records",
+          "Expose quantities and unit prices for downstream usage",
+          "Preserve relationship between orders, products, and order items"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "source('ods', 'order_items')",
+            "is_external": true,
+            "dependency_type": "use"
+          }
+        ],
+        "importance_score": 0.85
+      },
+      {
+        "name": "stg_orders.sql",
+        "summary": "Staging model for cleaning and formatting order data.",
+        "code_purpose": "model",
+        "source_summary": "Executes a SQL select query against the ods.orders source table with status normalization and trimming.",
+        "detailed_description": "Transforms raw order records by normalizing order status to lowercase and preserving customer identifiers and order timestamps.",
+        "responsibilities": [
+          "Normalize order status strings",
+          "Select order and customer identifiers",
+          "Track order placement and update times"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "source('ods', 'orders')",
+            "is_external": true,
+            "dependency_type": "use"
+          }
+        ],
+        "importance_score": 0.85
+      },
+      {
+        "name": "stg_products.sql",
+        "summary": "Staging model for standardizing product attributes from the ods source.",
+        "code_purpose": "model",
+        "source_summary": "Executes a SQL select query against the ods.products source table with text cleaning transformations.",
+        "detailed_description": "Cleans product details from the ods source by trimming product names, normalizing category values to lowercase, and retaining pricing information.",
+        "responsibilities": [
+          "Trim and clean product names",
+          "Normalize product categories to lowercase",
+          "Expose product price and update timestamps"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "source('ods', 'products')",
+            "is_external": true,
+            "dependency_type": "use"
+          }
+        ],
+        "importance_score": 0.85
+      }
+    ]
+  },
+  "timestamp": 1790849157,
+  "prompt_hash": "33db001cccc133f77d04919ffa6b91ac",
+  "token_usage": {
+    "input_tokens": 952,
+    "output_tokens": 1075,
+    "total_tokens": 2027
+  },
+  "model_name": null
+}

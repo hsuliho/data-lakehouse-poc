@@ -1,0 +1,77 @@
+{
+  "data": {
+    "project_name": "lakehouse-poc",
+    "project_description": "lakehouse-poc 是一个结合了现代湖仓一体架构（Lakehouse）、数据转换流水线（dbt、Spark、Trino、Dagster）与智能化诊断 Agent（基于 LangGraph 的大模型诊断与验证工具）的概念验证（PoC）项目。",
+    "project_type": "FullStackApp",
+    "business_value": "通过结合现代湖仓一体技术（Apache Iceberg, Spark, Trino, dbt）与智能化运维诊断 Agent（LangGraph），实现高效、可靠、自诊断的电商数据仓库处理链路，提升数据资产的管理与分析效能。",
+    "target_users": [
+      {
+        "name": "数据工程师 (Data Engineer)",
+        "description": "负责湖仓一体架构搭建、数据流水线编排及性能调优的技术人员",
+        "needs": [
+          "高效的数据流水线编排与调度",
+          "可靠的 SCD Type 2 与增量数据处理模型",
+          "清晰的数据模型和血缘关系"
+        ]
+      },
+      {
+        "name": "数据分析师 / 业务分析师 (Data/Analytics Engineer)",
+        "description": "负责数据模型设计、指标定义及数据资产治理的专业人员",
+        "needs": [
+          "统一的语义层与指标计算",
+          "准确的维度和明细聚合模型",
+          "便捷的 BI 报表支持"
+        ]
+      },
+      {
+        "name": "运维/AI 智能体开发人员 (Ops / AI Agent Developer)",
+        "description": "负责运维排查、数据质量验证以及智能化辅助诊断的研发人员",
+        "needs": [
+          "基于大模型的自动化管道故障诊断",
+          "确定性规则检查与证据收集机制",
+          "评测集与回归测试能力"
+        ]
+      }
+    ],
+    "external_systems": [
+      {
+        "name": "MinIO / S3",
+        "description": "用于 Apache Iceberg 湖仓存储的对象存储服务",
+        "interaction_type": "读写存储"
+      },
+      {
+        "name": "DataHub",
+        "description": "负责元数据与数据资产血缘管理的协同系统",
+        "interaction_type": "数据血缘同步与元数据提取"
+      },
+      {
+        "name": "Apache Superset",
+        "description": "面向业务人员和分析师的数据可视化与报表平台",
+        "interaction_type": "BI 查询与报表展示"
+      }
+    ],
+    "system_boundary": {
+      "scope": "本项目涵盖现代湖仓一体技术架构下的数据处理全链路，包括原始数据摄取、基于 Spark/Iceberg 的湖仓存储、dbt 数据建模、Dagster 流水线编排，以及用于智能化运维与数据质量验证的 LangGraph Agent 系统。",
+      "included_components": [
+        "基于 Spark 与 Iceberg 的数据湖及转换模型",
+        "基于 Dagster 的数据流水线编排调度",
+        "基于 dbt 的数据仓库建模（Staging/Marts）",
+        "基于 LangGraph 的智能化运维诊断与评估 Agent",
+        "Trino 查询与 Superset 可视化集成配置"
+      ],
+      "excluded_components": [
+        "企业级生产环境监控与告警中心",
+        "外部业务核心交易系统"
+      ]
+    },
+    "confidence_score": 9.5
+  },
+  "timestamp": 1790849385,
+  "prompt_hash": "aba32006f15cc47ba909381d177f37d0",
+  "token_usage": {
+    "input_tokens": 3000,
+    "output_tokens": 648,
+    "total_tokens": 3648
+  },
+  "model_name": null
+}

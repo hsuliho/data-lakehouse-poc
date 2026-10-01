@@ -1,0 +1,358 @@
+{
+  "data": {
+    "domain_modules": [
+      {
+        "name": "",
+        "description": "负责底层数据的存储、增量加载、SCD Type 2（缓慢变化维）处理以及基于 dbt 的 Staging 和 Marts 层数据仓库建模。",
+        "domain_type": "核心业务域",
+        "sub_modules": [
+          {
+            "name": "数据摄取与加载模块",
+            "description": "管理原始 CSV 交易数据的落地、增量加载与 SCD Type 2 历史变更批处理。",
+            "code_paths": [
+              "data",
+              "landing",
+              "scripts/load.py",
+              "scripts/scd2.py"
+            ],
+            "key_functions": [
+              "原始数据摄取",
+              "SCD Type 2 缓慢变化维处理",
+              "增量数据加载"
+            ],
+            "importance": 9.0
+          },
+          {
+            "name": "dbt 数据转换模型模块",
+            "description": "利用 dbt 框架对原始数据进行 Staging 层清洗转换及 Marts 层多维聚合建模。",
+            "code_paths": [
+              "dbt_spark",
+              "archive/dbt_trino"
+            ],
+            "key_functions": [
+              "Staging 清洗标准化",
+              "Marts 层明细与汇总聚合",
+              "业务指标计算"
+            ],
+            "importance": 9.5
+          },
+          {
+            "name": "湖仓存储与查询引擎模块",
+            "description": "提供基于 Apache Spark、Apache Iceberg 与 Trino 的湖仓一体存储引擎及 SQL 查询支持。",
+            "code_paths": [
+              "spark",
+              "trino",
+              "sql"
+            ],
+            "key_functions": [
+              "Iceberg 湖仓表管理",
+              "Trino 分布式 SQL 查询",
+              "业务报表 SQL 脚本管理"
+            ],
+            "importance": 9.0
+          }
+        ],
+        "code_paths": [
+          "dbt_spark",
+          "archive/dbt_trino",
+          "archive/scd2_batch",
+          "data",
+          "landing",
+          "spark",
+          "trino",
+          "sql"
+        ],
+        "importance": 9.5,
+        "complexity": 8.5
+      },
+      {
+        "name": "",
+        "description": "负责整个数据处理流水线的任务编排、资产定义、依赖调度及执行监控。",
+        "domain_type": "支撑服务域",
+        "sub_modules": [
+          {
+            "name": "Dagster 编排引擎模块",
+            "description": "定义 Dagster 资产、管道资源、依赖关系及定时触发策略。",
+            "code_paths": [
+              "orchestration/definitions.py",
+              "orchestration/dagster.yaml"
+            ],
+            "key_functions": [
+              "Dagster 资产定义",
+              "流水线调度策略管理",
+              "资源配置与状态维护"
+            ],
+            "importance": 9.0
+          },
+          {
+            "name": "流水线执行与脚本模块",
+            "description": "提供包括数据加载、重置、回放、检查等运维和测试辅助脚本。",
+            "code_paths": [
+              "scripts"
+            ],
+            "key_functions": [
+              "环境初始化与重置",
+              "数据流交付检查",
+              "集成脚本自动化执行"
+            ],
+            "importance": 8.5
+          }
+        ],
+        "code_paths": [
+          "orchestration",
+          "scripts/dagster.sh"
+        ],
+        "importance": 9.0,
+        "complexity": 7.5
+      },
+      {
+        "name": "",
+        "description": "基于 LangGraph 构建的大模型智能化运维、故障诊断、验证及评测系统。",
+        "domain_type": "核心业务域",
+        "sub_modules": [
+          {
+            "name": "LangGraph 智能体核心模块",
+            "description": "实现 LangGraph 智能体的核心状态机、工具调用循环及交互命令行入口。",
+            "code_paths": [
+              "agent/graph.py",
+              "agent/cli.py",
+              "agent/config.py"
+            ],
+            "key_functions": [
+              "Agent 工具调用循环",
+              "多轮对话与状态管理",
+              "CLI 交互接口"
+            ],
+            "importance": 9.5
+          },
+          {
+            "name": "诊断与验证工具模块",
+            "description": "实现确定性证据收集、规则检查、故障自动诊断与回归测试功能。",
+            "code_paths": [
+              "agent/diagnose",
+              "agent/verify"
+            ],
+            "key_functions": [
+              "证据搜集与规则检查",
+              "自动化故障诊断",
+              "回归测试与验证"
+            ],
+            "importance": 9.0
+          },
+          {
+            "name": "智能体评测与基准模块",
+            "description": "管理评测问题集、运行评测套件并对大模型/Agent 回答进行打分评估。",
+            "code_paths": [
+              "agent/eval"
+            ],
+            "key_functions": [
+              "评测问题集管理",
+              "自动化运行与评分",
+              "评测报告生成"
+            ],
+            "importance": 8.5
+          }
+        ],
+        "code_paths": [
+          "agent"
+        ],
+        "importance": 9.5,
+        "complexity": 9.0
+      },
+      {
+        "name": "",
+        "description": "负责数据资产元数据同步、血缘关系提取、PII 标签管理以及 dbt 语义层（MetricFlow）定义。",
+        "domain_type": "支撑服务域",
+        "sub_modules": [
+          {
+            "name": "DataHub 元数据集成模块",
+            "description": "集成 DataHub 元数据平台，通过 recipes 提取 dbt、Iceberg 血缘与元数据。",
+            "code_paths": [
+              "datahub"
+            ],
+            "key_functions": [
+              "DataHub 元数据采集",
+              "数据血缘同步",
+              "PII 标签与资产检索"
+            ],
+            "importance": 8.5
+          },
+          {
+            "name": "dbt语义层与指标模块",
+            "description": "定义统一的语义模型、指标与维度，支持无 SQL 的指标计算和语义层工具。",
+            "code_paths": [
+              "dbt_semantic"
+            ],
+            "key_functions": [
+              "MetricFlow 语义模型定义",
+              "指标与维度声明",
+              "语义层工具集成"
+            ],
+            "importance": 8.5
+          }
+        ],
+        "code_paths": [
+          "datahub",
+          "dbt_semantic"
+        ],
+        "importance": 8.5,
+        "complexity": 7.0
+      }
+    ],
+    "domain_relations": [
+      {
+        "from_domain": "数据工程与湖仓存储域",
+        "to_domain": "数据工程与湖仓存储域",
+        "relation_type": "数据依赖",
+        "strength": 9.0,
+        "description": "marts 层依赖 staging 层的数据清洗与转换输出。"
+      },
+      {
+        "from_domain": "流水线编排调度域",
+        "to_domain": "数据工程与湖仓存储域",
+        "relation_type": "服务调用",
+        "strength": 9.0,
+        "description": "orchestration 域调用 scripts 脚本以及数据工程域中的数据加载与转换任务。"
+      },
+      {
+        "from_domain": "智能化运维与诊断Agent域",
+        "to_domain": "数据工程与湖仓存储域",
+        "relation_type": "数据与状态读取",
+        "strength": 8.5,
+        "description": "agent 域读取 marts 层数据及流水线运行状态进行故障诊断与数据验证。"
+      },
+      {
+        "from_domain": "智能化运维与诊断Agent域",
+        "to_domain": "流水线编排调度域",
+        "relation_type": "服务调用",
+        "strength": 8.5,
+        "description": "diagnose 模块依赖 orchestration 域提供的流水线运行状态与工具。"
+      },
+      {
+        "from_domain": "datahub/recipes",
+        "to_domain": "数据工程与湖仓存储域",
+        "relation_type": "元数据同步",
+        "strength": 8.0,
+        "description": "datahub 域读取 dbt 模型与 Iceberg 湖仓存储元数据，构建元数据血缘。"
+      },
+      {
+        "from_domain": "智能化运维与诊断Agent域",
+        "to_domain": "datahub",
+        "relation_type": "工具调用",
+        "strength": 7.5,
+        "description": "agent 域集成 dbt_semantic 语义层工具进行实验性 Arm B 语义指标查询。"
+      }
+    ],
+    "business_flows": [
+      {
+        "name": "数据处理与建模流水线",
+        "description": "从原始CSV或landing落地数据通过Spark/Iceberg及dbt进行增量与SCD Type 2数据建模，构建数据仓库的staging层与marts层。",
+        "steps": [
+          {
+            "step": 1,
+            "domain_module": "数据工程与湖仓存储域",
+            "sub_module": "数据摄取与加载模块",
+            "operation": "加载并摄取原始数据到湖仓存储",
+            "code_entry_point": "scripts/load.py"
+          },
+          {
+            "step": 2,
+            "domain_module": "数据工程与湖仓存储域",
+            "sub_module": "dbt 数据转换模型模块",
+            "operation": "执行 Staging 层数据清洗与标准化",
+            "code_entry_point": "dbt_spark/models/staging/stg_orders.sql"
+          },
+          {
+            "step": 3,
+            "domain_module": "数据工程与湖仓存储域",
+            "sub_module": "dbt 数据转换模型模块",
+            "operation": "计算 Marts 层明细与汇总指标",
+            "code_entry_point": "dbt_spark/models/marts/fact_orders.sql"
+          }
+        ],
+        "entry_point": "scripts/load.py 或 Dagster 编排任务",
+        "importance": 9.5,
+        "involved_domains_count": 2
+      },
+      {
+        "name": "数据流水线编排与调度流程",
+        "description": "通过 Dagster 调度和管理数据流水线的日常执行、资产检查与资源状态监控。",
+        "steps": [
+          {
+            "step": 1,
+            "domain_module": "流水线编排调度域",
+            "sub_module": "Dagster 编排引擎模块",
+            "operation": "定义 Dagster 资产、资源与调度计划",
+            "code_entry_point": "orchestration/definitions.py"
+          },
+          {
+            "step": 2,
+            "domain_module": "流水线编排调度域",
+            "sub_module": "流水线执行与脚本模块",
+            "operation": "触发并执行数据处理管道任务",
+            "code_entry_point": "scripts/dagster.sh"
+          }
+        ],
+        "entry_point": "orchestration/definitions.py",
+        "importance": 9.0,
+        "involved_domains_count": 2
+      },
+      {
+        "name": "智能化运维与故障诊断流程",
+        "description": "基于 LangGraph 构建智能诊断 Agent，对流水线故障进行证据收集、大模型推理与自动修复建议。",
+        "steps": [
+          {
+            "step": 1,
+            "domain_module": "智能化运维与诊断Agent域",
+            "sub_module": "LangGraph 智能体核心模块",
+            "operation": "初始化 LangGraph Agent 执行循环与状态机",
+            "code_entry_point": "agent/graph.py"
+          },
+          {
+            "step": 2,
+            "domain_module": "智能化运维与诊断Agent域",
+            "sub_module": "诊断与验证工具模块",
+            "operation": "收集确定性检查与证据用于故障诊断",
+            "code_entry_point": "agent/diagnose/evidence.py"
+          }
+        ],
+        "entry_point": "agent/verify/__main__.py",
+        "importance": 9.5,
+        "involved_domains_count": 2
+      },
+      {
+        "name": "数据资产治理与血缘同步流程",
+        "description": "通过 DataHub 脚本与配方抓取湖仓元数据与 dbt 语义模型，实现数据血缘同步与元数据资产检索。",
+        "steps": [
+          {
+            "step": 1,
+            "domain_module": "数据资产治理与指标语义域",
+            "sub_module": "DataHub 元数据集成模块",
+            "operation": "解析 dbt 与 Iceberg 元数据配置",
+            "code_entry_point": "datahub/recipes/dbt.yml"
+          },
+          {
+            "step": 2,
+            "domain_module": "数据资产治理与指标语义域",
+            "sub_module": "DataHub 元数据集成模块",
+            "operation": "执行元数据摄取并推送至 DataHub 平台",
+            "code_entry_point": "datahub/ingest.sh"
+          }
+        ],
+        "entry_point": "datahub/ingest.sh",
+        "importance": 8.5,
+        "involved_domains_count": 2
+      }
+    ],
+    "architecture_summary": "本系统是一个基于现代湖仓一体架构（Lakehouse POC）的电商数据处理与智能化运维平台。整体架构划分为数据工程与湖仓存储域、流水线编排调度域、智能化运维与诊断Agent域、数据资产治理与指标语义域。各领域通过明确的依赖关系与分层协作，实现从原始数据摄取、dbt模型清洗与转换、Dagster任务编排，到基于LangGraph的大模型智能诊断与数据资产管理的全链路打通。",
+    "confidence_score": 9.5
+  },
+  "timestamp": 1790849399,
+  "prompt_hash": "d7e9e8a0cfa6a3b3103ded8d12234ee2",
+  "token_usage": {
+    "input_tokens": 4857,
+    "output_tokens": 2198,
+    "total_tokens": 7055
+  },
+  "model_name": null
+}

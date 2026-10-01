@@ -1,0 +1,45 @@
+{
+  "data": {
+    "summary": "Contains validation and acceptance testing scripts for data pipeline stages, specifically testing idempotent MERGE and watermarking.",
+    "importance_score": 0.75,
+    "key_files": [
+      "check_stage3.py"
+    ],
+    "file_insights": [
+      {
+        "name": "check_stage3.py",
+        "summary": "Tests stage 3 data pipeline acceptance criteria such as idempotent MERGE and watermark handling.",
+        "code_purpose": "test",
+        "source_summary": "Implements script to test stage 3 acceptance criteria by running load operations with and without watermarks and asserting correct table row counts.",
+        "detailed_description": "Performs acceptance tests for Stage 3 data pipeline features, including idempotent MERGE, watermark handling on updated_at timestamps, deduplication, and verifying that dirty records survive into the ODS layer. It runs the load pipeline with multiple iterations and checks state counts.",
+        "responsibilities": [
+          "Test idempotent MERGE operations in data loading",
+          "Validate watermark behavior on updated_at fields",
+          "Check deduplication logic and dirty record persistence in ODS"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "load",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "load",
+            "is_external": false,
+            "dependency_type": "from_import"
+          }
+        ],
+        "importance_score": 0.75
+      }
+    ]
+  },
+  "timestamp": 1790849120,
+  "prompt_hash": "48c37fc9f12f120cff6ee4df98ca9356",
+  "token_usage": {
+    "input_tokens": 940,
+    "output_tokens": 359,
+    "total_tokens": 1299
+  },
+  "model_name": null
+}

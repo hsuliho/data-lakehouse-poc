@@ -1,0 +1,78 @@
+{
+  "data": {
+    "summary": "This directory contains CSV-based relational data schemas and sample records representing an e-commerce data model including customers, orders, order items, and products.",
+    "importance_score": 0.75,
+    "key_files": [
+      "orders.csv",
+      "order_items.csv",
+      "customers.csv",
+      "products.csv"
+    ],
+    "file_insights": [
+      {
+        "name": "customers.csv",
+        "summary": "Defines the customer data schema and records.",
+        "code_purpose": "model",
+        "source_summary": "Contains CSV headers: customer_id, name, city, membership_tier, updated_at.",
+        "detailed_description": "This CSV file defines the schema and data structure for customer records, including customer ID, name, city, membership tier, and update timestamp.",
+        "responsibilities": [
+          "Define customer schema fields",
+          "Store customer dimension data"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.7
+      },
+      {
+        "name": "order_items.csv",
+        "summary": "Defines the order items transactional schema and records.",
+        "code_purpose": "model",
+        "source_summary": "Contains CSV headers: order_item_id, order_id, product_id, quantity, unit_price, updated_at.",
+        "detailed_description": "This CSV file represents the line items associated with customer orders, capturing product quantities and pricing at the item level.",
+        "responsibilities": [
+          "Define order items schema",
+          "Store transactional line item details"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.7
+      },
+      {
+        "name": "orders.csv",
+        "summary": "Defines the orders schema and stores order transaction headers.",
+        "code_purpose": "model",
+        "source_summary": "Contains CSV headers and a sample record for order header data (order_id, customer_id, order_status, ordered_at, updated_at).",
+        "detailed_description": "This CSV file contains customer order header information, such as order status, creation timestamp, and customer reference.",
+        "responsibilities": [
+          "Define orders schema",
+          "Store order header data and status"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.75
+      },
+      {
+        "name": "products.csv",
+        "summary": "Defines the product catalog schema and records.",
+        "code_purpose": "model",
+        "source_summary": "Contains CSV headers: product_id, name, category, price, updated_at.",
+        "detailed_description": "This CSV file defines the product catalog schema, including product category, pricing, and update metadata.",
+        "responsibilities": [
+          "Define product schema fields",
+          "Store product catalog dimension data"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.7
+      }
+    ]
+  },
+  "timestamp": 1790849178,
+  "prompt_hash": "92f4f7f3b11be67e54f471dab71ecbda",
+  "token_usage": {
+    "input_tokens": 830,
+    "output_tokens": 646,
+    "total_tokens": 1476
+  },
+  "model_name": null
+}

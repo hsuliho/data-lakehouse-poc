@@ -1,0 +1,46 @@
+{
+  "data": {
+    "summary": "This directory contains compiled JAR libraries used by the project's data processing pipeline, specifically Apache Iceberg runtime libraries for Spark integration.",
+    "importance_score": 0.75,
+    "key_files": [
+      "iceberg-spark-runtime-3.5_2.12-1.10.1.jar"
+    ],
+    "file_insights": [
+      {
+        "name": "iceberg-spark-runtime-3.5_2.12-1.10.1.jar",
+        "summary": "Runtime JAR file for Apache Iceberg with Spark 3.5 integration.",
+        "code_purpose": "lib",
+        "source_summary": "Compiled Java bytecode classes packaged into a JAR file for Apache Iceberg Spark runtime execution.",
+        "detailed_description": "This file represents the Apache Iceberg Spark Runtime JAR, containing compiled classes and runtime libraries necessary for integrating Iceberg with Spark 3.5 and Scala 2.12. It provides distributed data scanning, table management, and execution planning for Apache Spark workloads.",
+        "responsibilities": [
+          "Provides compiled classes for Apache Iceberg and Spark integration",
+          "Handles distributed data scanning and data manifests"
+        ],
+        "interfaces": [
+          {
+            "name": "SparkDistributedDataScan$ReadDataManifest",
+            "interface_type": "class",
+            "parameters": [],
+            "return_type": "void"
+          }
+        ],
+        "dependencies": [
+          {
+            "name": "org.apache.iceberg",
+            "is_external": true,
+            "dependency_type": "include"
+          }
+        ],
+        "importance_score": 0.8
+      }
+    ]
+  },
+  "timestamp": 1790849341,
+  "prompt_hash": "e095cf4640c282e9f7acaf54fdc88f80",
+  "token_usage": {
+    "input_tokens": 891,
+    "output_tokens": 362,
+    "total_tokens": 1253
+  },
+  "model_name": null
+}

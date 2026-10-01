@@ -1,0 +1,204 @@
+{
+  "data": {
+    "summary": "The eval directory contains the end-to-end evaluation harness, question datasets, preflight validators, and reporting tools for testing the intelligent agent's performance and accuracy against frozen expectations.",
+    "importance_score": 0.85,
+    "key_files": [
+      "run_eval.py",
+      "derive_questions.py",
+      "questions.json",
+      "report.py",
+      "preflight.py"
+    ],
+    "file_insights": [
+      {
+        "name": "__init__.py",
+        "summary": "Package initialization file for the evaluation module.",
+        "code_purpose": "util",
+        "source_summary": "Empty file.",
+        "detailed_description": "Empty initialization file for the evaluation module package.",
+        "responsibilities": [
+          "Package initialization"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.1
+      },
+      {
+        "name": "derive_questions.py",
+        "summary": "Derives evaluation questions and expected answers from operational data stores.",
+        "code_purpose": "tool",
+        "source_summary": "Connects to database via load script and generates questions with expected metrics using scalar, revenue, orders, asof, and week functions.",
+        "detailed_description": "Derives questions and expected answers directly from ODS and dimension version intervals. It writes out questions to questions.json for testing.",
+        "responsibilities": [
+          "Derive benchmark questions",
+          "Query database for expected values",
+          "Write out JSON question sets"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "load",
+            "is_external": false,
+            "dependency_type": "import"
+          }
+        ],
+        "importance_score": 0.8
+      },
+      {
+        "name": "preflight.py",
+        "summary": "Preflight checker for validating semantic layer readiness before evaluations run.",
+        "code_purpose": "tool",
+        "source_summary": "Defines preflight checks comparing queries against frozen expectations in questions.json.",
+        "detailed_description": "Executes canary queries with frozen known answers before evaluation runs, ensuring the semantic layer and database are healthy.",
+        "responsibilities": [
+          "Run canary queries",
+          "Validate semantic layer health before evaluation"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "json",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "Path",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "run_sql",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "query_metric",
+            "is_external": false,
+            "dependency_type": "import"
+          }
+        ],
+        "importance_score": 0.8
+      },
+      {
+        "name": "questions.json",
+        "summary": "JSON dataset containing evaluation questions and their frozen expected answers.",
+        "code_purpose": "config",
+        "source_summary": "JSON array of test questions containing IDs, categories, questions, expected statuses, values, and tolerances.",
+        "detailed_description": "Stores question definitions, expected values, tolerances, categories, and roles used in agent evaluation.",
+        "responsibilities": [
+          "Store evaluation questions and expected answers"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.85
+      },
+      {
+        "name": "questions.meta.json",
+        "summary": "Metadata file tracking warehouse fingerprint and generation time for evaluation questions.",
+        "code_purpose": "config",
+        "source_summary": "JSON object with derived timestamp, fingerprint string, question counts, and notes.",
+        "detailed_description": "Stores metadata about the derived questions, such as the timestamp, fingerprint of the warehouse state, and total counts.",
+        "responsibilities": [
+          "Track warehouse fingerprint and question metadata"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.6
+      },
+      {
+        "name": "report.py",
+        "summary": "Generates summary performance reports from evaluation result logs.",
+        "code_purpose": "tool",
+        "source_summary": "Parses jsonl files, grades responses using grading utilities, and aggregates metrics by category and arm.",
+        "detailed_description": "Summarizes results from jsonl result files, calculating accuracy per arm and category, failure classes, token usage, and execution time.",
+        "responsibilities": [
+          "Summarize evaluation results",
+          "Calculate accuracy and failure statistics"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "json",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "sys",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "Counter",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "defaultdict",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "Path",
+            "is_external": false,
+            "dependency_type": "import"
+          }
+        ],
+        "importance_score": 0.8
+      },
+      {
+        "name": "run_eval.py",
+        "summary": "Main script for running evaluation benchmarks against agent models.",
+        "code_purpose": "tool",
+        "source_summary": "Parses command line arguments, loads questions, runs agent questions through the graph, and grades results.",
+        "detailed_description": "Runs the question set against specified agent arms and grades every answer against the frozen expectations.",
+        "responsibilities": [
+          "Execute evaluation suite",
+          "Grade agent answers against expectations",
+          "Record performance and token metrics"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "argparse",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "json",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "re",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "time",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "datetime",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "Path",
+            "is_external": false,
+            "dependency_type": "import"
+          }
+        ],
+        "importance_score": 0.85
+      }
+    ]
+  },
+  "timestamp": 1790849706,
+  "prompt_hash": "83bc35dacdda0e9e4fc70b191e543cab",
+  "token_usage": {
+    "input_tokens": 1960,
+    "output_tokens": 1333,
+    "total_tokens": 3293
+  },
+  "model_name": null
+}

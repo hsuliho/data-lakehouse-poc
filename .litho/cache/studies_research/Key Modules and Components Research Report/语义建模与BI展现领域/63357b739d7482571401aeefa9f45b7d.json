@@ -1,0 +1,22 @@
+{
+  "data": {
+    "domain_name": "语义建模与BI展现领域",
+    "module_name": "Superset数据可视化",
+    "module_description": "Superset集成配置与容器化部署脚本，提供开箱即用的BI数据可视化与多维报表展示，并通过Trino连接底层数据源。",
+    "interaction": "The container exposes standard Superset web interfaces and connects externally to Trino data sources via the installed SQLAlchemy driver for executing queries and fetching multidimensional datasets.",
+    "implementation": "The module uses Docker containerization via a custom Dockerfile that extends the official Apache Superset image (apache/superset:6.1.0). It elevates privileges to root to install the Trino SQLAlchemy connector (trino[sqlalchemy]==0.339.0) using uv pip, ensuring reliable connectivity to Trino data sources for multi-dimensional reporting and BI visualization.",
+    "associated_files": [
+      "superset/Dockerfile"
+    ],
+    "flowchart_mermaid": "graph TD\n    A[Superset Container Build] -->|Extends apache/superset:6.1.0| B(Root User Setup)\n    B -->|Install Dependencies| C[Install trino[sqlalchemy]==0.339.0]\n    C -->|Switch Back| D[Superset User Ready]",
+    "sequence_diagram_mermaid": "sequenceDiagram\n    participant User as 业务人员/BI用户\n    participant Superset as Apache Superset\n    participant Trino as Trino Data Source\n    User->>Superset: 访问BI看板与多维报表\n    Superset->>Trino: 通过 trino[sqlalchemy] 发起查询请求\n    Trino-->>Superset: 返回聚合数据\n    Superset-->>User: 渲染BI图表与可视化报表"
+  },
+  "timestamp": 1790849797,
+  "prompt_hash": "63357b739d7482571401aeefa9f45b7d",
+  "token_usage": {
+    "input_tokens": 930,
+    "output_tokens": 424,
+    "total_tokens": 1354
+  },
+  "model_name": null
+}

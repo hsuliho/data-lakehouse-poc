@@ -1,0 +1,279 @@
+{
+  "data": {
+    "scores": [
+      {
+        "path": "agent",
+        "score": 0.9,
+        "reasoning": "Core agent backend logic including tools, graph, and CLI execution."
+      },
+      {
+        "path": "agent/diagnose",
+        "score": 0.8,
+        "reasoning": "Diagnostic agent modules and fault analysis logic."
+      },
+      {
+        "path": "agent/diagnose/results",
+        "score": 0.3,
+        "reasoning": "Diagnostic output data and logs."
+      },
+      {
+        "path": "agent/eval",
+        "score": 0.7,
+        "reasoning": "Agent evaluation framework, run scripts, and metrics."
+      },
+      {
+        "path": "agent/eval/archive_batch_era",
+        "score": 0.2,
+        "reasoning": "Archived evaluation era artifacts."
+      },
+      {
+        "path": "agent/eval/archive_batch_era/results",
+        "score": 0.1,
+        "reasoning": "Archived evaluation results logs."
+      },
+      {
+        "path": "agent/eval/results",
+        "score": 0.3,
+        "reasoning": "Evaluation results output directory."
+      },
+      {
+        "path": "agent/verify",
+        "score": 0.8,
+        "reasoning": "Verification agent code for constraints, suggestions, and regressions."
+      },
+      {
+        "path": "agent/verify/results",
+        "score": 0.3,
+        "reasoning": "Verification agent results output files."
+      },
+      {
+        "path": "archive",
+        "score": 0.2,
+        "reasoning": "Archived legacy pipelines and checks."
+      },
+      {
+        "path": "archive/checks_batch_era",
+        "score": 0.2,
+        "reasoning": "Archived batch era checks."
+      },
+      {
+        "path": "archive/dbt_trino",
+        "score": 0.4,
+        "reasoning": "Archived dbt trino models and project configuration."
+      },
+      {
+        "path": "archive/dbt_trino/logs",
+        "score": 0.1,
+        "reasoning": "Archived dbt logs."
+      },
+      {
+        "path": "archive/dbt_trino/models",
+        "score": 0.3,
+        "reasoning": "Archived dbt model definitions."
+      },
+      {
+        "path": "archive/dbt_trino/models/marts",
+        "score": 0.2,
+        "reasoning": "Archived marts models."
+      },
+      {
+        "path": "archive/dbt_trino/models/staging",
+        "score": 0.2,
+        "reasoning": "Archived staging models."
+      },
+      {
+        "path": "archive/scd2_batch",
+        "score": 0.3,
+        "reasoning": "Archived batch SCD2 sql scripts."
+      },
+      {
+        "path": "data",
+        "score": 0.2,
+        "reasoning": "Raw data batch files."
+      },
+      {
+        "path": "data/batch1",
+        "score": 0.1,
+        "reasoning": "Batch 1 CSV dataset."
+      },
+      {
+        "path": "data/batch2",
+        "score": 0.1,
+        "reasoning": "Batch 2 CSV dataset."
+      },
+      {
+        "path": "data/batch3",
+        "score": 0.1,
+        "reasoning": "Batch 3 CSV dataset."
+      },
+      {
+        "path": "data/batch4",
+        "score": 0.1,
+        "reasoning": "Batch 4 CSV dataset."
+      },
+      {
+        "path": "data/batch5",
+        "score": 0.1,
+        "reasoning": "Batch 5 CSV dataset."
+      },
+      {
+        "path": "datahub",
+        "score": 0.6,
+        "reasoning": "Datahub configuration, ingestion scripts, and docker-compose setup."
+      },
+      {
+        "path": "datahub/recipes",
+        "score": 0.5,
+        "reasoning": "Datahub integration recipes and metadata configs."
+      },
+      {
+        "path": "dbt_semantic",
+        "score": 0.8,
+        "reasoning": "Semantic layer dbt models and metricflow configurations."
+      },
+      {
+        "path": "dbt_semantic/logs",
+        "score": 0.2,
+        "reasoning": "Metricflow and dbt execution logs."
+      },
+      {
+        "path": "dbt_semantic/models",
+        "score": 0.7,
+        "reasoning": "Semantic dbt models and time spine definitions."
+      },
+      {
+        "path": "dbt_spark",
+        "score": 0.8,
+        "reasoning": "Spark dbt warehouse models, macros, and project configurations."
+      },
+      {
+        "path": "dbt_spark/logs",
+        "score": 0.2,
+        "reasoning": "Spark dbt logs."
+      },
+      {
+        "path": "dbt_spark/macros",
+        "score": 0.6,
+        "reasoning": "Spark dbt SQL macros."
+      },
+      {
+        "path": "dbt_spark/models",
+        "score": 0.7,
+        "reasoning": "Spark dbt data warehouse models."
+      },
+      {
+        "path": "dbt_spark/models/marts",
+        "score": 0.7,
+        "reasoning": "Spark marts dimension and fact models."
+      },
+      {
+        "path": "dbt_spark/models/staging",
+        "score": 0.7,
+        "reasoning": "Spark staging SQL models and sources."
+      },
+      {
+        "path": "docs",
+        "score": 0.4,
+        "reasoning": "Project documentation and architecture design records."
+      },
+      {
+        "path": "docs/adr",
+        "score": 0.5,
+        "reasoning": "Architecture Decision Records (ADRs)."
+      },
+      {
+        "path": "docs/figures",
+        "score": 0.3,
+        "reasoning": "Architecture diagrams and rendering scripts."
+      },
+      {
+        "path": "docs/litho",
+        "score": 0.3,
+        "reasoning": "Litho architectural summary and details."
+      },
+      {
+        "path": "docs/litho/4、深入探索",
+        "score": 0.2,
+        "reasoning": "Litho deep dive documentation."
+      },
+      {
+        "path": "landing",
+        "score": 0.2,
+        "reasoning": "Data landing zone partitions."
+      },
+      {
+        "path": "landing/dt=2026-01-29",
+        "score": 0.1,
+        "reasoning": "Partitioned landing data."
+      },
+      {
+        "path": "landing/dt=2026-01-30",
+        "score": 0.1,
+        "reasoning": "Partitioned landing data."
+      },
+      {
+        "path": "landing/dt=2026-01-31",
+        "score": 0.1,
+        "reasoning": "Partitioned landing data."
+      },
+      {
+        "path": "orchestration",
+        "score": 0.9,
+        "reasoning": "Dagster workflow orchestration definitions and state management."
+      },
+      {
+        "path": "scripts",
+        "score": 0.7,
+        "reasoning": "Utility, validation, setup, and maintenance python/bash scripts."
+      },
+      {
+        "path": "spark",
+        "score": 0.6,
+        "reasoning": "Spark configuration and runtime dependency jars."
+      },
+      {
+        "path": "spark/jars",
+        "score": 0.3,
+        "reasoning": "Spark Iceberg and AWS runtime jars."
+      },
+      {
+        "path": "sql",
+        "score": 0.7,
+        "reasoning": "Custom SQL scripts for reports and SCD2 processing."
+      },
+      {
+        "path": "sql/reports",
+        "score": 0.6,
+        "reasoning": "Analytical report SQL queries."
+      },
+      {
+        "path": "sql/scd2",
+        "score": 0.7,
+        "reasoning": "SCD2 database table creation and rebuild logic."
+      },
+      {
+        "path": "superset",
+        "score": 0.5,
+        "reasoning": "Superset BI tool Docker setup."
+      },
+      {
+        "path": "trino",
+        "score": 0.7,
+        "reasoning": "Trino data catalog and access control configuration."
+      },
+      {
+        "path": "trino/catalog",
+        "score": 0.5,
+        "reasoning": "Trino catalog properties."
+      }
+    ]
+  },
+  "timestamp": 1790849689,
+  "prompt_hash": "57b71c9e0d9ea46fbe4c4a4ac60f9c77",
+  "token_usage": {
+    "input_tokens": 2404,
+    "output_tokens": 1264,
+    "total_tokens": 3668
+  },
+  "model_name": null
+}

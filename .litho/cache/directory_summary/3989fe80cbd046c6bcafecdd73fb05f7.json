@@ -1,0 +1,235 @@
+{
+  "data": {
+    "summary": "The agent directory contains the core LangGraph agent implementation, command-line interface, configuration settings, and experimental tools for both raw SQL (Arm A) and semantic layer (Arm B) approaches.",
+    "importance_score": 0.9,
+    "key_files": [
+      "graph.py",
+      "cli.py",
+      "tools_semantic.py",
+      "tools_raw.py",
+      "config.py"
+    ],
+    "file_insights": [
+      {
+        "name": "__init__.py",
+        "summary": "Empty package initialization file.",
+        "code_purpose": "util",
+        "source_summary": "Empty file.",
+        "detailed_description": "Empty package initialization file for the agent module directory.",
+        "responsibilities": [
+          "Mark directory as python package"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.1
+      },
+      {
+        "name": "cli.py",
+        "summary": "Command-line interface for running the interactive agent.",
+        "code_purpose": "command",
+        "source_summary": "Defines the main CLI entry point that sets up argument parsing for semantic vs raw arms and executes the agent.",
+        "detailed_description": "Provides a command-line interface to run the interactive agent with configurable experimental arms.",
+        "responsibilities": [
+          "Parse command-line arguments",
+          "Initialize and run the agent loop"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "agent.config",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "agent.graph",
+            "is_external": false,
+            "dependency_type": "import"
+          }
+        ],
+        "importance_score": 0.8
+      },
+      {
+        "name": "config.py",
+        "summary": "Configuration and environment setup for the agent.",
+        "code_purpose": "config",
+        "source_summary": "Sets up project root paths and configures environment settings for the agent.",
+        "detailed_description": "Centralizes configuration, environment variable loading, and network settings for IPv4 preference.",
+        "responsibilities": [
+          "Load environment variables",
+          "Configure path constants and network settings"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "os",
+            "is_external": true,
+            "dependency_type": "import"
+          },
+          {
+            "name": "pathlib",
+            "is_external": true,
+            "dependency_type": "import"
+          }
+        ],
+        "importance_score": 0.75
+      },
+      {
+        "name": "graph.py",
+        "summary": "LangGraph agent core logic and execution loop.",
+        "code_purpose": "agent",
+        "source_summary": "Implements the LangGraph agent state machine, retry logic, model pools, and tracing.",
+        "detailed_description": "Core LangGraph agent implementation managing the tool-calling loop, retries, and human-in-the-loop clarifications.",
+        "responsibilities": [
+          "Build and compile the agent graph",
+          "Manage LLM invocation with backoff and rate limits",
+          "Handle human-in-the-loop interruptions and tracing"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "hashlib",
+            "is_external": true,
+            "dependency_type": "import"
+          },
+          {
+            "name": "langchain_core.messages",
+            "is_external": true,
+            "dependency_type": "import"
+          },
+          {
+            "name": "langgraph",
+            "is_external": true,
+            "dependency_type": "import"
+          }
+        ],
+        "importance_score": 0.95
+      },
+      {
+        "name": "prompts.py",
+        "summary": "Prompt definitions for the agent.",
+        "code_purpose": "config",
+        "source_summary": "Contains prompt templates and instructions for the chatbot assistant.",
+        "detailed_description": "Stores system prompts and instructions shared across experimental arms for the data analysis assistant.",
+        "responsibilities": [
+          "Define system prompts and behavioral rules for the agent"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "agent.config",
+            "is_external": false,
+            "dependency_type": "import"
+          }
+        ],
+        "importance_score": 0.7
+      },
+      {
+        "name": "tools_common.py",
+        "summary": "Common tools shared across agent arms.",
+        "code_purpose": "tool",
+        "source_summary": "Defines the submit_answer tool with various status types.",
+        "detailed_description": "Defines the common submit_answer tool used by the agent to return structured responses to users.",
+        "responsibilities": [
+          "Define the submit_answer tool interface and parameters"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "langchain_core.tools",
+            "is_external": true,
+            "dependency_type": "import"
+          }
+        ],
+        "importance_score": 0.75
+      },
+      {
+        "name": "tools_raw.py",
+        "summary": "Raw text-to-SQL tools for experimental Arm A.",
+        "code_purpose": "tool",
+        "source_summary": "Provides raw SQL query execution and schema inspection tools for Arm A.",
+        "detailed_description": "Implements generic text-to-SQL tools querying Trino for Arm A (raw text-to-SQL experiment arm).",
+        "responsibilities": [
+          "Connect to Trino database",
+          "Provide raw table listing, description, and SQL execution tools"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "trino",
+            "is_external": true,
+            "dependency_type": "import"
+          },
+          {
+            "name": "langchain_core.tools",
+            "is_external": true,
+            "dependency_type": "import"
+          }
+        ],
+        "importance_score": 0.8
+      },
+      {
+        "name": "tools_semantic.py",
+        "summary": "Semantic layer tools for experimental Arm B.",
+        "code_purpose": "tool",
+        "source_summary": "Provides metric listing and metric description tools backed by the semantic layer.",
+        "detailed_description": "Implements governed semantic layer tools for Arm B where the model names metrics and dimensions instead of writing SQL.",
+        "responsibilities": [
+          "Define semantic dimensions and metric tools",
+          "Build and execute queries via the semantic layer interface"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "csv",
+            "is_external": true,
+            "dependency_type": "import"
+          },
+          {
+            "name": "langchain_core.tools",
+            "is_external": true,
+            "dependency_type": "import"
+          },
+          {
+            "name": "agent.config",
+            "is_external": false,
+            "dependency_type": "import"
+          }
+        ],
+        "importance_score": 0.85
+      },
+      {
+        "name": "usage.py",
+        "summary": "API usage tracking and rate-limiting utility.",
+        "code_purpose": "util",
+        "source_summary": "Handles loading, saving, and checking API usage statistics and model capacity.",
+        "detailed_description": "Tracks daily API usage counts and model availability against rate limits, persisting state to disk.",
+        "responsibilities": [
+          "Track per-day API call counts per model",
+          "Manage rate limits and model availability status"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "json",
+            "is_external": true,
+            "dependency_type": "import"
+          },
+          {
+            "name": "pathlib",
+            "is_external": true,
+            "dependency_type": "import"
+          }
+        ],
+        "importance_score": 0.7
+      }
+    ]
+  },
+  "timestamp": 1790849074,
+  "prompt_hash": "3989fe80cbd046c6bcafecdd73fb05f7",
+  "token_usage": {
+    "input_tokens": 2962,
+    "output_tokens": 1484,
+    "total_tokens": 4446
+  },
+  "model_name": null
+}

@@ -1,0 +1,101 @@
+{
+  "data": {
+    "summary": "The results directory contains JSONL log files capturing evaluation runs, test verdicts, tool calls, answers, and error logs for KPI-related queries.",
+    "importance_score": 0.4,
+    "key_files": [
+      "20260921_020457.jsonl",
+      "20260921_020755.jsonl",
+      "invalidated.jsonl"
+    ],
+    "file_insights": [
+      {
+        "name": "20260921_020136.jsonl",
+        "summary": "Log file of a KPI evaluation run.",
+        "code_purpose": "test",
+        "source_summary": "JSON line record containing KPI evaluation details for total revenue query.",
+        "detailed_description": "Stores JSONL records of KPI test evaluation runs including questions, answers, basis, and tool calls.",
+        "responsibilities": [
+          "Log KPI evaluation runs",
+          "Record query results and status"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.5
+      },
+      {
+        "name": "20260921_020309.jsonl",
+        "summary": "Log file of a KPI evaluation run containing format errors.",
+        "code_purpose": "test",
+        "source_summary": "JSON line record with format error status.",
+        "detailed_description": "Stores JSONL records of KPI test evaluation runs with format errors.",
+        "responsibilities": [
+          "Log formatting errors in KPI runs"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.5
+      },
+      {
+        "name": "20260921_020457.jsonl",
+        "summary": "Log file of a successful KPI evaluation run.",
+        "code_purpose": "test",
+        "source_summary": "JSON line record containing successful KPI evaluation results and tool calls.",
+        "detailed_description": "Stores JSONL records of successful KPI test evaluations with tool calls.",
+        "responsibilities": [
+          "Log successful KPI queries",
+          "Store tool call traces"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.6
+      },
+      {
+        "name": "20260921_020755.jsonl",
+        "summary": "Log file for order KPI evaluation.",
+        "code_purpose": "test",
+        "source_summary": "JSON line record containing order count KPI evaluation results.",
+        "detailed_description": "Stores JSONL records of order KPI test evaluations.",
+        "responsibilities": [
+          "Log order KPI query results"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.6
+      },
+      {
+        "name": "20260921_021445.jsonl",
+        "summary": "Log file for revenue KPI evaluation.",
+        "code_purpose": "test",
+        "source_summary": "JSON line record containing revenue KPI evaluation results.",
+        "detailed_description": "Stores JSONL records of revenue KPI test evaluations.",
+        "responsibilities": [
+          "Log revenue KPI query results"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.6
+      },
+      {
+        "name": "invalidated.jsonl",
+        "summary": "Log file containing invalidated test runs and errors.",
+        "code_purpose": "test",
+        "source_summary": "JSON line records containing error messages and invalidation reasons.",
+        "detailed_description": "Stores JSONL records of invalidated or errored evaluation test runs.",
+        "responsibilities": [
+          "Log failed or bug-invalidated evaluation runs"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.5
+      }
+    ]
+  },
+  "timestamp": 1790849105,
+  "prompt_hash": "7417b27de8ce3b167b546f37bd4836a5",
+  "token_usage": {
+    "input_tokens": 1744,
+    "output_tokens": 738,
+    "total_tokens": 2482
+  },
+  "model_name": null
+}

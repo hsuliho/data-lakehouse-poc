@@ -1,0 +1,40 @@
+{
+  "data": {
+    "summary": "The superset directory contains container build definitions and configuration for setting up Apache Superset with Trino database connectivity.",
+    "importance_score": 0.75,
+    "key_files": [
+      "Dockerfile"
+    ],
+    "file_insights": [
+      {
+        "name": "Dockerfile",
+        "summary": "Defines the container build process for custom Apache Superset deployment with Trino support.",
+        "code_purpose": "config",
+        "source_summary": "Extends apache/superset:6.1.0, switches to root user to install trino[sqlalchemy]==0.339.0 using uv pip, and returns to superset user.",
+        "detailed_description": "This Dockerfile builds a custom Superset container image based on version 6.1.0, installs the Trino database driver with SQLAlchemy support via uv pip, and sets up the appropriate user context.",
+        "responsibilities": [
+          "Extends base Superset container image",
+          "Installs Trino SQLAlchemy driver and client dependencies",
+          "Configures container user execution contexts"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "apache/superset:6.1.0",
+            "is_external": true,
+            "dependency_type": "include"
+          }
+        ],
+        "importance_score": 0.85
+      }
+    ]
+  },
+  "timestamp": 1790849356,
+  "prompt_hash": "3ba135ef84230549e14d36037fba303c",
+  "token_usage": {
+    "input_tokens": 799,
+    "output_tokens": 314,
+    "total_tokens": 1113
+  },
+  "model_name": null
+}

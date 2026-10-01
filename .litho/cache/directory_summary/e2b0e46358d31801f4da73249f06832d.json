@@ -1,0 +1,78 @@
+{
+  "data": {
+    "summary": "The batch5 directory contains CSV datasets representing core e-commerce entities including customers, orders, order items, and products, serving as a data layer for analysis or ingestion.",
+    "importance_score": 0.85,
+    "key_files": [
+      "orders.csv",
+      "order_items.csv",
+      "products.csv",
+      "customers.csv"
+    ],
+    "file_insights": [
+      {
+        "name": "customers.csv",
+        "summary": "Customer records CSV data file.",
+        "code_purpose": "database",
+        "source_summary": "CSV header file for customers containing customer_id, name, city, membership_tier, and updated_at.",
+        "detailed_description": "Stores customer identification data, names, cities, and membership tiers.",
+        "responsibilities": [
+          "Store customer records",
+          "Provide customer metadata"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.8
+      },
+      {
+        "name": "order_items.csv",
+        "summary": "Order items detail records CSV file.",
+        "code_purpose": "database",
+        "source_summary": "Contains order item records with order_item_id, order_id, product_id, quantity, unit_price, and updated_at.",
+        "detailed_description": "Tracks individual items associated with orders, including product IDs, quantities, and unit prices.",
+        "responsibilities": [
+          "Record ordered items and quantities",
+          "Store item pricing details"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.85
+      },
+      {
+        "name": "orders.csv",
+        "summary": "Orders transactional data CSV file.",
+        "code_purpose": "database",
+        "source_summary": "Contains order records with order_id, customer_id, order_status, ordered_at, and updated_at.",
+        "detailed_description": "Contains transactional order headers linking customers to orders along with status and timestamps.",
+        "responsibilities": [
+          "Record order transactions",
+          "Track order statuses and timestamps"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.9
+      },
+      {
+        "name": "products.csv",
+        "summary": "Products catalog CSV data file.",
+        "code_purpose": "database",
+        "source_summary": "Contains product records with product_id, name, category, price, and updated_at.",
+        "detailed_description": "Stores productcatalog data including names, categories, and prices.",
+        "responsibilities": [
+          "Store product details",
+          "Provide pricing and category information"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.85
+      }
+    ]
+  },
+  "timestamp": 1790849188,
+  "prompt_hash": "e2b0e46358d31801f4da73249f06832d",
+  "token_usage": {
+    "input_tokens": 1012,
+    "output_tokens": 593,
+    "total_tokens": 1605
+  },
+  "model_name": null
+}

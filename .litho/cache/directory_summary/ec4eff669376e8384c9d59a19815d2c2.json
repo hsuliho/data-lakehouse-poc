@@ -1,0 +1,82 @@
+{
+  "data": {
+    "summary": "This directory contains core relational CSV datasets representing an e-commerce domain, including customers, products, orders, and order items. These files work together to form the data layer for sales and customer analytics.",
+    "importance_score": 0.8,
+    "key_files": [
+      "orders.csv",
+      "order_items.csv",
+      "customers.csv",
+      "products.csv"
+    ],
+    "file_insights": [
+      {
+        "name": "customers.csv",
+        "summary": "Stores customer demographic and membership information.",
+        "code_purpose": "model",
+        "source_summary": "A comma-separated values file defining columns: customer_id, name, city, membership_tier, and updated_at, populated with sample customer records.",
+        "detailed_description": "This CSV file contains customer profile data including customer ID, name, city, membership tier, and last updated timestamps. It acts as the core database table for customer records in the e-commerce dataset.",
+        "responsibilities": [
+          "Store customer demographic information",
+          "Track customer membership tiers",
+          "Record customer location by city"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.8
+      },
+      {
+        "name": "order_items.csv",
+        "summary": "Stores line item details for customer orders.",
+        "code_purpose": "model",
+        "source_summary": "A comma-separated values file defining columns: order_item_id, order_id, product_id, quantity, unit_price, and updated_at, populated with sample order item rows.",
+        "detailed_description": "This CSV file contains line item details for orders, mapping individual products and their quantities/unit prices to specific orders. It represents the transactional item details in the data layer.",
+        "responsibilities": [
+          "Link products to orders",
+          "Track quantities and unit prices for ordered items",
+          "Record item-level update timestamps"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.8
+      },
+      {
+        "name": "orders.csv",
+        "summary": "Stores order headers and statuses linked to customers.",
+        "code_purpose": "model",
+        "source_summary": "A comma-separated values file defining columns: order_id, customer_id, order_status, ordered_at, and updated_at, populated with sample order records.",
+        "detailed_description": "This CSV file contains order header information, linking customer IDs to order statuses, order timestamps, and update timestamps. It acts as the core transaction table for order management.",
+        "responsibilities": [
+          "Store order header information",
+          "Track order statuses (paid, shipped, completed)",
+          "Record order placement timestamps"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.85
+      },
+      {
+        "name": "products.csv",
+        "summary": "Stores product catalog information and pricing.",
+        "code_purpose": "model",
+        "source_summary": "A comma-separated values file defining columns: product_id, name, category, price, and updated_at, populated with sample product catalog rows.",
+        "detailed_description": "This CSV file contains product catalog data including product ID, name, category, unit price, and update timestamps. It serves as the master catalog table for products.",
+        "responsibilities": [
+          "Store product catalog details",
+          "Classify products by category",
+          "Track product pricing and update times"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.8
+      }
+    ]
+  },
+  "timestamp": 1790849168,
+  "prompt_hash": "ec4eff669376e8384c9d59a19815d2c2",
+  "token_usage": {
+    "input_tokens": 1265,
+    "output_tokens": 827,
+    "total_tokens": 2092
+  },
+  "model_name": null
+}

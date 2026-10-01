@@ -1,0 +1,299 @@
+{
+  "data": {
+    "summary": "The scripts directory contains core orchestration, deployment, data loading, SCD2 transformation, and validation scripts for the lakehouse proof of concept.",
+    "importance_score": 0.9,
+    "key_files": [
+      "load.py",
+      "scd2.py",
+      "replay.sh",
+      "rebuild.sh",
+      "check_delivery.py"
+    ],
+    "file_insights": [
+      {
+        "name": "build_semantic.sh",
+        "summary": "Builds contract views and restarts the Iceberg REST catalog container.",
+        "code_purpose": "command",
+        "source_summary": "Bash script to rebuild semantic views and restart the Iceberg REST server container.",
+        "detailed_description": "Builds semantic layer's contract views and restarts Iceberg REST catalog to clear view pointer cache.",
+        "responsibilities": [
+          "Build contract views",
+          "Restart Iceberg REST catalog"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "dirname",
+            "is_external": false,
+            "dependency_type": "import"
+          }
+        ],
+        "importance_score": 0.7
+      },
+      {
+        "name": "",
+        "summary": "",
+        "code_purpose": null,
+        "source_summary": "",
+        "detailed_description": "",
+        "responsibilities": [],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.0
+      },
+      {
+        "name": "check_boundaries.py",
+        "summary": "Validates time-zone boundaries and UTC storage rules.",
+        "code_purpose": "test",
+        "source_summary": "Python test script for validating time-zone conversion correctness and boundary conditions.",
+        "detailed_description": "Time-zone boundary test suite verifying instants, UTC days, and half-open intervals.",
+        "responsibilities": [
+          "Test time-zone boundaries",
+          "Verify UTC timestamp rules"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.75
+      },
+      {
+        "name": "",
+        "summary": "",
+        "code_purpose": null,
+        "source_summary": "",
+        "detailed_description": "",
+        "responsibilities": [],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.0
+      },
+      {
+        "name": "",
+        "summary": "",
+        "code_purpose": null,
+        "source_summary": "",
+        "detailed_description": "",
+        "responsibilities": [],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.0
+      },
+      {
+        "name": "",
+        "summary": "",
+        "code_purpose": null,
+        "source_summary": "",
+        "detailed_description": "",
+        "responsibilities": [],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.0
+      },
+      {
+        "name": "",
+        "summary": "",
+        "code_purpose": null,
+        "source_summary": "",
+        "detailed_description": "",
+        "responsibilities": [],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.0
+      },
+      {
+        "name": "",
+        "summary": "",
+        "code_purpose": null,
+        "source_summary": "",
+        "detailed_description": "",
+        "responsibilities": [],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.0
+      },
+      {
+        "name": "",
+        "summary": "",
+        "code_purpose": null,
+        "source_summary": "",
+        "detailed_description": "",
+        "responsibilities": [],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.0
+      },
+      {
+        "name": "",
+        "summary": "",
+        "code_purpose": null,
+        "source_summary": "",
+        "detailed_description": "",
+        "responsibilities": [],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.0
+      },
+      {
+        "name": "",
+        "summary": "",
+        "code_purpose": null,
+        "source_summary": "",
+        "detailed_description": "",
+        "responsibilities": [],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.0
+      },
+      {
+        "name": "",
+        "summary": "",
+        "code_purpose": null,
+        "source_summary": "",
+        "detailed_description": "",
+        "responsibilities": [],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.0
+      },
+      {
+        "name": "",
+        "summary": "",
+        "code_purpose": null,
+        "source_summary": "",
+        "detailed_description": "",
+        "responsibilities": [],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.0
+      },
+      {
+        "name": "",
+        "summary": "",
+        "code_purpose": null,
+        "source_summary": "",
+        "detailed_description": "",
+        "responsibilities": [],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.0
+      },
+      {
+        "name": "",
+        "summary": "",
+        "code_purpose": null,
+        "source_summary": "",
+        "detailed_description": "",
+        "responsibilities": [],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.0
+      },
+      {
+        "name": "",
+        "summary": "",
+        "code_purpose": null,
+        "source_summary": "",
+        "detailed_description": "",
+        "responsibilities": [],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.0
+      },
+      {
+        "name": "",
+        "summary": "",
+        "code_purpose": null,
+        "source_summary": "",
+        "detailed_description": "",
+        "responsibilities": [],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.0
+      },
+      {
+        "name": "",
+        "summary": "",
+        "code_purpose": null,
+        "source_summary": "",
+        "detailed_description": "",
+        "responsibilities": [],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.0
+      },
+      {
+        "name": "",
+        "summary": "",
+        "code_purpose": null,
+        "source_summary": "",
+        "detailed_description": "",
+        "responsibilities": [],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.0
+      },
+      {
+        "name": "",
+        "summary": "",
+        "code_purpose": null,
+        "source_summary": "",
+        "detailed_description": "",
+        "responsibilities": [],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.0
+      },
+      {
+        "name": "",
+        "summary": "",
+        "code_purpose": null,
+        "source_summary": "",
+        "detailed_description": "",
+        "responsibilities": [],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.0
+      },
+      {
+        "name": "",
+        "summary": "",
+        "code_purpose": null,
+        "source_summary": "",
+        "detailed_description": "",
+        "responsibilities": [],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.0
+      },
+      {
+        "name": "",
+        "summary": "",
+        "code_purpose": null,
+        "source_summary": "",
+        "detailed_description": "",
+        "responsibilities": [],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.0
+      },
+      {
+        "name": "",
+        "summary": "",
+        "code_purpose": null,
+        "source_summary": "",
+        "detailed_description": "",
+        "responsibilities": [],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.0
+      }
+    ]
+  },
+  "timestamp": 1790849331,
+  "prompt_hash": "e05062ebf3b339b73f7434d6e3cea7f4",
+  "token_usage": {
+    "input_tokens": 5713,
+    "output_tokens": 1318,
+    "total_tokens": 7031
+  },
+  "model_name": null
+}

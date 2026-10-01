@@ -1,0 +1,29 @@
+{
+  "data": {
+    "domain_name": "数据存储与引擎领域",
+    "module_name": "存储与计算引擎与元数据治理",
+    "module_description": "提供底层分布式计算、Apache Iceberg表格式管理、Trino查询引擎、MinIO对象存储及DataHub元数据治理支持。",
+    "interaction": "Interactions occur through the Trino SQL interface for distributed query execution, dbt CLI for data transformation pipelines, DataHub UI and CLI recipes for metadata governance and lineage tracking, and MinIO S3 object storage APIs for data persistence.",
+    "implementation": "The implementation leverages Apache Iceberg as the table format over MinIO object storage, queried via Trino and computed via Spark. Metadata and data lineage are harvested into DataHub using tailored ingestion recipes, while dbt projects (for both Trino and Spark adapters) manage the data warehouse staging and mart transformations.",
+    "associated_files": [
+      "archive/dbt_trino/dbt_project.yml",
+      "archive/dbt_trino/profiles.yml",
+      "datahub/dh.sh",
+      "datahub/docker-compose.quickstart.yml",
+      "datahub/recipes/dbt.yml",
+      "datahub/recipes/iceberg.yml",
+      "dbt_spark/dbt_project.yml",
+      "dbt_spark/profiles.yml"
+    ],
+    "flowchart_mermaid": "graph TD\n    A[Raw Data / Batch CSVs] -->|ODS Ingestion| B[Spark / Trino Engines]\n    B -->|Iceberg Table Format| C[MinIO Object Storage]\n    C -->|SQL Query / dbt Modeling| D[Staging & Marts Models]\n    D -->|Metadata Ingestion| E[DataHub Governance]",
+    "sequence_diagram_mermaid": "sequenceDiagram\n    participant User as User / dbt\n    participant Engine as Trino / Spark Engine\n    participant Storage as Iceberg / MinIO\n    participant DataHub as DataHub Governance\n\n    User->>Engine: Execute SQL / dbt model run\n    Engine->>Storage: Read/Write Iceberg tables & Parquet files\n    Storage-->>Engine: Return dataset\n    Engine-->>User: Query results\n    User->>DataHub: Ingest metadata & lineage (recipes)\n    DataHub-->>User: Catalog & PII governance view"
+  },
+  "timestamp": 1790849795,
+  "prompt_hash": "0ea1de6177f23e121fbd60418cb84188",
+  "token_usage": {
+    "input_tokens": 4075,
+    "output_tokens": 528,
+    "total_tokens": 4603
+  },
+  "model_name": null
+}

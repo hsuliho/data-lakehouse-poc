@@ -1,0 +1,33 @@
+{
+  "data": {
+    "summary": "The results directory stores JSONL log files recording evaluation runs, answers, tool calls, and verdicts for testing semantic queries.",
+    "importance_score": 0.5,
+    "key_files": [
+      "20260921_143227.jsonl"
+    ],
+    "file_insights": [
+      {
+        "name": "20260921_143227.jsonl",
+        "summary": "Stores evaluation log records for semantic arm KPI test runs in JSONL format.",
+        "code_purpose": "test",
+        "source_summary": "JSONL format records containing conversational evaluation runs, questions, answers, and tool trace logs.",
+        "detailed_description": "Contains JSON lines storing evaluation runs, questions, answers, verdicts, and tool execution traces for semantic arm KPI and day range queries.",
+        "responsibilities": [
+          "Store evaluation execution records",
+          "Capture tool call outputs and verdicts"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.5
+      }
+    ]
+  },
+  "timestamp": 1790849759,
+  "prompt_hash": "e02582bc2b9fab7908fb9241683ed795",
+  "token_usage": {
+    "input_tokens": 1093,
+    "output_tokens": 256,
+    "total_tokens": 1349
+  },
+  "model_name": null
+}

@@ -1,0 +1,78 @@
+{
+  "data": {
+    "summary": "The batch2 directory contains CSV datasets representing core e-commerce entities including customers, orders, order items, and products. These data files form the relational foundation for transactional processing and business analytics.",
+    "importance_score": 0.85,
+    "key_files": [
+      "orders.csv",
+      "customers.csv",
+      "order_items.csv",
+      "products.csv"
+    ],
+    "file_insights": [
+      {
+        "name": "customers.csv",
+        "summary": "Stores customer profile information and membership tiers.",
+        "code_purpose": "model",
+        "source_summary": "CSV file containing columns customer_id, name, city, membership_tier, and updated_at with sample customer entries.",
+        "detailed_description": "Contains customer master data including IDs, names, cities, and membership tiers. Represents the primary customer entity in the e-commerce data layer.",
+        "responsibilities": [
+          "Stores customer records",
+          "Maintains customer profile and location information"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.8
+      },
+      {
+        "name": "order_items.csv",
+        "summary": "Contains order item details including quantities and unit prices.",
+        "code_purpose": "model",
+        "source_summary": "CSV file with columns order_item_id, order_id, product_id, quantity, unit_price, and updated_at storing transaction line item records.",
+        "detailed_description": "Stores line items for individual orders, capturing quantities, unit prices, and product associations. Acts as an associative relationship dataset between orders and products.",
+        "responsibilities": [
+          "Records order line items",
+          "Tracks quantity and pricing details per item"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.8
+      },
+      {
+        "name": "orders.csv",
+        "summary": "Maintains order tracking information and status updates.",
+        "code_purpose": "model",
+        "source_summary": "CSV file with columns order_id, customer_id, order_status, ordered_at, and updated_at representing order transactions.",
+        "detailed_description": "Contains transactional order headers including status, customer association, and timestamps. Essential for order lifecycle management and reporting.",
+        "responsibilities": [
+          "Tracks order lifecycle status",
+          "Links orders to customers"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.85
+      },
+      {
+        "name": "products.csv",
+        "summary": "Contains product catalog data, categories, and prices.",
+        "code_purpose": "model",
+        "source_summary": "CSV file containing product_id, name, category, price, and updated_at fields for available products.",
+        "detailed_description": "Stores catalog information for products including categories and pricing. Acts as the product catalog data source.",
+        "responsibilities": [
+          "Defines catalog items and categories",
+          "Stores product pricing data"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.8
+      }
+    ]
+  },
+  "timestamp": 1790849174,
+  "prompt_hash": "3122b778f7d336313c4bff9c2ce9f834",
+  "token_usage": {
+    "input_tokens": 1135,
+    "output_tokens": 719,
+    "total_tokens": 1854
+  },
+  "model_name": null
+}

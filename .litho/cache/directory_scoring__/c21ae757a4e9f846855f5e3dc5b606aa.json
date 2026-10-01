@@ -1,0 +1,279 @@
+{
+  "data": {
+    "scores": [
+      {
+        "path": "agent",
+        "score": 0.95,
+        "reasoning": ""
+      },
+      {
+        "path": "agent/diagnose",
+        "score": 0.85,
+        "reasoning": ""
+      },
+      {
+        "path": "agent/diagnose/results",
+        "score": 0.2,
+        "reasoning": ""
+      },
+      {
+        "path": "agent/eval",
+        "score": 0.8,
+        "reasoning": ""
+      },
+      {
+        "path": "agent/eval/archive_batch_era",
+        "score": 0.3,
+        "reasoning": ""
+      },
+      {
+        "path": "agent/eval/archive_batch_era/results",
+        "score": 0.1,
+        "reasoning": ""
+      },
+      {
+        "path": "agent/eval/results",
+        "score": 0.2,
+        "reasoning": ""
+      },
+      {
+        "path": "agent/verify",
+        "score": 0.85,
+        "reasoning": ""
+      },
+      {
+        "path": "agent/verify/results",
+        "score": 0.2,
+        "reasoning": ""
+      },
+      {
+        "path": "archive",
+        "score": 0.3,
+        "reasoning": ""
+      },
+      {
+        "path": "archive/checks_batch_era",
+        "score": 0.3,
+        "reasoning": ""
+      },
+      {
+        "path": "archive/dbt_trino",
+        "score": 0.4,
+        "reasoning": ""
+      },
+      {
+        "path": "archive/dbt_trino/logs",
+        "score": 0.1,
+        "reasoning": ""
+      },
+      {
+        "path": "archive/dbt_trino/models",
+        "score": 0.4,
+        "reasoning": ""
+      },
+      {
+        "path": "archive/dbt_trino/models/marts",
+        "score": 0.4,
+        "reasoning": ""
+      },
+      {
+        "path": "archive/dbt_trino/models/staging",
+        "score": 0.4,
+        "reasoning": ""
+      },
+      {
+        "path": "archive/scd2_batch",
+        "score": 0.4,
+        "reasoning": ""
+      },
+      {
+        "path": "data",
+        "score": 0.2,
+        "reasoning": ""
+      },
+      {
+        "path": "data/batch1",
+        "score": 0.1,
+        "reasoning": ""
+      },
+      {
+        "path": "data/batch2",
+        "score": 0.1,
+        "reasoning": ""
+      },
+      {
+        "path": "data/batch3",
+        "score": 0.1,
+        "reasoning": ""
+      },
+      {
+        "path": "data/batch4",
+        "score": 0.1,
+        "reasoning": ""
+      },
+      {
+        "path": "data/batch5",
+        "score": 0.1,
+        "reasoning": ""
+      },
+      {
+        "path": "datahub",
+        "score": 0.6,
+        "reasoning": ""
+      },
+      {
+        "path": "datahub/recipes",
+        "score": 0.4,
+        "reasoning": ""
+      },
+      {
+        "path": "dbt_semantic",
+        "score": 0.75,
+        "reasoning": ""
+      },
+      {
+        "path": "dbt_semantic/logs",
+        "score": 0.1,
+        "reasoning": ""
+      },
+      {
+        "path": "dbt_semantic/models",
+        "score": 0.7,
+        "reasoning": ""
+      },
+      {
+        "path": "dbt_spark",
+        "score": 0.8,
+        "reasoning": ""
+      },
+      {
+        "path": "dbt_spark/logs",
+        "score": 0.1,
+        "reasoning": ""
+      },
+      {
+        "path": "dbt_spark/macros",
+        "score": 0.5,
+        "reasoning": ""
+      },
+      {
+        "path": "dbt_spark/models",
+        "score": 0.75,
+        "reasoning": ""
+      },
+      {
+        "path": "dbt_spark/models/marts",
+        "score": 0.75,
+        "reasoning": ""
+      },
+      {
+        "path": "dbt_spark/models/staging",
+        "score": 0.75,
+        "reasoning": ""
+      },
+      {
+        "path": "docs",
+        "score": 0.4,
+        "reasoning": ""
+      },
+      {
+        "path": "docs/adr",
+        "score": 0.4,
+        "reasoning": ""
+      },
+      {
+        "path": "docs/figures",
+        "score": 0.3,
+        "reasoning": ""
+      },
+      {
+        "path": "docs/litho",
+        "score": 0.3,
+        "reasoning": ""
+      },
+      {
+        "path": "docs/litho/4、深入探索",
+        "score": 0.1,
+        "reasoning": ""
+      },
+      {
+        "path": "landing",
+        "score": 0.2,
+        "reasoning": ""
+      },
+      {
+        "path": "landing/dt=2026-01-29",
+        "score": 0.1,
+        "reasoning": ""
+      },
+      {
+        "path": "landing/dt=2026-01-30",
+        "score": 0.1,
+        "reasoning": ""
+      },
+      {
+        "path": "landing/dt=2026-01-31",
+        "score": 0.1,
+        "reasoning": ""
+      },
+      {
+        "path": "orchestration",
+        "score": 0.9,
+        "reasoning": ""
+      },
+      {
+        "path": "scripts",
+        "score": 0.75,
+        "reasoning": ""
+      },
+      {
+        "path": "spark",
+        "score": 0.5,
+        "reasoning": ""
+      },
+      {
+        "path": "spark/jars",
+        "score": 0.2,
+        "reasoning": ""
+      },
+      {
+        "path": "sql",
+        "score": 0.6,
+        "reasoning": ""
+      },
+      {
+        "path": "sql/reports",
+        "score": 0.6,
+        "reasoning": ""
+      },
+      {
+        "path": "sql/scd2",
+        "score": 0.6,
+        "reasoning": ""
+      },
+      {
+        "path": "superset",
+        "score": 0.5,
+        "reasoning": ""
+      },
+      {
+        "path": "trino",
+        "score": 0.6,
+        "reasoning": ""
+      },
+      {
+        "path": "trino/catalog",
+        "score": 0.4,
+        "reasoning": ""
+      }
+    ]
+  },
+  "timestamp": 1790849756,
+  "prompt_hash": "c21ae757a4e9f846855f5e3dc5b606aa",
+  "token_usage": {
+    "input_tokens": 2410,
+    "output_tokens": 768,
+    "total_tokens": 3178
+  },
+  "model_name": null
+}

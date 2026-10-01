@@ -1,0 +1,136 @@
+{
+  "data": {
+    "summary": "The staging directory contains DBT staging models, configuration files, and tests that clean, standardize, and validate raw operational data from the ODS layer.",
+    "importance_score": 0.88,
+    "key_files": [
+      "stg_orders.sql",
+      "stg_customers.sql",
+      "_staging.yml",
+      "_sources.yml"
+    ],
+    "file_insights": [
+      {
+        "name": "_sources.yml",
+        "summary": "Defines upstream data sources and freshness tests for the data pipeline.",
+        "code_purpose": "config",
+        "source_summary": "Declares version 2 DBT source definitions under the 'ods' schema, including freshness checks.",
+        "detailed_description": "Defines the upstream operational database sources for the DBT staging layer, specifying schema, metadata, freshness constraints, and warning/error thresholds.",
+        "responsibilities": [
+          "Defines source schemas",
+          "Configures freshness monitoring rules",
+          "Sets metadata owners for data platform"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.8
+      },
+      {
+        "name": "_staging.yml",
+        "summary": "Defines validity and referential tests for the staging models.",
+        "code_purpose": "config",
+        "source_summary": "YAML configuration file specifying column-level data tests for models like stg_orders.",
+        "detailed_description": "Contains tests and assertions for the staging models, validating column constraints like accepted values and non-null checks.",
+        "responsibilities": [
+          "Validates data integrity of staging models",
+          "Enforces accepted values for order status",
+          "Ensures required fields are not null"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.8
+      },
+      {
+        "name": "stg_customers.sql",
+        "summary": "Cleans and standardizes customer records from the raw operational source.",
+        "code_purpose": "model",
+        "source_summary": "SQL query selecting and cleaning customer attributes from the ods source.",
+        "detailed_description": "Cleans and transforms raw customer data from the operational data store by trimming strings and lowercasing membership tiers.",
+        "responsibilities": [
+          "Cleans customer names and cities",
+          "Standardizes membership tier string casing",
+          "Selects raw customer records from the ods source"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "ods.customers",
+            "is_external": true,
+            "dependency_type": "use"
+          }
+        ],
+        "importance_score": 0.85
+      },
+      {
+        "name": "stg_order_items.sql",
+        "summary": "Extracts and exposes order item records from the raw data source.",
+        "code_purpose": "model",
+        "source_summary": "SQL query selecting order item attributes from the ods source.",
+        "detailed_description": "Extracts order item details from the operational database source, preserving operational pricing and quantities.",
+        "responsibilities": [
+          "Extracts order line items",
+          "Preserves unit prices and quantities",
+          "References the ods order_items source"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "ods.order_items",
+            "is_external": true,
+            "dependency_type": "use"
+          }
+        ],
+        "importance_score": 0.85
+      },
+      {
+        "name": "stg_orders.sql",
+        "summary": "Cleans and standardizes raw order data.",
+        "code_purpose": "model",
+        "source_summary": "SQL query selecting and standardizing order records from the ods source.",
+        "detailed_description": "Cleans raw order records by standardizing order status casing and extracting timestamps and identifiers.",
+        "responsibilities": [
+          "Cleans order status values",
+          "Extracts order and customer identifiers",
+          "References ods orders source"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "ods.orders",
+            "is_external": true,
+            "dependency_type": "use"
+          }
+        ],
+        "importance_score": 0.9
+      },
+      {
+        "name": "stg_products.sql",
+        "summary": "Cleans and standardizes product catalog data.",
+        "code_purpose": "model",
+        "source_summary": "SQL query selecting and cleaning product attributes from the ods source.",
+        "detailed_description": "Cleans raw product records by trimming product names and standardizing category string casing.",
+        "responsibilities": [
+          "Cleans product names and categories",
+          "Standardizes product pricing fields",
+          "References ods products source"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "ods.products",
+            "is_external": true,
+            "dependency_type": "use"
+          }
+        ],
+        "importance_score": 0.85
+      }
+    ]
+  },
+  "timestamp": 1790849242,
+  "prompt_hash": "2e62fb536775d0ea50225e3132ad85fc",
+  "token_usage": {
+    "input_tokens": 1182,
+    "output_tokens": 1027,
+    "total_tokens": 2209
+  },
+  "model_name": null
+}

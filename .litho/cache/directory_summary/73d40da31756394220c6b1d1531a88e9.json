@@ -1,0 +1,34 @@
+{
+  "data": {
+    "summary": "The results directory stores JSONL diagnostic log files containing evaluation verdicts, agent error analyses, causes, and evidence records from task execution trials.",
+    "importance_score": 0.5,
+    "key_files": [
+      "diagnose_20261001_163340.jsonl"
+    ],
+    "file_insights": [
+      {
+        "name": "diagnose_20261001_163340.jsonl",
+        "summary": "Diagnostic log file storing JSONL records of agent evaluation runs and failure analyses.",
+        "code_purpose": "other",
+        "source_summary": "JSONL file containing diagnostic records of evaluation runs, verdicts (e.g., wrong_value), cause categories (e.g., tool_choice), and evidence strings.",
+        "detailed_description": "Contains JSONL-formatted diagnostic logs detailing evaluation runs, agent actions, verdicts, error cause categories, and evidence strings regarding AI agent execution errors in database querying tasks.",
+        "responsibilities": [
+          "Log agent execution errors",
+          "Store evaluation test verdicts and causes",
+          "Provide evidence for tool and model failures"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.5
+      }
+    ]
+  },
+  "timestamp": 1790849709,
+  "prompt_hash": "73d40da31756394220c6b1d1531a88e9",
+  "token_usage": {
+    "input_tokens": 1303,
+    "output_tokens": 308,
+    "total_tokens": 1611
+  },
+  "model_name": null
+}

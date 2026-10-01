@@ -1,0 +1,96 @@
+{
+  "data": {
+    "summary": "This data partition directory (dt=2026-01-29) contains structured CSV data tables representing an e-commerce data warehouse snapshot. The files include customers, products, orders, and order items along with a success flag file, capturing core transactional and dimensional records for analysis.",
+    "importance_score": 0.85,
+    "key_files": [
+      "orders.csv",
+      "order_items.csv",
+      "customers.csv",
+      "products.csv",
+      "_SUCCESS"
+    ],
+    "file_insights": [
+      {
+        "name": "_SUCCESS",
+        "summary": "Marker file indicating successful completion of the data pipeline for the partition.",
+        "code_purpose": "model",
+        "source_summary": "Empty success flag file indicating successful partition loading.",
+        "detailed_description": "Indicates successful execution of the batch or data pipeline task for the date partition dt=2026-01-29.",
+        "responsibilities": [
+          "Indicate success of upstream tasks"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.2
+      },
+      {
+        "name": "customers.csv",
+        "summary": "Stores customer profile and membership tier information partitioned by date.",
+        "code_purpose": "model",
+        "source_summary": "CSV table schema featuring customer_id, name, city, membership_tier, changed_at, event_id, and is_deleted fields.",
+        "detailed_description": "Contains customer entity records including customer ID, name, city, membership tier, change timestamps, event IDs, and soft-delete flags for data tracking.",
+        "responsibilities": [
+          "Store customer demographic and membership data",
+          "Track record changes and event IDs",
+          "Support customer data warehousing and analytics"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.85
+      },
+      {
+        "name": "order_items.csv",
+        "summary": "Stores line item details for customer orders including quantity and unit price.",
+        "code_purpose": "model",
+        "source_summary": "CSV table schema featuring order_item_id, order_id, product_id, quantity, unit_price, changed_at, event_id, and is_deleted fields.",
+        "detailed_description": "Contains detailed line items for customer orders, linking orders to products with quantities, unit prices, event IDs, and change tracking timestamps.",
+        "responsibilities": [
+          "Store order line item details",
+          "Track product quantities and unit prices per order",
+          "Support sales and revenue reporting"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.85
+      },
+      {
+        "name": "orders.csv",
+        "summary": "Stores customer order headers and their lifecycle statuses.",
+        "code_purpose": "model",
+        "source_summary": "CSV table schema featuring order_id, customer_id, order_status, ordered_at, changed_at, event_id, and is_deleted fields.",
+        "detailed_description": "Contains transactional order records including order status, order timestamps, customer references, event IDs, and change tracking.",
+        "responsibilities": [
+          "Store order header information and lifecycle status",
+          "Track order creation and modification timestamps",
+          "Relate orders to customers"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.9
+      },
+      {
+        "name": "products.csv",
+        "summary": "Stores the product catalog details including pricing and categories.",
+        "code_purpose": "model",
+        "source_summary": "CSV table schema featuring product_id, name, category, price, changed_at, event_id, and is_deleted fields.",
+        "detailed_description": "Contains product catalog information including product names, categories, pricing, event IDs, and update timestamps.",
+        "responsibilities": [
+          "Store product catalog information",
+          "Track product categories and prices",
+          "Support order item calculations and catalog analysis"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.85
+      }
+    ]
+  },
+  "timestamp": 1790849296,
+  "prompt_hash": "627b43a0e8f7e6fb88b82bf7f27c4dd2",
+  "token_usage": {
+    "input_tokens": 1274,
+    "output_tokens": 918,
+    "total_tokens": 2192
+  },
+  "model_name": null
+}

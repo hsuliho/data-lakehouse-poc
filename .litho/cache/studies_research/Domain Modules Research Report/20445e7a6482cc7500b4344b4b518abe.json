@@ -1,0 +1,305 @@
+{
+  "data": {
+    "domain_modules": [
+      {
+        "name": "管道编排领域",
+        "description": "负责数据工作流、资产定义、定时调度与管道编排，确保数据处理流程的高效运转。",
+        "domain_type": "Core Business Domain",
+        "sub_modules": [
+          {
+            "name": "Dagster编排调度",
+            "description": "定义Dagster资产、pipeline、检查及调度触发逻辑",
+            "code_paths": [
+              "orchestration/definitions.py",
+              "orchestration/trigger.py"
+            ],
+            "key_functions": [
+              "定义日常资产",
+              "调度作业触发",
+              "状态监控"
+            ],
+            "importance": 9.0
+          }
+        ],
+        "code_paths": [
+          "orchestration"
+        ],
+        "importance": 9.0,
+        "complexity": 8.0
+      },
+      {
+        "name": "数据建模与转换领域",
+        "description": "负责湖仓中的数据清洗、结构化转换、dbt建模（Staging、DWD、DWS、ADS层）以及语义模型构建。",
+        "domain_type": "Core Business Domain",
+        "sub_modules": [
+          {
+            "name": "dbt数据建模",
+            "description": "管理分层数据模型（Staging清洗、Marts聚合与明细层）",
+            "code_paths": [
+              "dbt_spark/models",
+              "archive/dbt_trino/models"
+            ],
+            "key_functions": [
+              "stg订单与客户清洗",
+              "marts日常营收与分类排名计算"
+            ],
+            "importance": 9.0
+          },
+          {
+            "name": "dbt语义层",
+            "description": "定义指标、维度及时间维表，提供一致的语义层支持",
+            "code_paths": [
+              "dbt_semantic/models"
+            ],
+            "key_functions": [
+              "指标定义",
+              "Metricflow时间维表管理"
+            ],
+            "importance": 8.5
+          }
+        ],
+        "code_paths": [
+          "dbt_spark",
+          "dbt_semantic",
+          "archive/dbt_trino"
+        ],
+        "importance": 9.5,
+        "complexity": 8.5
+      },
+      {
+        "name": "AI Agent智能运维领域",
+        "description": "基于 LangGraph 构建的 AI Agent 系统，提供智能化管道故障诊断、状态验证、回归测试及语义工具交互。",
+        "domain_type": "Core Business Domain",
+        "sub_modules": [
+          {
+            "name": "Agent核心执行图",
+            "description": "管理 LangGraph 智能体状态图、提示词与核心循环逻辑",
+            "code_paths": [
+              "agent/graph.py",
+              "agent/prompts.py"
+            ],
+            "key_functions": [
+              "工具调用循环",
+              "多轮交互管理"
+            ],
+            "importance": 9.5
+          },
+          {
+            "name": "诊断与验证代理",
+            "description": "实现故障诊断、证据收集、CLI交互及自动化回归验证",
+            "code_paths": [
+              "agent/diagnose",
+              "agent/verify"
+            ],
+            "key_functions": [
+              "确定性故障检查",
+              "自动化回归测试",
+              "CLI诊断入口"
+            ],
+            "importance": 9.0
+          },
+          {
+            "name": "评测与基准测试",
+            "description": "评估基准、评测问题集及自动化结果评测与报告生成",
+            "code_paths": [
+              "agent/eval"
+            ],
+            "key_functions": [
+              "基准测试运行",
+              "指标评测与打分"
+            ],
+            "importance": 8.5
+          }
+        ],
+        "code_paths": [
+          "agent"
+        ],
+        "importance": 9.5,
+        "complexity": 9.0
+      },
+      {
+        "name": "数据存储与引擎领域",
+        "description": "提供底层分布式计算、Apache Iceberg表格式管理、Trino查询引擎、MinIO对象存储及DataHub元数据治理支持。",
+        "domain_type": "Infrastructure Domain",
+        "sub_modules": [
+          {
+            "name": "存储与计算引擎",
+            "description": "配置 Spark、Iceberg 表格式与 Trino 分布式 SQL 查询引擎",
+            "code_paths": [
+              "spark/spark-defaults.conf",
+              "trino"
+            ],
+            "key_functions": [
+              "Iceberg Catalog管理",
+              "分布式SQL查询执行"
+            ],
+            "importance": 9.5
+          },
+          {
+            "name": "元数据与治理",
+            "description": "元数据管理、数据血缘追踪与PII标签治理",
+            "code_paths": [
+              "datahub"
+            ],
+            "key_functions": [
+              "元数据摄入",
+              "数据血缘展示"
+            ],
+            "importance": 8.0
+          }
+        ],
+        "code_paths": [
+          "spark",
+          "trino",
+          "datahub",
+          "data",
+          "landing"
+        ],
+        "importance": 9.0,
+        "complexity": 8.0
+      },
+      {
+        "name": "语义建模与BI展现领域",
+        "description": "集成 Apache Superset 提供开箱即用的BI数据可视化与多维报表展示。",
+        "domain_type": "Tool Support Domain",
+        "sub_modules": [
+          {
+            "name": "Superset数据可视化",
+            "description": "Superset集成配置与容器化部署脚本",
+            "code_paths": [
+              "superset/Dockerfile"
+            ],
+            "key_functions": [
+              "BI报表展现",
+              "连接Trino数据源"
+            ],
+            "importance": 8.0
+          }
+        ],
+        "code_paths": [
+          "superset"
+        ],
+        "importance": 8.0,
+        "complexity": 7.0
+      }
+    ],
+    "domain_relations": [
+      {
+        "from_domain": "管道编排领域",
+        "to_domain": "数据建模与转换领域",
+        "relation_type": "Service Call",
+        "strength": 9.0,
+        "description": "Dagster管道编排领域调用数据建模领域的dbt模型转换脚本，驱动ETL执行。"
+      },
+      {
+        "from_domain": "AI Agent智能运维领域",
+        "to_domain": "数据建模与转换领域",
+        "relation_type": "Data Dependency",
+        "strength": 8.5,
+        "description": "AI Agent智能运维领域依赖数据建模与转换领域的数据仓库模型与元数据进行状态检查与诊断。"
+      },
+      {
+        "from_domain": "语义建模与BI展现领域",
+        "to_domain": "数据存储与引擎领域",
+        "relation_type": "Data Dependency",
+        "strength": 8.5,
+        "description": "语义建模与BI展现领域依赖数据存储与引擎领域的Trino引擎进行底层SQL查询与数据获取。"
+      },
+      {
+        "from_domain": "AI Agent智能运维领域",
+        "to_domain": "管道编排领域",
+        "relation_type": "Service Call",
+        "strength": 8.0,
+        "description": "AI Agent智能运维领域依赖管道编排领域的运行状态和诊断目标进行巡检。"
+      }
+    ],
+    "business_flows": [
+      {
+        "name": "数据管道编排与ETL执行流程",
+        "description": "通过Dagster管道编排调度数据处理与模型转换，完成数据湖仓的日常ETL加载与物化。",
+        "steps": [
+          {
+            "step": 1,
+            "domain_module": "管道编排领域",
+            "sub_module": "Dagster编排调度",
+            "operation": "定义并触发Dagster资产与日常流水线作业",
+            "code_entry_point": "orchestration/definitions.py"
+          },
+          {
+            "step": 2,
+            "domain_module": "数据建模与转换领域",
+            "sub_module": "dbt数据建模",
+            "operation": "执行dbt模型转换（staging与marts层）",
+            "code_entry_point": "dbt_spark/models/staging"
+          },
+          {
+            "step": 3,
+            "domain_module": "数据存储与引擎领域",
+            "sub_module": "存储与计算引擎",
+            "operation": "通过Trino和Spark在Iceberg湖仓上执行计算与持久化",
+            "code_entry_point": "trino/catalog/iceberg.properties"
+          }
+        ],
+        "entry_point": "orchestration/definitions.py",
+        "importance": 9.5,
+        "involved_domains_count": 3
+      },
+      {
+        "name": "AI Agent智能诊断与验证流程",
+        "description": "基于 LangGraph 智能 Agent 对湖仓数据管道进行巡检、故障诊断与自动化回归验证。",
+        "steps": [
+          {
+            "step": 1,
+            "domain_module": "AI Agent智能运维领域",
+            "sub_module": "Agent核心执行图",
+            "operation": "执行LangGraph Agent核心控制循环与工具调用",
+            "code_entry_point": "agent/graph.py"
+          },
+          {
+            "step": 2,
+            "domain_module": "AI Agent智能运维领域",
+            "sub_module": "诊断与验证代理",
+            "operation": "执行确定性检查、证据收集与故障诊断",
+            "code_entry_point": "agent/diagnose/evidence.py"
+          }
+        ],
+        "entry_point": "agent/graph.py",
+        "importance": 9.5,
+        "involved_domains_count": 2
+      },
+      {
+        "name": "语义建模与BI报表分析流程",
+        "description": "通过统一的语义层与BI工具支撑业务指标分析与报表展现。",
+        "steps": [
+          {
+            "step": 1,
+            "domain_module": "语义建模与BI展现领域",
+            "sub_module": "dbt语义层",
+            "operation": "定义指标与维度语义模型并计算指标",
+            "code_entry_point": "dbt_semantic/models/semantic.yml"
+          },
+          {
+            "step": 2,
+            "domain_module": "语义建模与BI展现领域",
+            "sub_module": "Superset数据可视化",
+            "operation": "通过Apache Superset展现BI报表与数据可视化",
+            "code_entry_point": "superset/Dockerfile"
+          }
+        ],
+        "entry_point": "dbt_semantic/models/semantic.yml",
+        "importance": 8.5,
+        "involved_domains_count": 2
+      }
+    ],
+    "architecture_summary": "lakehouse-poc 是一个现代数据湖仓（Lakehouse）概念验证系统，系统采用分层领域架构设计，涵盖数据湖仓存储、ETL管道编排、dbt 数据建模转换、语义层及基于 LangGraph 的 AI Agent 智能诊断与验证系统。各模块协同实现高效的数据流转、指标计算与智能化运维。",
+    "confidence_score": 9.5
+  },
+  "timestamp": 1790849768,
+  "prompt_hash": "20445e7a6482cc7500b4344b4b518abe",
+  "token_usage": {
+    "input_tokens": 4946,
+    "output_tokens": 1769,
+    "total_tokens": 6715
+  },
+  "model_name": null
+}

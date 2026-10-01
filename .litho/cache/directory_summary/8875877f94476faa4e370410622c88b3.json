@@ -1,0 +1,97 @@
+{
+  "data": {
+    "summary": "The marts directory contains core analytics engineering data models (SQL and YAML config) representing publication-ready fact tables, summary metrics, and ranking models.",
+    "importance_score": 0.85,
+    "key_files": [
+      "fact_orders.sql",
+      "dws_daily_revenue.sql",
+      "ads_category_revenue_rank.sql",
+      "_marts.yml"
+    ],
+    "file_insights": [
+      {
+        "name": "_marts.yml",
+        "summary": "YAML configuration file for data models and tests in the marts directory.",
+        "code_purpose": "config",
+        "source_summary": "Defines version 2 schema configuration and data tests (not_null, unique, relationships) for the fact_orders model.",
+        "detailed_description": "Contains the YAML configuration and data tests for the models defined in the marts directory, such as fact_orders.",
+        "responsibilities": [
+          "Define model metadata and tests",
+          "Ensure column uniqueness and non-null constraints",
+          "Check foreign key relationships"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.7
+      },
+      {
+        "name": "ads_category_revenue_rank.sql",
+        "summary": "SQL model that calculates category revenue ranks.",
+        "code_purpose": "model",
+        "source_summary": "Executes a SQL query on dws_daily_revenue to compute category revenue, order counts, and revenue rank using a window function.",
+        "detailed_description": "Aggregates category revenue and order counts from daily revenue data to rank categories by revenue.",
+        "responsibilities": [
+          "Aggregate revenue and order counts by category",
+          "Rank product categories based on total revenue"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "dws_daily_revenue",
+            "is_external": false,
+            "dependency_type": "use"
+          }
+        ],
+        "importance_score": 0.75
+      },
+      {
+        "name": "dws_daily_revenue.sql",
+        "summary": "Incremental SQL model tracking daily revenue by category.",
+        "code_purpose": "model",
+        "source_summary": "Incremental SQL model for daily revenue aggregation with dynamic partition replacement.",
+        "detailed_description": "Computes daily revenue and order counts categorized by product category using an incremental strategy.",
+        "responsibilities": [
+          "Compute incremental daily revenue metrics",
+          "Maintain grain at day by category level"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "days",
+            "is_external": false,
+            "dependency_type": "use"
+          }
+        ],
+        "importance_score": 0.8
+      },
+      {
+        "name": "fact_orders.sql",
+        "summary": "SQL model creating the core fact_orders table.",
+        "code_purpose": "model",
+        "source_summary": "SQL model constructing the fact_orders table with historical snapshots of product categories and customer tiers.",
+        "detailed_description": "Builds the DWD fact table at the grain of one order item, incorporating as-of joins for dimension versions valid at order time.",
+        "responsibilities": [
+          "Capture individual order item facts",
+          "Preserve historical dimension states valid at order time"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "the",
+            "is_external": false,
+            "dependency_type": "use"
+          }
+        ],
+        "importance_score": 0.85
+      }
+    ]
+  },
+  "timestamp": 1790849234,
+  "prompt_hash": "8875877f94476faa4e370410622c88b3",
+  "token_usage": {
+    "input_tokens": 1275,
+    "output_tokens": 748,
+    "total_tokens": 2023
+  },
+  "model_name": null
+}

@@ -1,0 +1,120 @@
+{
+  "data": {
+    "core_dependencies": [
+      {
+        "from": "orchestration",
+        "to": "scripts",
+        "dependency_type": "Module",
+        "importance": 5,
+        "description": "Orchestration triggers dbt and spark pipelines"
+      },
+      {
+        "from": "marts",
+        "to": "staging",
+        "dependency_type": "Module",
+        "importance": 5,
+        "description": "Transformation models built using dbt and Trino/Spark"
+      },
+      {
+        "from": "models",
+        "to": "staging",
+        "dependency_type": "Module",
+        "importance": 4,
+        "description": "Semantic layer models depend on marts and staging data"
+      },
+      {
+        "from": "eval",
+        "to": "agent",
+        "dependency_type": "Module",
+        "importance": 4,
+        "description": "Evaluation framework tests agent components"
+      },
+      {
+        "from": "verify",
+        "to": "eval",
+        "dependency_type": "Module",
+        "importance": 4,
+        "description": "Verification agent reviews evaluation outputs"
+      },
+      {
+        "from": "diagnose",
+        "to": "orchestration",
+        "dependency_type": "Module",
+        "importance": 4,
+        "description": "Diagnosis agent monitors data pipelines and orchestration state"
+      }
+    ],
+    "architecture_layers": [
+      {
+        "name": "Data Layer & Infrastructure",
+        "components": [
+          "batch1",
+          "batch2",
+          "batch3",
+          "batch4",
+          "batch5",
+          "dt=2026-01-29",
+          "dt=2026-01-30",
+          "dt=2026-01-31",
+          "jars",
+          "spark",
+          "catalog",
+          "trino"
+        ],
+        "level": 1
+      },
+      {
+        "name": "Transformation & Semantic Layer",
+        "components": [
+          "staging",
+          "marts",
+          "scd2",
+          "scd2_batch",
+          "macros",
+          "dbt_trino",
+          "dbt_spark",
+          "dbt_semantic",
+          "models",
+          "recipes"
+        ],
+        "level": 2
+      },
+      {
+        "name": "Orchestration & Serving Layer",
+        "components": [
+          "orchestration",
+          "scripts",
+          "datahub",
+          "superset"
+        ],
+        "level": 3
+      },
+      {
+        "name": "Agents, Evaluation & Reporting",
+        "components": [
+          "agent",
+          "diagnose",
+          "verify",
+          "eval",
+          "reports",
+          "figures"
+        ],
+        "level": 4
+      }
+    ],
+    "key_insights": [
+      "The project exhibits a clear multi-tier architecture separating infrastructure, transformation, orchestration, and autonomous agent capabilities.",
+      "Data flows from raw batch CSVs/partitions through dbt staging and mart layers, exposing semantic models for analytics and AI agents.",
+      "Orchestration via Dagster ties together data loading, pipeline execution, and fault-injection evaluations.",
+      "Agents (agent, diagnose, verify) provide advanced closed-loop natural language querying, root-cause analysis, and regression testing."
+    ]
+  },
+  "timestamp": 1790849711,
+  "prompt_hash": "03dee72cc5822f64377a9a9921935cd5",
+  "token_usage": {
+    "input_tokens": 6975,
+    "output_tokens": 564,
+    "total_tokens": 7539
+  },
+  "model_name": null
+}

@@ -1,0 +1,1939 @@
+{
+  "data": {
+    "project_name": "lakehouse-poc",
+    "root_path": ".",
+    "directories": [
+      {
+        "path": "./agent",
+        "name": "agent",
+        "file_count": 9,
+        "subdirectory_count": 3,
+        "total_size": 33629,
+        "importance_score": 0.30000000000000004
+      },
+      {
+        "path": "./agent/diagnose",
+        "name": "diagnose",
+        "file_count": 6,
+        "subdirectory_count": 1,
+        "total_size": 32431,
+        "importance_score": 0.2
+      },
+      {
+        "path": "./agent/diagnose/results",
+        "name": "results",
+        "file_count": 3,
+        "subdirectory_count": 0,
+        "total_size": 6550,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./agent/eval",
+        "name": "eval",
+        "file_count": 6,
+        "subdirectory_count": 2,
+        "total_size": 25825,
+        "importance_score": 0.2
+      },
+      {
+        "path": "./agent/eval/archive_batch_era",
+        "name": "archive_batch_era",
+        "file_count": 1,
+        "subdirectory_count": 1,
+        "total_size": 3471,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./agent/eval/archive_batch_era/results",
+        "name": "results",
+        "file_count": 6,
+        "subdirectory_count": 0,
+        "total_size": 219092,
+        "importance_score": 0.2
+      },
+      {
+        "path": "./agent/eval/results",
+        "name": "results",
+        "file_count": 1,
+        "subdirectory_count": 0,
+        "total_size": 70443,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./agent/verify",
+        "name": "verify",
+        "file_count": 10,
+        "subdirectory_count": 1,
+        "total_size": 35151,
+        "importance_score": 0.2
+      },
+      {
+        "path": "./agent/verify/results",
+        "name": "results",
+        "file_count": 1,
+        "subdirectory_count": 0,
+        "total_size": 12515,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./archive",
+        "name": "archive",
+        "file_count": 0,
+        "subdirectory_count": 3,
+        "total_size": 0,
+        "importance_score": 0.1
+      },
+      {
+        "path": "./archive/checks_batch_era",
+        "name": "checks_batch_era",
+        "file_count": 1,
+        "subdirectory_count": 0,
+        "total_size": 2145,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./archive/dbt_trino",
+        "name": "dbt_trino",
+        "file_count": 2,
+        "subdirectory_count": 2,
+        "total_size": 370,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./archive/dbt_trino/logs",
+        "name": "logs",
+        "file_count": 0,
+        "subdirectory_count": 0,
+        "total_size": 0,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./archive/dbt_trino/models",
+        "name": "models",
+        "file_count": 0,
+        "subdirectory_count": 2,
+        "total_size": 0,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./archive/dbt_trino/models/marts",
+        "name": "marts",
+        "file_count": 3,
+        "subdirectory_count": 0,
+        "total_size": 2276,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./archive/dbt_trino/models/staging",
+        "name": "staging",
+        "file_count": 5,
+        "subdirectory_count": 0,
+        "total_size": 715,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./archive/scd2_batch",
+        "name": "scd2_batch",
+        "file_count": 3,
+        "subdirectory_count": 0,
+        "total_size": 2861,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./data",
+        "name": "data",
+        "file_count": 0,
+        "subdirectory_count": 5,
+        "total_size": 0,
+        "importance_score": 0.1
+      },
+      {
+        "path": "./data/batch1",
+        "name": "batch1",
+        "file_count": 4,
+        "subdirectory_count": 0,
+        "total_size": 6979,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./data/batch2",
+        "name": "batch2",
+        "file_count": 4,
+        "subdirectory_count": 0,
+        "total_size": 3522,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./data/batch3",
+        "name": "batch3",
+        "file_count": 4,
+        "subdirectory_count": 0,
+        "total_size": 266,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./data/batch4",
+        "name": "batch4",
+        "file_count": 4,
+        "subdirectory_count": 0,
+        "total_size": 256,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./data/batch5",
+        "name": "batch5",
+        "file_count": 4,
+        "subdirectory_count": 0,
+        "total_size": 996,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./datahub",
+        "name": "datahub",
+        "file_count": 5,
+        "subdirectory_count": 1,
+        "total_size": 19212,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./datahub/recipes",
+        "name": "recipes",
+        "file_count": 3,
+        "subdirectory_count": 0,
+        "total_size": 2577,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./dbt_semantic",
+        "name": "dbt_semantic",
+        "file_count": 2,
+        "subdirectory_count": 2,
+        "total_size": 698,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./dbt_semantic/logs",
+        "name": "logs",
+        "file_count": 0,
+        "subdirectory_count": 0,
+        "total_size": 0,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./dbt_semantic/models",
+        "name": "models",
+        "file_count": 4,
+        "subdirectory_count": 0,
+        "total_size": 4379,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./dbt_spark",
+        "name": "dbt_spark",
+        "file_count": 2,
+        "subdirectory_count": 3,
+        "total_size": 578,
+        "importance_score": 0.1
+      },
+      {
+        "path": "./dbt_spark/logs",
+        "name": "logs",
+        "file_count": 0,
+        "subdirectory_count": 0,
+        "total_size": 0,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./dbt_spark/macros",
+        "name": "macros",
+        "file_count": 1,
+        "subdirectory_count": 0,
+        "total_size": 1115,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./dbt_spark/models",
+        "name": "models",
+        "file_count": 0,
+        "subdirectory_count": 2,
+        "total_size": 0,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./dbt_spark/models/marts",
+        "name": "marts",
+        "file_count": 4,
+        "subdirectory_count": 0,
+        "total_size": 5286,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./dbt_spark/models/staging",
+        "name": "staging",
+        "file_count": 6,
+        "subdirectory_count": 0,
+        "total_size": 4718,
+        "importance_score": 0.2
+      },
+      {
+        "path": "./docs",
+        "name": "docs",
+        "file_count": 0,
+        "subdirectory_count": 3,
+        "total_size": 0,
+        "importance_score": 0.1
+      },
+      {
+        "path": "./docs/adr",
+        "name": "adr",
+        "file_count": 0,
+        "subdirectory_count": 0,
+        "total_size": 0,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./docs/figures",
+        "name": "figures",
+        "file_count": 0,
+        "subdirectory_count": 0,
+        "total_size": 0,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./docs/litho",
+        "name": "litho",
+        "file_count": 0,
+        "subdirectory_count": 1,
+        "total_size": 0,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./docs/litho/4、深入探索",
+        "name": "4、深入探索",
+        "file_count": 0,
+        "subdirectory_count": 0,
+        "total_size": 0,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./landing",
+        "name": "landing",
+        "file_count": 0,
+        "subdirectory_count": 3,
+        "total_size": 0,
+        "importance_score": 0.1
+      },
+      {
+        "path": "./landing/dt=2026-01-29",
+        "name": "dt=2026-01-29",
+        "file_count": 0,
+        "subdirectory_count": 0,
+        "total_size": 0,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./landing/dt=2026-01-30",
+        "name": "dt=2026-01-30",
+        "file_count": 0,
+        "subdirectory_count": 0,
+        "total_size": 0,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./landing/dt=2026-01-31",
+        "name": "dt=2026-01-31",
+        "file_count": 0,
+        "subdirectory_count": 0,
+        "total_size": 0,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./orchestration",
+        "name": "orchestration",
+        "file_count": 7,
+        "subdirectory_count": 0,
+        "total_size": 21583,
+        "importance_score": 0.2
+      },
+      {
+        "path": "./scripts",
+        "name": "scripts",
+        "file_count": 24,
+        "subdirectory_count": 0,
+        "total_size": 80575,
+        "importance_score": 0.2
+      },
+      {
+        "path": "./spark",
+        "name": "spark",
+        "file_count": 1,
+        "subdirectory_count": 1,
+        "total_size": 680,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./spark/jars",
+        "name": "jars",
+        "file_count": 0,
+        "subdirectory_count": 0,
+        "total_size": 0,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./sql",
+        "name": "sql",
+        "file_count": 0,
+        "subdirectory_count": 2,
+        "total_size": 0,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./sql/reports",
+        "name": "reports",
+        "file_count": 4,
+        "subdirectory_count": 0,
+        "total_size": 1500,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./sql/scd2",
+        "name": "scd2",
+        "file_count": 2,
+        "subdirectory_count": 0,
+        "total_size": 2980,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./superset",
+        "name": "superset",
+        "file_count": 1,
+        "subdirectory_count": 0,
+        "total_size": 214,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./trino",
+        "name": "trino",
+        "file_count": 2,
+        "subdirectory_count": 1,
+        "total_size": 3322,
+        "importance_score": 0.0
+      },
+      {
+        "path": "./trino/catalog",
+        "name": "catalog",
+        "file_count": 1,
+        "subdirectory_count": 0,
+        "total_size": 252,
+        "importance_score": 0.0
+      }
+    ],
+    "files": [
+      {
+        "path": "agent/verify/__main__.py",
+        "name": "__main__.py",
+        "size": 4780,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.87,
+        "complexity_score": 0.0,
+        "last_modified": "1790843615"
+      },
+      {
+        "path": "agent/diagnose/__main__.py",
+        "name": "__main__.py",
+        "size": 3636,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.87,
+        "complexity_score": 0.0,
+        "last_modified": "1789967889"
+      },
+      {
+        "path": "agent/config.py",
+        "name": "config.py",
+        "size": 2100,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.8400000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789957383"
+      },
+      {
+        "path": "scripts/superset_setup.py",
+        "name": "superset_setup.py",
+        "size": 5142,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.8,
+        "complexity_score": 0.0,
+        "last_modified": "1789918606"
+      },
+      {
+        "path": "archive/checks_batch_era/check_stage3.py",
+        "name": "check_stage3.py",
+        "size": 2145,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.6100000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789904911"
+      },
+      {
+        "path": "agent/tools_common.py",
+        "name": "tools_common.py",
+        "size": 1027,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.74,
+        "complexity_score": 0.0,
+        "last_modified": "1789927490"
+      },
+      {
+        "path": "agent/tools_semantic.py",
+        "name": "tools_semantic.py",
+        "size": 7332,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.74,
+        "complexity_score": 0.0,
+        "last_modified": "1789929944"
+      },
+      {
+        "path": "agent/verify/suggest.py",
+        "name": "suggest.py",
+        "size": 3613,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7200000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1790843490"
+      },
+      {
+        "path": "agent/verify/tools.py",
+        "name": "tools.py",
+        "size": 5549,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7200000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1790843513"
+      },
+      {
+        "path": "agent/verify/diagnose.py",
+        "name": "diagnose.py",
+        "size": 2366,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7200000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1790843199"
+      },
+      {
+        "path": "agent/verify/build_fixtures.py",
+        "name": "build_fixtures.py",
+        "size": 1982,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7200000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1790841408"
+      },
+      {
+        "path": "agent/verify/regress.py",
+        "name": "regress.py",
+        "size": 1727,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7200000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1790842847"
+      },
+      {
+        "path": "agent/verify/evidence.py",
+        "name": "evidence.py",
+        "size": 10034,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7200000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1790841453"
+      },
+      {
+        "path": "agent/verify/compare.py",
+        "name": "compare.py",
+        "size": 4359,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7200000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1790843593"
+      },
+      {
+        "path": "agent/graph.py",
+        "name": "graph.py",
+        "size": 11465,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.74,
+        "complexity_score": 0.0,
+        "last_modified": "1790843647"
+      },
+      {
+        "path": "agent/diagnose/tools.py",
+        "name": "tools.py",
+        "size": 6972,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7200000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789968567"
+      },
+      {
+        "path": "agent/diagnose/regress.py",
+        "name": "regress.py",
+        "size": 1658,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7200000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789968592"
+      },
+      {
+        "path": "agent/diagnose/evidence.py",
+        "name": "evidence.py",
+        "size": 10782,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7200000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789968567"
+      },
+      {
+        "path": "agent/diagnose/faults.py",
+        "name": "faults.py",
+        "size": 9383,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7200000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789988070"
+      },
+      {
+        "path": "agent/prompts.py",
+        "name": "prompts.py",
+        "size": 6000,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.74,
+        "complexity_score": 0.0,
+        "last_modified": "1790843513"
+      },
+      {
+        "path": "agent/tools_raw.py",
+        "name": "tools_raw.py",
+        "size": 2643,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.74,
+        "complexity_score": 0.0,
+        "last_modified": "1789926459"
+      },
+      {
+        "path": "agent/cli.py",
+        "name": "cli.py",
+        "size": 1292,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.74,
+        "complexity_score": 0.0,
+        "last_modified": "1790562987"
+      },
+      {
+        "path": "agent/eval/run_eval.py",
+        "name": "run_eval.py",
+        "size": 6177,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7100000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1790849597"
+      },
+      {
+        "path": "agent/eval/report.py",
+        "name": "report.py",
+        "size": 2556,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7100000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789957393"
+      },
+      {
+        "path": "agent/eval/preflight.py",
+        "name": "preflight.py",
+        "size": 1803,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7100000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789957285"
+      },
+      {
+        "path": "agent/eval/derive_questions.py",
+        "name": "derive_questions.py",
+        "size": 8989,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7100000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1790849597"
+      },
+      {
+        "path": "agent/usage.py",
+        "name": "usage.py",
+        "size": 1770,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.74,
+        "complexity_score": 0.0,
+        "last_modified": "1789957383"
+      },
+      {
+        "path": "scripts/check_access.py",
+        "name": "check_access.py",
+        "size": 5486,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7000000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789991110"
+      },
+      {
+        "path": "scripts/check_equivalence.py",
+        "name": "check_equivalence.py",
+        "size": 2661,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7000000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789966565"
+      },
+      {
+        "path": "scripts/check_stage5.py",
+        "name": "check_stage5.py",
+        "size": 4059,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7000000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789957217"
+      },
+      {
+        "path": "scripts/check_boundaries.py",
+        "name": "check_boundaries.py",
+        "size": 8939,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7000000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789957205"
+      },
+      {
+        "path": "scripts/fingerprint.py",
+        "name": "fingerprint.py",
+        "size": 3623,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7000000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789967279"
+      },
+      {
+        "path": "scripts/check_pii_consistency.py",
+        "name": "check_pii_consistency.py",
+        "size": 3753,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7000000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789925837"
+      },
+      {
+        "path": "scripts/datahub_query.py",
+        "name": "datahub_query.py",
+        "size": 1060,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7000000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789921547"
+      },
+      {
+        "path": "scripts/check_lineage_consistency.py",
+        "name": "check_lineage_consistency.py",
+        "size": 2764,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7000000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789970448"
+      },
+      {
+        "path": "scripts/check_stage7.py",
+        "name": "check_stage7.py",
+        "size": 2757,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7000000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789957205"
+      },
+      {
+        "path": "scripts/generate_mock.py",
+        "name": "generate_mock.py",
+        "size": 4048,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7000000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789911963"
+      },
+      {
+        "path": "scripts/make_landing.py",
+        "name": "make_landing.py",
+        "size": 3914,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7000000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789966101"
+      },
+      {
+        "path": "scripts/load.py",
+        "name": "load.py",
+        "size": 9565,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7000000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789984376"
+      },
+      {
+        "path": "scripts/check_semantic.py",
+        "name": "check_semantic.py",
+        "size": 4403,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7000000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789957285"
+      },
+      {
+        "path": "scripts/check_persistence.py",
+        "name": "check_persistence.py",
+        "size": 1280,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7000000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789918370"
+      },
+      {
+        "path": "scripts/check_delivery.py",
+        "name": "check_delivery.py",
+        "size": 7916,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7000000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789984444"
+      },
+      {
+        "path": "scripts/scd2.py",
+        "name": "scd2.py",
+        "size": 3071,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7000000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789963812"
+      },
+      {
+        "path": "orchestration/definitions.py",
+        "name": "definitions.py",
+        "size": 14412,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7300000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789971329"
+      },
+      {
+        "path": "orchestration/state.py",
+        "name": "state.py",
+        "size": 3455,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7300000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789964346"
+      },
+      {
+        "path": "orchestration/trigger.py",
+        "name": "trigger.py",
+        "size": 1553,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.7300000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789968173"
+      },
+      {
+        "path": "archive/dbt_trino/models/marts/fact_orders.sql",
+        "name": "fact_orders.sql",
+        "size": 1113,
+        "extension": "sql",
+        "is_core": false,
+        "importance_score": 0.53,
+        "complexity_score": 0.0,
+        "last_modified": "1789908145"
+      },
+      {
+        "path": "archive/scd2_batch/stage.sql",
+        "name": "stage.sql",
+        "size": 1382,
+        "extension": "sql",
+        "is_core": false,
+        "importance_score": 0.53,
+        "complexity_score": 0.0,
+        "last_modified": "1789916463"
+      },
+      {
+        "path": "dbt_spark/models/marts/dws_daily_revenue.sql",
+        "name": "dws_daily_revenue.sql",
+        "size": 1267,
+        "extension": "sql",
+        "is_core": false,
+        "importance_score": 0.6,
+        "complexity_score": 0.0,
+        "last_modified": "1789956800"
+      },
+      {
+        "path": "dbt_spark/models/marts/fact_orders.sql",
+        "name": "fact_orders.sql",
+        "size": 2729,
+        "extension": "sql",
+        "is_core": false,
+        "importance_score": 0.6,
+        "complexity_score": 0.0,
+        "last_modified": "1789956800"
+      },
+      {
+        "path": "dbt_spark/macros/time.sql",
+        "name": "time.sql",
+        "size": 1115,
+        "extension": "sql",
+        "is_core": false,
+        "importance_score": 0.5499999999999999,
+        "complexity_score": 0.0,
+        "last_modified": "1789916463"
+      },
+      {
+        "path": "sql/scd2/rebuild.sql",
+        "name": "rebuild.sql",
+        "size": 2741,
+        "extension": "sql",
+        "is_core": false,
+        "importance_score": 0.57,
+        "complexity_score": 0.0,
+        "last_modified": "1789956533"
+      },
+      {
+        "path": "agent/verify/__init__.py",
+        "name": "__init__.py",
+        "size": 0,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.5700000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1790841248"
+      },
+      {
+        "path": "agent/__init__.py",
+        "name": "__init__.py",
+        "size": 0,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.5900000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789926411"
+      },
+      {
+        "path": "agent/diagnose/__init__.py",
+        "name": "__init__.py",
+        "size": 0,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.5700000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789960022"
+      },
+      {
+        "path": "agent/eval/__init__.py",
+        "name": "__init__.py",
+        "size": 0,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.56,
+        "complexity_score": 0.0,
+        "last_modified": "1789926411"
+      },
+      {
+        "path": "scripts/reset.py",
+        "name": "reset.py",
+        "size": 497,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.55,
+        "complexity_score": 0.0,
+        "last_modified": "1789991110"
+      },
+      {
+        "path": "scripts/datahub_pii_tags.py",
+        "name": "datahub_pii_tags.py",
+        "size": 707,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.55,
+        "complexity_score": 0.0,
+        "last_modified": "1789921601"
+      },
+      {
+        "path": "orchestration/keys.py",
+        "name": "keys.py",
+        "size": 146,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.5800000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789963878"
+      },
+      {
+        "path": "orchestration/reap.py",
+        "name": "reap.py",
+        "size": 789,
+        "extension": "py",
+        "is_core": false,
+        "importance_score": 0.5800000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789969837"
+      },
+      {
+        "path": "dbt_semantic/models/orders_semantic.sql",
+        "name": "orders_semantic.sql",
+        "size": 887,
+        "extension": "sql",
+        "is_core": false,
+        "importance_score": 0.43999999999999995,
+        "complexity_score": 0.0,
+        "last_modified": "1789929780"
+      },
+      {
+        "path": "dbt_semantic/models/metricflow_time_spine.sql",
+        "name": "metricflow_time_spine.sql",
+        "size": 214,
+        "extension": "sql",
+        "is_core": false,
+        "importance_score": 0.43999999999999995,
+        "complexity_score": 0.0,
+        "last_modified": "1789925650"
+      },
+      {
+        "path": "archive/dbt_trino/models/staging/stg_products.sql",
+        "name": "stg_products.sql",
+        "size": 137,
+        "extension": "sql",
+        "is_core": false,
+        "importance_score": 0.38,
+        "complexity_score": 0.0,
+        "last_modified": "1789907876"
+      },
+      {
+        "path": "archive/dbt_trino/models/staging/stg_customers.sql",
+        "name": "stg_customers.sql",
+        "size": 174,
+        "extension": "sql",
+        "is_core": false,
+        "importance_score": 0.38,
+        "complexity_score": 0.0,
+        "last_modified": "1789907876"
+      },
+      {
+        "path": "archive/dbt_trino/models/staging/stg_orders.sql",
+        "name": "stg_orders.sql",
+        "size": 131,
+        "extension": "sql",
+        "is_core": false,
+        "importance_score": 0.38,
+        "complexity_score": 0.0,
+        "last_modified": "1789907876"
+      },
+      {
+        "path": "archive/dbt_trino/models/staging/stg_order_items.sql",
+        "name": "stg_order_items.sql",
+        "size": 117,
+        "extension": "sql",
+        "is_core": false,
+        "importance_score": 0.38,
+        "complexity_score": 0.0,
+        "last_modified": "1789907876"
+      },
+      {
+        "path": "archive/dbt_trino/models/marts/ads_category_revenue_rank.sql",
+        "name": "ads_category_revenue_rank.sql",
+        "size": 193,
+        "extension": "sql",
+        "is_core": false,
+        "importance_score": 0.38,
+        "complexity_score": 0.0,
+        "last_modified": "1789907876"
+      },
+      {
+        "path": "archive/dbt_trino/models/marts/dws_daily_revenue.sql",
+        "name": "dws_daily_revenue.sql",
+        "size": 970,
+        "extension": "sql",
+        "is_core": false,
+        "importance_score": 0.38,
+        "complexity_score": 0.0,
+        "last_modified": "1789907876"
+      },
+      {
+        "path": "archive/scd2_batch/two_step.sql",
+        "name": "two_step.sql",
+        "size": 669,
+        "extension": "sql",
+        "is_core": false,
+        "importance_score": 0.38,
+        "complexity_score": 0.0,
+        "last_modified": "1789916463"
+      },
+      {
+        "path": "archive/scd2_batch/single_merge.sql",
+        "name": "single_merge.sql",
+        "size": 810,
+        "extension": "sql",
+        "is_core": false,
+        "importance_score": 0.38,
+        "complexity_score": 0.0,
+        "last_modified": "1789916463"
+      },
+      {
+        "path": "dbt_spark/models/staging/stg_products.sql",
+        "name": "stg_products.sql",
+        "size": 149,
+        "extension": "sql",
+        "is_core": false,
+        "importance_score": 0.45,
+        "complexity_score": 0.0,
+        "last_modified": "1789956554"
+      },
+      {
+        "path": "dbt_spark/models/staging/stg_customers.sql",
+        "name": "stg_customers.sql",
+        "size": 186,
+        "extension": "sql",
+        "is_core": false,
+        "importance_score": 0.45,
+        "complexity_score": 0.0,
+        "last_modified": "1789956554"
+      },
+      {
+        "path": "dbt_spark/models/staging/stg_orders.sql",
+        "name": "stg_orders.sql",
+        "size": 143,
+        "extension": "sql",
+        "is_core": false,
+        "importance_score": 0.45,
+        "complexity_score": 0.0,
+        "last_modified": "1789956554"
+      },
+      {
+        "path": "dbt_spark/models/staging/stg_order_items.sql",
+        "name": "stg_order_items.sql",
+        "size": 129,
+        "extension": "sql",
+        "is_core": false,
+        "importance_score": 0.45,
+        "complexity_score": 0.0,
+        "last_modified": "1789956554"
+      },
+      {
+        "path": "dbt_spark/models/marts/ads_category_revenue_rank.sql",
+        "name": "ads_category_revenue_rank.sql",
+        "size": 193,
+        "extension": "sql",
+        "is_core": false,
+        "importance_score": 0.45,
+        "complexity_score": 0.0,
+        "last_modified": "1789912950"
+      },
+      {
+        "path": "sql/scd2/create_dim.sql",
+        "name": "create_dim.sql",
+        "size": 239,
+        "extension": "sql",
+        "is_core": false,
+        "importance_score": 0.42,
+        "complexity_score": 0.0,
+        "last_modified": "1789916463"
+      },
+      {
+        "path": "sql/reports/customer_upgrade_before_after.sql",
+        "name": "customer_upgrade_before_after.sql",
+        "size": 498,
+        "extension": "sql",
+        "is_core": false,
+        "importance_score": 0.42,
+        "complexity_score": 0.0,
+        "last_modified": "1789917942"
+      },
+      {
+        "path": "sql/reports/category_revenue_rank.sql",
+        "name": "category_revenue_rank.sql",
+        "size": 195,
+        "extension": "sql",
+        "is_core": false,
+        "importance_score": 0.42,
+        "complexity_score": 0.0,
+        "last_modified": "1789917942"
+      },
+      {
+        "path": "sql/reports/tier_summary.sql",
+        "name": "tier_summary.sql",
+        "size": 413,
+        "extension": "sql",
+        "is_core": false,
+        "importance_score": 0.42,
+        "complexity_score": 0.0,
+        "last_modified": "1789917942"
+      },
+      {
+        "path": "sql/reports/daily_revenue_taipei.sql",
+        "name": "daily_revenue_taipei.sql",
+        "size": 394,
+        "extension": "sql",
+        "is_core": false,
+        "importance_score": 0.42,
+        "complexity_score": 0.0,
+        "last_modified": "1789917942"
+      },
+      {
+        "path": "dbt_semantic/models/semantic.yml",
+        "name": "semantic.yml",
+        "size": 3156,
+        "extension": "yml",
+        "is_core": false,
+        "importance_score": 0.39,
+        "complexity_score": 0.0,
+        "last_modified": "1789930038"
+      },
+      {
+        "path": "trino/rules.json",
+        "name": "rules.json",
+        "size": 3227,
+        "extension": "json",
+        "is_core": false,
+        "importance_score": 0.37,
+        "complexity_score": 0.0,
+        "last_modified": "1789959901"
+      },
+      {
+        "path": "pyproject.toml",
+        "name": "pyproject.toml",
+        "size": 1398,
+        "extension": "toml",
+        "is_core": false,
+        "importance_score": 0.25,
+        "complexity_score": 0.0,
+        "last_modified": "1790563139"
+      },
+      {
+        "path": "datahub/docker-compose.quickstart.yml",
+        "name": "docker-compose.quickstart.yml",
+        "size": 15788,
+        "extension": "yml",
+        "is_core": false,
+        "importance_score": 0.37,
+        "complexity_score": 0.0,
+        "last_modified": "1789920888"
+      },
+      {
+        "path": "datahub/recipes/dbt_semantic.yml",
+        "name": "dbt_semantic.yml",
+        "size": 1149,
+        "extension": "yml",
+        "is_core": false,
+        "importance_score": 0.33,
+        "complexity_score": 0.0,
+        "last_modified": "1789931109"
+      },
+      {
+        "path": "agent/eval/archive_batch_era/questions.json",
+        "name": "questions.json",
+        "size": 3471,
+        "extension": "json",
+        "is_core": false,
+        "importance_score": 0.31,
+        "complexity_score": 0.0,
+        "last_modified": "1789957283"
+      },
+      {
+        "path": "agent/eval/questions.json",
+        "name": "questions.json",
+        "size": 6300,
+        "extension": "json",
+        "is_core": false,
+        "importance_score": 0.41000000000000003,
+        "complexity_score": 0.0,
+        "last_modified": "1790849599"
+      },
+      {
+        "path": "dbt_spark/models/staging/_staging.yml",
+        "name": "_staging.yml",
+        "size": 1985,
+        "extension": "yml",
+        "is_core": false,
+        "importance_score": 0.4,
+        "complexity_score": 0.0,
+        "last_modified": "1789921622"
+      },
+      {
+        "path": "dbt_spark/models/staging/_sources.yml",
+        "name": "_sources.yml",
+        "size": 2126,
+        "extension": "yml",
+        "is_core": false,
+        "importance_score": 0.4,
+        "complexity_score": 0.0,
+        "last_modified": "1789969894"
+      },
+      {
+        "path": "dbt_spark/models/marts/_marts.yml",
+        "name": "_marts.yml",
+        "size": 1097,
+        "extension": "yml",
+        "is_core": false,
+        "importance_score": 0.4,
+        "complexity_score": 0.0,
+        "last_modified": "1789919780"
+      },
+      {
+        "path": "docker-compose.yml",
+        "name": "docker-compose.yml",
+        "size": 10041,
+        "extension": "yml",
+        "is_core": false,
+        "importance_score": 0.25,
+        "complexity_score": 0.0,
+        "last_modified": "1790562912"
+      },
+      {
+        "path": "datahub/refresh.sh",
+        "name": "refresh.sh",
+        "size": 2173,
+        "extension": "sh",
+        "is_core": false,
+        "importance_score": 0.27,
+        "complexity_score": 0.0,
+        "last_modified": "1789968173"
+      },
+      {
+        "path": "agent/verify/results/diagnose_20261001_163340.jsonl",
+        "name": "diagnose_20261001_163340.jsonl",
+        "size": 12515,
+        "extension": "jsonl",
+        "is_core": false,
+        "importance_score": 0.19,
+        "complexity_score": 0.0,
+        "last_modified": "1790843620"
+      },
+      {
+        "path": "agent/diagnose/results/faults_20260921_185307.jsonl",
+        "name": "faults_20260921_185307.jsonl",
+        "size": 1322,
+        "extension": "jsonl",
+        "is_core": false,
+        "importance_score": 0.19,
+        "complexity_score": 0.0,
+        "last_modified": "1789988030"
+      },
+      {
+        "path": "agent/diagnose/results/faults_20260921_133001.jsonl",
+        "name": "faults_20260921_133001.jsonl",
+        "size": 4781,
+        "extension": "jsonl",
+        "is_core": false,
+        "importance_score": 0.19,
+        "complexity_score": 0.0,
+        "last_modified": "1789969100"
+      },
+      {
+        "path": "agent/eval/archive_batch_era/results/20260921_020457.jsonl",
+        "name": "20260921_020457.jsonl",
+        "size": 19996,
+        "extension": "jsonl",
+        "is_core": false,
+        "importance_score": 0.16999999999999998,
+        "complexity_score": 0.0,
+        "last_modified": "1789927625"
+      },
+      {
+        "path": "agent/eval/archive_batch_era/results/20260921_020755.jsonl",
+        "name": "20260921_020755.jsonl",
+        "size": 3852,
+        "extension": "jsonl",
+        "is_core": false,
+        "importance_score": 0.16999999999999998,
+        "complexity_score": 0.0,
+        "last_modified": "1789927706"
+      },
+      {
+        "path": "agent/eval/archive_batch_era/results/20260921_020309.jsonl",
+        "name": "20260921_020309.jsonl",
+        "size": 6589,
+        "extension": "jsonl",
+        "is_core": false,
+        "importance_score": 0.16999999999999998,
+        "complexity_score": 0.0,
+        "last_modified": "1789927418"
+      },
+      {
+        "path": "agent/eval/archive_batch_era/results/20260921_020136.jsonl",
+        "name": "20260921_020136.jsonl",
+        "size": 7637,
+        "extension": "jsonl",
+        "is_core": false,
+        "importance_score": 0.16999999999999998,
+        "complexity_score": 0.0,
+        "last_modified": "1789927329"
+      },
+      {
+        "path": "agent/eval/archive_batch_era/results/invalidated.jsonl",
+        "name": "invalidated.jsonl",
+        "size": 4251,
+        "extension": "jsonl",
+        "is_core": false,
+        "importance_score": 0.16999999999999998,
+        "complexity_score": 0.0,
+        "last_modified": "1789930966"
+      },
+      {
+        "path": "scripts/equivalence.sh",
+        "name": "equivalence.sh",
+        "size": 1304,
+        "extension": "sh",
+        "is_core": false,
+        "importance_score": 0.30000000000000004,
+        "complexity_score": 0.0,
+        "last_modified": "1789966117"
+      },
+      {
+        "path": "scripts/dagster.sh",
+        "name": "dagster.sh",
+        "size": 1256,
+        "extension": "sh",
+        "is_core": false,
+        "importance_score": 0.30000000000000004,
+        "complexity_score": 0.0,
+        "last_modified": "1789967273"
+      },
+      {
+        "path": "data/batch1/customers.csv",
+        "name": "customers.csv",
+        "size": 1051,
+        "extension": "csv",
+        "is_core": false,
+        "importance_score": 0.16999999999999998,
+        "complexity_score": 0.0,
+        "last_modified": "1789911963"
+      },
+      {
+        "path": "data/batch1/orders.csv",
+        "name": "orders.csv",
+        "size": 2183,
+        "extension": "csv",
+        "is_core": false,
+        "importance_score": 0.16999999999999998,
+        "complexity_score": 0.0,
+        "last_modified": "1789911963"
+      },
+      {
+        "path": "data/batch1/order_items.csv",
+        "name": "order_items.csv",
+        "size": 3245,
+        "extension": "csv",
+        "is_core": false,
+        "importance_score": 0.16999999999999998,
+        "complexity_score": 0.0,
+        "last_modified": "1789911963"
+      },
+      {
+        "path": "data/batch2/orders.csv",
+        "name": "orders.csv",
+        "size": 1255,
+        "extension": "csv",
+        "is_core": false,
+        "importance_score": 0.16999999999999998,
+        "complexity_score": 0.0,
+        "last_modified": "1789911963"
+      },
+      {
+        "path": "data/batch2/order_items.csv",
+        "name": "order_items.csv",
+        "size": 1787,
+        "extension": "csv",
+        "is_core": false,
+        "importance_score": 0.16999999999999998,
+        "complexity_score": 0.0,
+        "last_modified": "1789911963"
+      },
+      {
+        "path": "dbt_semantic/profiles.yml",
+        "name": "profiles.yml",
+        "size": 552,
+        "extension": "yml",
+        "is_core": false,
+        "importance_score": 0.25,
+        "complexity_score": 0.0,
+        "last_modified": "1789925586"
+      },
+      {
+        "path": "dbt_semantic/models/_sources.yml",
+        "name": "_sources.yml",
+        "size": 122,
+        "extension": "yml",
+        "is_core": false,
+        "importance_score": 0.24,
+        "complexity_score": 0.0,
+        "last_modified": "1789925586"
+      },
+      {
+        "path": "dbt_semantic/dbt_project.yml",
+        "name": "dbt_project.yml",
+        "size": 146,
+        "extension": "yml",
+        "is_core": false,
+        "importance_score": 0.25,
+        "complexity_score": 0.0,
+        "last_modified": "1789925586"
+      },
+      {
+        "path": "archive/dbt_trino/profiles.yml",
+        "name": "profiles.yml",
+        "size": 198,
+        "extension": "yml",
+        "is_core": false,
+        "importance_score": 0.18000000000000002,
+        "complexity_score": 0.0,
+        "last_modified": "1789907876"
+      },
+      {
+        "path": "archive/dbt_trino/models/staging/_sources.yml",
+        "name": "_sources.yml",
+        "size": 156,
+        "extension": "yml",
+        "is_core": false,
+        "importance_score": 0.18000000000000002,
+        "complexity_score": 0.0,
+        "last_modified": "1789907925"
+      },
+      {
+        "path": "archive/dbt_trino/dbt_project.yml",
+        "name": "dbt_project.yml",
+        "size": 172,
+        "extension": "yml",
+        "is_core": false,
+        "importance_score": 0.18000000000000002,
+        "complexity_score": 0.0,
+        "last_modified": "1789907876"
+      },
+      {
+        "path": "datahub/restart.override.yml",
+        "name": "restart.override.yml",
+        "size": 403,
+        "extension": "yml",
+        "is_core": false,
+        "importance_score": 0.22,
+        "complexity_score": 0.0,
+        "last_modified": "1789920919"
+      },
+      {
+        "path": "datahub/recipes/iceberg.yml",
+        "name": "iceberg.yml",
+        "size": 648,
+        "extension": "yml",
+        "is_core": false,
+        "importance_score": 0.18000000000000002,
+        "complexity_score": 0.0,
+        "last_modified": "1789921457"
+      },
+      {
+        "path": "datahub/recipes/dbt.yml",
+        "name": "dbt.yml",
+        "size": 780,
+        "extension": "yml",
+        "is_core": false,
+        "importance_score": 0.18000000000000002,
+        "complexity_score": 0.0,
+        "last_modified": "1789921457"
+      },
+      {
+        "path": "agent/verify/constraints.json",
+        "name": "constraints.json",
+        "size": 741,
+        "extension": "json",
+        "is_core": false,
+        "importance_score": 0.27,
+        "complexity_score": 0.0,
+        "last_modified": "1790841453"
+      },
+      {
+        "path": "dbt_spark/profiles.yml",
+        "name": "profiles.yml",
+        "size": 315,
+        "extension": "yml",
+        "is_core": false,
+        "importance_score": 0.26,
+        "complexity_score": 0.0,
+        "last_modified": "1789962112"
+      },
+      {
+        "path": "dbt_spark/dbt_project.yml",
+        "name": "dbt_project.yml",
+        "size": 263,
+        "extension": "yml",
+        "is_core": false,
+        "importance_score": 0.26,
+        "complexity_score": 0.0,
+        "last_modified": "1789916463"
+      },
+      {
+        "path": "orchestration/dagster.yaml",
+        "name": "dagster.yaml",
+        "size": 673,
+        "extension": "yaml",
+        "is_core": false,
+        "importance_score": 0.28,
+        "complexity_score": 0.0,
+        "last_modified": "1789969837"
+      },
+      {
+        "path": "trino/catalog/iceberg.properties",
+        "name": "iceberg.properties",
+        "size": 252,
+        "extension": "properties",
+        "is_core": false,
+        "importance_score": 0.08000000000000002,
+        "complexity_score": 0.0,
+        "last_modified": "1789904209"
+      },
+      {
+        "path": "trino/access-control.properties",
+        "name": "access-control.properties",
+        "size": 95,
+        "extension": "properties",
+        "is_core": false,
+        "importance_score": 0.12,
+        "complexity_score": 0.0,
+        "last_modified": "1789918538"
+      },
+      {
+        "path": "datahub/ingest.sh",
+        "name": "ingest.sh",
+        "size": 446,
+        "extension": "sh",
+        "is_core": false,
+        "importance_score": 0.12,
+        "complexity_score": 0.0,
+        "last_modified": "1789930038"
+      },
+      {
+        "path": "datahub/dh.sh",
+        "name": "dh.sh",
+        "size": 402,
+        "extension": "sh",
+        "is_core": false,
+        "importance_score": 0.12,
+        "complexity_score": 0.0,
+        "last_modified": "1789920919"
+      },
+      {
+        "path": "agent/diagnose/results/faults_20260921_135653.jsonl",
+        "name": "faults_20260921_135653.jsonl",
+        "size": 447,
+        "extension": "jsonl",
+        "is_core": false,
+        "importance_score": 0.04000000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789970266"
+      },
+      {
+        "path": "agent/eval/archive_batch_era/results/20260921_021445.jsonl",
+        "name": "20260921_021445.jsonl",
+        "size": 176767,
+        "extension": "jsonl",
+        "is_core": false,
+        "importance_score": 0.020000000000000004,
+        "complexity_score": 0.0,
+        "last_modified": "1789930995"
+      },
+      {
+        "path": "agent/eval/results/20260921_143227.jsonl",
+        "name": "20260921_143227.jsonl",
+        "size": 70443,
+        "extension": "jsonl",
+        "is_core": false,
+        "importance_score": 0.04000000000000001,
+        "complexity_score": 0.0,
+        "last_modified": "1789972975"
+      },
+      {
+        "path": "scripts/replay.sh",
+        "name": "replay.sh",
+        "size": 782,
+        "extension": "sh",
+        "is_core": false,
+        "importance_score": 0.15000000000000002,
+        "complexity_score": 0.0,
+        "last_modified": "1789984225"
+      },
+      {
+        "path": "scripts/rebuild.sh",
+        "name": "rebuild.sh",
+        "size": 634,
+        "extension": "sh",
+        "is_core": false,
+        "importance_score": 0.15000000000000002,
+        "complexity_score": 0.0,
+        "last_modified": "1789960246"
+      },
+      {
+        "path": "scripts/build_semantic.sh",
+        "name": "build_semantic.sh",
+        "size": 954,
+        "extension": "sh",
+        "is_core": false,
+        "importance_score": 0.15000000000000002,
+        "complexity_score": 0.0,
+        "last_modified": "1789931019"
+      },
+      {
+        "path": "orchestration/Dockerfile",
+        "name": "Dockerfile",
+        "size": 555,
+        "extension": null,
+        "is_core": false,
+        "importance_score": 0.18000000000000002,
+        "complexity_score": 0.0,
+        "last_modified": "1789962112"
+      },
+      {
+        "path": "superset/Dockerfile",
+        "name": "Dockerfile",
+        "size": 214,
+        "extension": null,
+        "is_core": false,
+        "importance_score": 0.1,
+        "complexity_score": 0.0,
+        "last_modified": "1789917876"
+      },
+      {
+        "path": "data/batch1/products.csv",
+        "name": "products.csv",
+        "size": 500,
+        "extension": "csv",
+        "is_core": false,
+        "importance_score": 0.020000000000000004,
+        "complexity_score": 0.0,
+        "last_modified": "1789911963"
+      },
+      {
+        "path": "data/batch2/customers.csv",
+        "name": "customers.csv",
+        "size": 302,
+        "extension": "csv",
+        "is_core": false,
+        "importance_score": 0.020000000000000004,
+        "complexity_score": 0.0,
+        "last_modified": "1789911963"
+      },
+      {
+        "path": "data/batch2/products.csv",
+        "name": "products.csv",
+        "size": 178,
+        "extension": "csv",
+        "is_core": false,
+        "importance_score": 0.020000000000000004,
+        "complexity_score": 0.0,
+        "last_modified": "1789911963"
+      },
+      {
+        "path": "data/batch5/customers.csv",
+        "name": "customers.csv",
+        "size": 49,
+        "extension": "csv",
+        "is_core": false,
+        "importance_score": 0.020000000000000004,
+        "complexity_score": 0.0,
+        "last_modified": "1789915731"
+      },
+      {
+        "path": "data/batch5/products.csv",
+        "name": "products.csv",
+        "size": 88,
+        "extension": "csv",
+        "is_core": false,
+        "importance_score": 0.020000000000000004,
+        "complexity_score": 0.0,
+        "last_modified": "1789915731"
+      },
+      {
+        "path": "data/batch5/orders.csv",
+        "name": "orders.csv",
+        "size": 490,
+        "extension": "csv",
+        "is_core": false,
+        "importance_score": 0.020000000000000004,
+        "complexity_score": 0.0,
+        "last_modified": "1789916774"
+      },
+      {
+        "path": "data/batch5/order_items.csv",
+        "name": "order_items.csv",
+        "size": 369,
+        "extension": "csv",
+        "is_core": false,
+        "importance_score": 0.020000000000000004,
+        "complexity_score": 0.0,
+        "last_modified": "1789915731"
+      },
+      {
+        "path": "data/batch4/customers.csv",
+        "name": "customers.csv",
+        "size": 49,
+        "extension": "csv",
+        "is_core": false,
+        "importance_score": 0.020000000000000004,
+        "complexity_score": 0.0,
+        "last_modified": "1789914295"
+      },
+      {
+        "path": "data/batch4/products.csv",
+        "name": "products.csv",
+        "size": 86,
+        "extension": "csv",
+        "is_core": false,
+        "importance_score": 0.020000000000000004,
+        "complexity_score": 0.0,
+        "last_modified": "1789914295"
+      },
+      {
+        "path": "data/batch4/orders.csv",
+        "name": "orders.csv",
+        "size": 56,
+        "extension": "csv",
+        "is_core": false,
+        "importance_score": 0.020000000000000004,
+        "complexity_score": 0.0,
+        "last_modified": "1789914295"
+      },
+      {
+        "path": "data/batch4/order_items.csv",
+        "name": "order_items.csv",
+        "size": 65,
+        "extension": "csv",
+        "is_core": false,
+        "importance_score": 0.020000000000000004,
+        "complexity_score": 0.0,
+        "last_modified": "1789914295"
+      },
+      {
+        "path": "data/batch3/customers.csv",
+        "name": "customers.csv",
+        "size": 49,
+        "extension": "csv",
+        "is_core": false,
+        "importance_score": 0.020000000000000004,
+        "complexity_score": 0.0,
+        "last_modified": "1789908145"
+      },
+      {
+        "path": "data/batch3/products.csv",
+        "name": "products.csv",
+        "size": 42,
+        "extension": "csv",
+        "is_core": false,
+        "importance_score": 0.020000000000000004,
+        "complexity_score": 0.0,
+        "last_modified": "1789908145"
+      },
+      {
+        "path": "data/batch3/orders.csv",
+        "name": "orders.csv",
+        "size": 110,
+        "extension": "csv",
+        "is_core": false,
+        "importance_score": 0.020000000000000004,
+        "complexity_score": 0.0,
+        "last_modified": "1789908145"
+      },
+      {
+        "path": "data/batch3/order_items.csv",
+        "name": "order_items.csv",
+        "size": 65,
+        "extension": "csv",
+        "is_core": false,
+        "importance_score": 0.020000000000000004,
+        "complexity_score": 0.0,
+        "last_modified": "1789908145"
+      },
+      {
+        "path": "spark/spark-defaults.conf",
+        "name": "spark-defaults.conf",
+        "size": 680,
+        "extension": "conf",
+        "is_core": false,
+        "importance_score": 0.1,
+        "complexity_score": 0.0,
+        "last_modified": "1789917484"
+      }
+    ],
+    "total_files": 148,
+    "total_directories": 53,
+    "file_types": {
+      "csv": 20,
+      "conf": 1,
+      "py": 54,
+      "toml": 1,
+      "jsonl": 11,
+      "yml": 18,
+      "sql": 26,
+      "properties": 2,
+      "json": 4,
+      "sh": 8,
+      "yaml": 1
+    },
+    "size_distribution": {
+      "tiny": 67,
+      "medium": 7,
+      "small": 73,
+      "large": 1
+    }
+  },
+  "timestamp": 1790849756,
+  "prompt_hash": "81ce170d34aadf59b5341dea337be584",
+  "token_usage": null,
+  "model_name": null
+}

@@ -1,0 +1,410 @@
+{
+  "data": {
+    "database_projects": [
+      {
+        "name": "lakehouse-poc",
+        "project_path": "./dbt_spark/dbt_project.yml",
+        "target_platform": "Apache Spark / Iceberg",
+        "table_count": 8,
+        "view_count": 4,
+        "procedure_count": 0,
+        "function_count": 1,
+        "references": []
+      }
+    ],
+    "tables": [
+      {
+        "schema": "ods",
+        "name": "customers",
+        "columns": [
+          {
+            "name": "customer_id",
+            "data_type": "BIGINT",
+            "nullable": false,
+            "is_identity": true,
+            "default_value": "null"
+          },
+          {
+            "name": "name",
+            "data_type": "STRING",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "city",
+            "data_type": "STRING",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "membership_tier",
+            "data_type": "STRING",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "changed_at",
+            "data_type": "TIMESTAMP",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "event_id",
+            "data_type": "STRING",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "is_deleted",
+            "data_type": "BOOLEAN",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "false"
+          }
+        ],
+        "primary_key": [
+          "customer_id"
+        ],
+        "description": "客户基础信息表（支持SCD2与软删除）",
+        "source_path": "./data/batch1/customers.csv"
+      },
+      {
+        "schema": "ods",
+        "name": "orders",
+        "columns": [
+          {
+            "name": "order_id",
+            "data_type": "BIGINT",
+            "nullable": false,
+            "is_identity": true,
+            "default_value": "null"
+          },
+          {
+            "name": "customer_id",
+            "data_type": "BIGINT",
+            "nullable": false,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "order_status",
+            "data_type": "STRING",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "ordered_at",
+            "data_type": "TIMESTAMP",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "updated_at",
+            "data_type": "TIMESTAMP",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "event_id",
+            "data_type": "STRING",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "is_deleted",
+            "data_type": "BOOLEAN",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "false"
+          }
+        ],
+        "primary_key": [
+          "order_id"
+        ],
+        "description": "订单主表，记录订单状态与生命周期时间戳",
+        "source_path": "./data/batch1/orders.csv"
+      },
+      {
+        "schema": "ods",
+        "name": "order_items",
+        "columns": [
+          {
+            "name": "order_item_id",
+            "data_type": "BIGINT",
+            "nullable": false,
+            "is_identity": true,
+            "default_value": "null"
+          },
+          {
+            "name": "order_id",
+            "data_type": "BIGINT",
+            "nullable": false,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "product_id",
+            "data_type": "BIGINT",
+            "nullable": false,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "quantity",
+            "data_type": "INT",
+            "nullable": false,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "unit_price",
+            "data_type": "DECIMAL(18,2)",
+            "nullable": false,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "changed_at",
+            "data_type": "TIMESTAMP",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "event_id",
+            "data_type": "STRING",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "is_deleted",
+            "data_type": "BOOLEAN",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "false"
+          }
+        ],
+        "primary_key": [
+          "order_item_id"
+        ],
+        "description": "订单明细表，记录订单包含的产品、数量及单价",
+        "source_path": "./data/batch1/order_items.csv"
+      },
+      {
+        "schema": "ods",
+        "name": "products",
+        "columns": [
+          {
+            "name": "product_id",
+            "data_type": "BIGINT",
+            "nullable": false,
+            "is_identity": true,
+            "default_value": "null"
+          },
+          {
+            "name": "name",
+            "data_type": "STRING",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "category",
+            "data_type": "STRING",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "price",
+            "data_type": "DECIMAL(18,2)",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "changed_at",
+            "data_type": "TIMESTAMP",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "event_id",
+            "data_type": "STRING",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "null"
+          },
+          {
+            "name": "is_deleted",
+            "data_type": "BOOLEAN",
+            "nullable": true,
+            "is_identity": false,
+            "default_value": "false"
+          }
+        ],
+        "primary_key": [
+          "product_id"
+        ],
+        "description": "产品目录表，包含分类与价格信息",
+        "source_path": "./data/batch1/products.csv"
+      }
+    ],
+    "views": [
+      {
+        "schema": "",
+        "name": "stg_customers",
+        "description": "清洗和标准化客户数据，对文本字段去空格并小写化处理",
+        "referenced_tables": [
+          "ods.customers"
+        ],
+        "source_path": "./dbt_spark/models/staging/stg_customers.sql"
+      },
+      {
+        "schema": "",
+        "name": "stg_order_items",
+        "description": "提取并规范化订单明细数据属性",
+        "referenced_tables": [
+          "ods.order_items"
+        ],
+        "source_path": "./dbt_spark/models/staging/stg_order_items.sql"
+      },
+      {
+        "schema": "",
+        "name": "stg_orders",
+        "description": "清洗和规范化订单状态与时间戳格式",
+        "referenced_tables": [
+          "ods.orders"
+        ],
+        "source_path": "./dbt_spark/models/staging/stg_orders.sql"
+      },
+      {
+        "schema": "",
+        "name": "stg_products",
+        "description": "清洗产品名称并规范化分类大小写",
+        "referenced_tables": [
+          "ods.products"
+        ],
+        "source_path": "./dbt_spark/models/staging/stg_products.sql"
+      }
+    ],
+    "stored_procedures": [],
+    "database_functions": [
+      {
+        "schema": "dwh",
+        "name": "metricflow_time_spine",
+        "function_type": "Table-valued",
+        "parameters": [],
+        "return_type": "TABLE(date_day DATE)",
+        "description": "生成日历时间轴，供MetricFlow语义层使用",
+        "source_path": "./dbt_semantic/models/metricflow_time_spine.sql"
+      },
+      {
+        "schema": "dwh",
+        "name": "utc_date",
+        "function_type": "Scalar",
+        "parameters": [
+          {
+            "name": "ts",
+            "data_type": "TIMESTAMP",
+            "is_optional": false,
+            "direction": "INPUT"
+          }
+        ],
+        "return_type": "TIMESTAMP",
+        "description": "提供时区和UTC转换规则的宏函数",
+        "source_path": "./dbt_spark/macros/time.sql"
+      }
+    ],
+    "table_relationships": [
+      {
+        "from_table": "ods.order_items",
+        "from_columns": [
+          "order_id"
+        ],
+        "to_table": "ods.orders",
+        "to_columns": [
+          "order_id"
+        ],
+        "relationship_type": "ForeignKey",
+        "constraint_name": "fk_order_items_orders"
+      },
+      {
+        "from_table": "ods.order_items",
+        "from_columns": [
+          "product_id"
+        ],
+        "to_table": "ods.products",
+        "to_columns": [
+          "product_id"
+        ],
+        "relationship_type": "ForeignKey",
+        "constraint_name": "fk_order_items_products"
+      },
+      {
+        "from_table": "ods.orders",
+        "from_columns": [
+          "customer_id"
+        ],
+        "to_table": "ods.customers",
+        "to_columns": [
+          "customer_id"
+        ],
+        "relationship_type": "ForeignKey",
+        "constraint_name": "fk_orders_customers"
+      }
+    ],
+    "data_flows": [
+      {
+        "name": "日度收入聚合流",
+        "source": "",
+        "destination": "dws_daily_revenue",
+        "operations": [
+          "INSERT",
+          "DELETE"
+        ],
+        "procedures_involved": []
+      },
+      {
+        "name": "订单事实表增量同步流",
+        "source": "",
+        "destination": "fact_orders",
+        "operations": [
+          "MERGE",
+          "INSERT"
+        ],
+        "procedures_involved": []
+      },
+      {
+        "name": "品类收入排行流",
+        "source": "",
+        "destination": "ads_category_revenue_rank",
+        "operations": [
+          "SELECT",
+          "INSERT"
+        ],
+        "procedures_involved": []
+      }
+    ],
+    "confidence_score": 9.2
+  },
+  "timestamp": 1790849426,
+  "prompt_hash": "046712b3564d51de42f2378fb22216b3",
+  "token_usage": {
+    "input_tokens": 10419,
+    "output_tokens": 1640,
+    "total_tokens": 12059
+  },
+  "model_name": null
+}

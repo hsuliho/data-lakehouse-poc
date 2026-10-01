@@ -1,0 +1,10 @@
+{
+  "project": "project",
+  "repo_path": ".",
+  "output_file": "context.md",
+  "generated_at": "2026-10-01T10:39:51.823728+00:00",
+  "section_count": 6,
+  "char_count": 4896,
+  "baseline_git_head": "ac5818d0b06cf4bf7cd5a2502f93effdd034c626",
+  "language": "zh-CN"
+}

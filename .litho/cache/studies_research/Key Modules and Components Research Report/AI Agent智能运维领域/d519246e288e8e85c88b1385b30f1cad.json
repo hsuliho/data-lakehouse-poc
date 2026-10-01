@@ -1,0 +1,39 @@
+{
+  "data": {
+    "domain_name": "AI Agent智能运维领域",
+    "module_name": "Agent核心执行图与智能运维系统",
+    "module_description": "基于 LangGraph 构建的 AI Agent 系统，提供智能化管道故障诊断、状态验证、回归测试及语义工具交互。",
+    "interaction": "通过命令行界面 (CLI) 如 agent/cli.py 与 agent/verify/__main__.py 进行交互，输入自然语言指令或运维警报，由 LangGraph 智能体执行状态机循环，自动调用相应的诊断、验证、语义或原生工具，并输出格式化的诊断结果、性能报告及评测日志。",
+    "implementation": "基于 LangGraph 构建的状态机驱动智能运维系统，支持多轮交互和工具循环调用。系统划分为核心执行图、诊断与验证代理、以及评测与基准测试三大子模块。通过 CLI 入口统一驱动，结合语义层工具与原生 SQL 工具进行故障排查、指标查询、状态验证及自动化回归测试。",
+    "associated_files": [
+      "agent/graph.py",
+      "agent/prompts.py",
+      "agent/cli.py",
+      "agent/config.py",
+      "agent/tools_common.py",
+      "agent/tools_raw.py",
+      "agent/tools_semantic.py",
+      "agent/usage.py",
+      "agent/diagnose/__main__.py",
+      "agent/diagnose/evidence.py",
+      "agent/diagnose/faults.py",
+      "agent/diagnose/regress.py",
+      "agent/diagnose/tools.py",
+      "agent/eval/derive_questions.py",
+      "agent/eval/preflight.py",
+      "agent/eval/report.py",
+      "agent/eval/run_eval.py",
+      "agent/verify/__main__.py"
+    ],
+    "flowchart_mermaid": "graph TD\n    A[User CLI Entry / CLI / Verify] --> B[Agent Graph (LangGraph State Machine)]\n    B --> C[Diagnosis & Validation Agent]\n    B --> D[Semantic / Raw Tools]\n    C --> E[Evidence Collection & Deterministic Checks]\n    C --> F[Fault Injection & Regression Runner]\n    B --> G[Evaluation & Benchmarks (eval/run_eval.py)]\n    G --> H[Report Generation & Grading]",
+    "sequence_diagram_mermaid": "sequence_diagram\n    participant User as 运维人员 / CLI\n    participant Graph as Agent Graph (LangGraph)\n    participant Diag as 诊断与验证代理\n    participant Tools as 语义/原生工具\n    participant Eval as 评测系统\n    User->>Graph: 发起自然语言查询或管道故障警报\n    Graph->>Tools: 调用工具 (Tools Common / Semantic / Raw)\n    Tools-->>Graph: 返回查询结果 / 执行数据\n    Graph->>Diag: 触发故障诊断与证据收集\n    Diag-->>Graph: 返回诊断结论与验证状态\n    Graph-->>User: 输出智能诊断报告 / 回归测试结果\n    User->>Eval: 运行评测基准 (run_eval.py)\n    Eval-->>User: 生成总结报告与评分\n"
+  },
+  "timestamp": 1790849793,
+  "prompt_hash": "d519246e288e8e85c88b1385b30f1cad",
+  "token_usage": {
+    "input_tokens": 3313,
+    "output_tokens": 647,
+    "total_tokens": 3960
+  },
+  "model_name": null
+}

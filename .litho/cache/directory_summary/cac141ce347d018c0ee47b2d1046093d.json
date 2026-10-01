@@ -1,0 +1,91 @@
+{
+  "data": {
+    "summary": "This directory represents a data partition dated 2026-01-30 containing CSV datasets for customers, orders, order items, and products, along with a success marker file. These files form a snapshot of transactional and master data for downstream analytics or data warehousing.",
+    "importance_score": 0.75,
+    "key_files": [
+      "orders.csv",
+      "order_items.csv",
+      "products.csv",
+      "customers.csv"
+    ],
+    "file_insights": [
+      {
+        "name": "_SUCCESS",
+        "summary": "Empty success indicator file for the partition.",
+        "code_purpose": "other",
+        "source_summary": "Empty marker file indicating success.",
+        "detailed_description": "Indicates the successful completion or generation of the data partition in this directory.",
+        "responsibilities": [
+          "Mark successful data partition generation"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.1
+      },
+      {
+        "name": "customers.csv",
+        "summary": "Customer change data table.",
+        "code_purpose": "database",
+        "source_summary": "CSV containing customer records with fields customer_id, name, city, membership_tier, changed_at, event_id, is_deleted.",
+        "detailed_description": "Contains customer record changes partitioned by date, tracking updates and soft deletes.",
+        "responsibilities": [
+          "Track customer entity updates",
+          "Store soft delete states"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.6
+      },
+      {
+        "name": "order_items.csv",
+        "summary": "Order items transactional data.",
+        "code_purpose": "database",
+        "source_summary": "CSV file with order item data including order_item_id, order_id, product_id, quantity, unit_price, changed_at, event_id, is_deleted.",
+        "detailed_description": "Contains order item details for orders processed on this date, including pricing and product relations.",
+        "responsibilities": [
+          "Record items belonging to orders",
+          "Track pricing and quantities"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.7
+      },
+      {
+        "name": "orders.csv",
+        "summary": "Orders transaction data table.",
+        "code_purpose": "database",
+        "source_summary": "CSV file containing orders with fields order_id, customer_id, order_status, ordered_at, changed_at, event_id, is_deleted.",
+        "detailed_description": "Contains order header information, tracking status and timestamps for customer orders.",
+        "responsibilities": [
+          "Track order status and timestamps",
+          "Link customers to orders"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.8
+      },
+      {
+        "name": "products.csv",
+        "summary": "Product catalog data table.",
+        "code_purpose": "database",
+        "source_summary": "CSV file containing product details including product_id, name, category, price, changed_at, event_id, is_deleted.",
+        "detailed_description": "Contains product catalog entries and category details updated or created on this partition date.",
+        "responsibilities": [
+          "Store product catalog metadata",
+          "Track product pricing and categories"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.7
+      }
+    ]
+  },
+  "timestamp": 1790849302,
+  "prompt_hash": "cac141ce347d018c0ee47b2d1046093d",
+  "token_usage": {
+    "input_tokens": 1103,
+    "output_tokens": 747,
+    "total_tokens": 1850
+  },
+  "model_name": null
+}

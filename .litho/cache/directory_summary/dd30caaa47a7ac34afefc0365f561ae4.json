@@ -1,0 +1,143 @@
+{
+  "data": {
+    "summary": "The orchestration directory contains Dagster-based pipeline definitions, deployment configs, state management utilities, and execution scripts for managing data workflows.",
+    "importance_score": 0.9,
+    "key_files": [
+      "definitions.py",
+      "trigger.py",
+      "state.py",
+      "reap.py",
+      "dagster.yaml"
+    ],
+    "file_insights": [
+      {
+        "name": "Dockerfile",
+        "summary": "Docker file for the Dagster container environment.",
+        "code_purpose": "config",
+        "source_summary": "Docker configuration file building a Python 3.11 slim image for Dagster.",
+        "detailed_description": "Defines the Docker image setup for Dagster webserver and daemon, copying dependencies from uv.lock and setting up the environment.",
+        "responsibilities": [
+          "Set up python environment",
+          "Install dependencies using uv"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.7
+      },
+      {
+        "name": "dagster.yaml",
+        "summary": "Dagster instance configuration file.",
+        "code_purpose": "config",
+        "source_summary": "YAML configuration for the Dagster instance.",
+        "detailed_description": "Configures the Dagster instance properties such as run coordination, limits, and telemetry settings.",
+        "responsibilities": [
+          "Configure concurrency limits via QueuedRunCoordinator",
+          "Disable telemetry"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.75
+      },
+      {
+        "name": "definitions.py",
+        "summary": "Core Dagster asset definitions and pipeline orchestration logic.",
+        "code_purpose": "specificfeature",
+        "source_summary": "Contains Dagster assets, partitions, and pipeline definitions for ODS, SCD2, and analytics layers.",
+        "detailed_description": "Defines the daily Dagster pipeline, assets, checks, resource definitions, and execution flow for data processing.",
+        "responsibilities": [
+          "Define Dagster assets and partitions",
+          "Implement data quality checks and execution logic"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "dagster",
+            "is_external": false,
+            "dependency_type": "import"
+          }
+        ],
+        "importance_score": 0.95
+      },
+      {
+        "name": "keys.py",
+        "summary": "Key constants for pipeline tracking.",
+        "code_purpose": "model",
+        "source_summary": "Defines the final asset constant marking completion of the daily workflow.",
+        "detailed_description": "Stores key constants like the final asset name used to track pipeline completion.",
+        "responsibilities": [
+          "Define pipeline milestone keys"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.6
+      },
+      {
+        "name": "reap.py",
+        "summary": "Startup script to clear orphaned/dead Dagster runs.",
+        "code_purpose": "tool",
+        "source_summary": "Python script executed at startup to reap dead Dagster runs.",
+        "detailed_description": "Cleans up zombie runs stuck in STARTED or STARTING status upon container startup.",
+        "responsibilities": [
+          "Detect and clear zombie runs upon daemon startup"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "dagster",
+            "is_external": false,
+            "dependency_type": "import"
+          }
+        ],
+        "importance_score": 0.8
+      },
+      {
+        "name": "state.py",
+        "summary": "Utility script for inspecting Dagster run state and partitions.",
+        "code_purpose": "util",
+        "source_summary": "CLI utilities to inspect Dagster instance state, runs, and partitions.",
+        "detailed_description": "Provides read-only querying capabilities into the Dagster instance SQLite database for run status, partitions, and history.",
+        "responsibilities": [
+          "Query run summaries and completed dates",
+          "Inspect latest run history"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "dagster",
+            "is_external": false,
+            "dependency_type": "import"
+          }
+        ],
+        "importance_score": 0.8
+      },
+      {
+        "name": "trigger.py",
+        "summary": "Script to trigger daily pipeline runs with fault injection support.",
+        "code_purpose": "specificfeature",
+        "source_summary": "Python CLI script to trigger Dagster jobs for specific dates.",
+        "detailed_description": "Triggers the daily Dagster job manually for a specific delivery date, supporting fault injection for testing.",
+        "responsibilities": [
+          "Trigger daily job execution programmatically",
+          "Support synthetic test runs and fault injection"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "dagster",
+            "is_external": false,
+            "dependency_type": "import"
+          }
+        ],
+        "importance_score": 0.85
+      }
+    ]
+  },
+  "timestamp": 1790849318,
+  "prompt_hash": "dd30caaa47a7ac34afefc0365f561ae4",
+  "token_usage": {
+    "input_tokens": 2253,
+    "output_tokens": 1031,
+    "total_tokens": 3284
+  },
+  "model_name": null
+}

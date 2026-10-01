@@ -1,0 +1,91 @@
+{
+  "data": {
+    "project_name": "lakehouse-poc",
+    "project_description": "lakehouse-poc 是一个现代数据湖仓（Lakehouse）概念验证项目，集成了基于 Apache Iceberg 的数据存储、Spark/Trino 计算引擎、dbt 数据建模转换、Dagster 数据管道编排以及基于 LangGraph 的 AI Agent 智能诊断与验证系统。",
+    "project_type": "FullStackApp",
+    "business_value": "构建现代数据湖仓概念验证系统，集成数据管道编排、增量数据处理、语义层及基于AI Agent的智能诊断与验证能力，提升数据开发与运维效率。",
+    "target_users": [
+      {
+        "name": "数据工程师",
+        "description": "负责数据管道构建、ETL开发及数据仓库架构设计的数据工程师",
+        "needs": [
+          "构建高效的数据流管道",
+          "管理 dbt 数据模型与增量更新",
+          "配置 Dagster 编排调度"
+        ]
+      },
+      {
+        "name": "AI Agent 运维与开发人员",
+        "description": "负责利用 AI Agent 进行系统巡检、错误诊断与自动化回归验证的运维或研发人员",
+        "needs": [
+          "执行自动化管线诊断",
+          "运行 Agent 评估基准与回归测试",
+          "利用语义层工具进行指标查询"
+        ]
+      },
+      {
+        "name": "数据分析师",
+        "description": "利用 BI 工具进行指标查看与数据分析的业务人员",
+        "needs": [
+          "查看每日营收与分类排名报表",
+          "访问统一的语义层指标"
+        ]
+      }
+    ],
+    "external_systems": [
+      {
+        "name": "MinIO",
+        "description": "对象存储服务，用于存储湖仓原始及处理后的数据文件",
+        "interaction_type": "S3协议访问"
+      },
+      {
+        "name": "Trino",
+        "description": "分布式SQL查询引擎，用于执行数据仓库层查询",
+        "interaction_type": "SQL查询与数据处理"
+      },
+      {
+        "name": "Apache Spark / Iceberg",
+        "description": "分布式计算引擎与表格式，用于大数据批处理及Iceberg湖仓管理",
+        "interaction_type": "Spark作业执行与Catalog交互"
+      },
+      {
+        "name": "dbt (Data Build Tool)",
+        "description": "现代化数据指标与语义建模工具",
+        "interaction_type": "语义模型转换与指标计算"
+      },
+      {
+        "name": "Dagster",
+        "description": "数据工作流与资产编排调度引擎",
+        "interaction_type": "Python API资产定义与调度"
+      },
+      {
+        "name": "Apache Superset",
+        "description": "开源数据可视化与商业智能分析工具",
+        "interaction_type": "BI报表展示与数据源连接"
+      }
+    ],
+    "system_boundary": {
+      "scope": "涵盖数据湖仓存储、ETL管道编排、数据建模转换、语义层及大模型辅助诊断与验证全链路技术栈的 POC 概念验证系统。",
+      "included_components": [
+        "AI Agent 智能诊断与验证模块",
+        "dbt 数据建模与转化模块（Spark/Trino）",
+        "Dagster 管道编排调度模块",
+        "Spark 与 Iceberg 数据处理配置",
+        "Superset 数据可视化集成配置"
+      ],
+      "excluded_components": [
+        "企业级生产环境安全审计系统",
+        "外部第三方支付与CRM生产系统"
+      ]
+    },
+    "confidence_score": 9.5
+  },
+  "timestamp": 1790849715,
+  "prompt_hash": "e2a7bbd3c1f05bd8b0d6b0658312a2f0",
+  "token_usage": {
+    "input_tokens": 3032,
+    "output_tokens": 683,
+    "total_tokens": 3715
+  },
+  "model_name": null
+}

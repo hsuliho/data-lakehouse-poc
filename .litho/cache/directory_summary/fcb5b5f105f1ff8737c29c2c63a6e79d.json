@@ -1,0 +1,128 @@
+{
+  "data": {
+    "summary": "The datahub directory contains infrastructure, scripts, and configuration files for running DataHub quickstart instances, metadata ingestion, and catalog refreshing using Docker and Docker Compose.",
+    "importance_score": 0.8,
+    "key_files": [
+      "docker-compose.quickstart.yml",
+      "dh.sh",
+      "ingest.sh",
+      "refresh.sh",
+      "restart.override.yml"
+    ],
+    "file_insights": [
+      {
+        "name": "dh.sh",
+        "summary": "Bash script to manage DataHub Docker Compose lifecycle.",
+        "code_purpose": "config",
+        "source_summary": "Runs docker-compose with specific config files and environment parameters.",
+        "detailed_description": "A bash wrapper script for managing the DataHub Docker Compose project, simplifying commands like up, down, ps, logs, and pull.",
+        "responsibilities": [
+          "Wrap docker-compose commands for DataHub",
+          "Manage quickstart profile services"
+        ],
+        "interfaces": [
+          {
+            "name": "",
+            "interface_type": "command",
+            "parameters": [
+              {
+                "name": "args",
+                "param_type": "string"
+              }
+            ],
+            "return_type": "void"
+          }
+        ],
+        "dependencies": [
+          {
+            "name": "docker-compose",
+            "is_external": true,
+            "dependency_type": "use"
+          }
+        ],
+        "importance_score": 0.8
+      },
+      {
+        "name": "docker-compose.quickstart.yml",
+        "summary": "Docker compose configuration for DataHub quickstart stack.",
+        "code_purpose": "config",
+        "source_summary": "Defines Docker services for datahub-actions-quickstart, gms, frontend, kafka, mysql, and opensearch.",
+        "detailed_description": "Docker Compose file defining services for the DataHub quickstart stack including GMS, frontend, kafka, mysql, and opensearch.",
+        "responsibilities": [
+          "Define DataHub quickstart services",
+          "Configure container health checks and dependencies"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.85
+      },
+      {
+        "name": "ingest.sh",
+        "summary": "Bash script for running DataHub metadata ingestion.",
+        "code_purpose": "tool",
+        "source_summary": "Executes acryldata/datahub-ingestion container using host network and mounted recipe files.",
+        "detailed_description": "Bash script to run the DataHub ingestion container on the host network, executing recipes for iceberg, dbt, or dbt_semantic.",
+        "responsibilities": [
+          "Run DataHub ingestion tasks",
+          "Mount local recipes and dbt targets into container"
+        ],
+        "interfaces": [
+          {
+            "name": "",
+            "interface_type": "command",
+            "parameters": [
+              {
+                "name": "recipe",
+                "param_type": "string"
+              }
+            ],
+            "return_type": "void"
+          }
+        ],
+        "dependencies": [
+          {
+            "name": "docker",
+            "is_external": true,
+            "dependency_type": "use"
+          }
+        ],
+        "importance_score": 0.75
+      },
+      {
+        "name": "refresh.sh",
+        "summary": "Bash script to refresh data catalog and verify PII columns.",
+        "code_purpose": "tool",
+        "source_summary": "Refreshes catalog from warehouse and dbt projects, ensuring PII compliance.",
+        "detailed_description": "Bash script to refresh the catalog from warehouse and dbt project, validating PII columns.",
+        "responsibilities": [
+          "Refresh data catalog",
+          "Run dbt documentation and tests"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.75
+      },
+      {
+        "name": "restart.override.yml",
+        "summary": "Docker compose override for service restart policies.",
+        "code_purpose": "config",
+        "source_summary": "Sets restart policy to unless-stopped for key DataHub containers.",
+        "detailed_description": "Docker Compose override file ensuring all long-running DataHub services restart unless explicitly stopped.",
+        "responsibilities": [
+          "Configure restart policy for DataHub services"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.7
+      }
+    ]
+  },
+  "timestamp": 1790849194,
+  "prompt_hash": "fcb5b5f105f1ff8737c29c2c63a6e79d",
+  "token_usage": {
+    "input_tokens": 1336,
+    "output_tokens": 864,
+    "total_tokens": 2200
+  },
+  "model_name": null
+}

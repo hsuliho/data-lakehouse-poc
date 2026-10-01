@@ -78,6 +78,11 @@ check("rule: the model wrote the query and it returned the wrong number -> tool_
       cat(rec(arm="raw", tools=[("run_sql", {"sql": "select sum(line_amount) from dwh_spark.fact_orders"},
                                  '{"rows": [[37229.72]]}')])) == "tool_choice")
 
+check("rule: an arm that writes its own SQL is not excused by the answer being derived -- it chose the inputs",
+      cat(rec(id="calc_share", arm="raw", question="books 類別的營收佔總營收的百分比是多少?",
+              tools=[("run_sql", {"sql": "select sum(line_amount) from dwh_spark.fact_orders"},
+                      '{"rows": [[37229.72]]}')])) == "tool_choice")
+
 check("rule: a derived answer cannot be found in a tool result, so it is not blamed on the tool",
       cat(rec(id="day_wow", question="上週的營收比前一週成長了多少百分比?",
               tools=[("query_metric", {"start_date": "2026-01-19", "end_date": "2026-01-25"}, '{"rows": [{"revenue": 12128.39}]}'),

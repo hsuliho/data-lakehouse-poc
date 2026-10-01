@@ -1,0 +1,33 @@
+{
+  "data": {
+    "summary": "The results directory stores evaluation diagnosis logs in JSONL format, capturing agent performance, error categories, and evidence for debugging and analysis.",
+    "importance_score": 0.5,
+    "key_files": [
+      "diagnose_20261001_163340.jsonl"
+    ],
+    "file_insights": [
+      {
+        "name": "diagnose_20261001_163340.jsonl",
+        "summary": "Stores diagnostic JSONL logs detailing agent evaluation verdicts and error causes.",
+        "code_purpose": "specificfeature",
+        "source_summary": "JSONL records detailing agent test results, verdicts, cause categories, and evidence logs.",
+        "detailed_description": "Contains JSON Lines formatted diagnosis logs recording evaluation runs, tool choices, and error causes for model queries on business metrics.",
+        "responsibilities": [
+          "Record evaluation diagnostics",
+          "Store cause categories and error evidence"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.7
+      }
+    ]
+  },
+  "timestamp": 1790849117,
+  "prompt_hash": "ed70291242b1f00de5cb204f9d2bd1cc",
+  "token_usage": {
+    "input_tokens": 1167,
+    "output_tokens": 266,
+    "total_tokens": 1433
+  },
+  "model_name": null
+}

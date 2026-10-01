@@ -1,0 +1,106 @@
+{
+  "data": {
+    "summary": "This directory contains tabular data schemas in CSV format representing an e-commerce domain model, including customers, products, orders, and order items. These files serve as a data layer or dataset fixture for database seeding or analytics.",
+    "importance_score": 0.7,
+    "key_files": [
+      "products.csv",
+      "orders.csv",
+      "customers.csv",
+      "order_items.csv"
+    ],
+    "file_insights": [
+      {
+        "name": "customers.csv",
+        "summary": "CSV schema definition for customer records.",
+        "code_purpose": "database",
+        "source_summary": "Contains CSV header fields: customer_id, name, city, membership_tier, updated_at.",
+        "detailed_description": "Defines the schema for customer data records, containing identifiers, names, cities, membership tiers, and timestamps.",
+        "responsibilities": [
+          "Store customer identification details",
+          "Track membership tiers and geographic location"
+        ],
+        "interfaces": [
+          {
+            "name": "customers",
+            "interface_type": "csv_schema",
+            "parameters": [],
+            "return_type": "tabular data"
+          }
+        ],
+        "dependencies": [],
+        "importance_score": 0.7
+      },
+      {
+        "name": "order_items.csv",
+        "summary": "CSV schema definition for order items.",
+        "code_purpose": "database",
+        "source_summary": "Contains CSV header fields: order_item_id, order_id, product_id, quantity, unit_price, updated_at.",
+        "detailed_description": "Defines the schema for order line items, mapping products to orders with quantities and unit prices.",
+        "responsibilities": [
+          "Link products to specific orders",
+          "Track quantities and pricing per item"
+        ],
+        "interfaces": [
+          {
+            "name": "order_items",
+            "interface_type": "csv_schema",
+            "parameters": [],
+            "return_type": "tabular data"
+          }
+        ],
+        "dependencies": [],
+        "importance_score": 0.7
+      },
+      {
+        "name": "orders.csv",
+        "summary": "CSV schema definition for orders.",
+        "code_purpose": "database",
+        "source_summary": "Contains CSV header fields: order_id, customer_id, order_status, ordered_at, updated_at.",
+        "detailed_description": "Defines the schema for customer orders, tracking order status and timestamps.",
+        "responsibilities": [
+          "Track order lifecycle and status",
+          "Associate orders with customers"
+        ],
+        "interfaces": [
+          {
+            "name": "orders",
+            "interface_type": "csv_schema",
+            "parameters": [],
+            "return_type": "tabular data"
+          }
+        ],
+        "dependencies": [],
+        "importance_score": 0.7
+      },
+      {
+        "name": "products.csv",
+        "summary": "CSV schema and sample data for products.",
+        "code_purpose": "database",
+        "source_summary": "Contains CSV headers and sample product records including product_id, name, category, price, and updated_at.",
+        "detailed_description": "Defines the product catalog data schema, including pricing, categories, and inventory update timestamps.",
+        "responsibilities": [
+          "Define product attributes and pricing",
+          "Categorize inventory items"
+        ],
+        "interfaces": [
+          {
+            "name": "products",
+            "interface_type": "csv_schema",
+            "parameters": [],
+            "return_type": "tabular data"
+          }
+        ],
+        "dependencies": [],
+        "importance_score": 0.75
+      }
+    ]
+  },
+  "timestamp": 1790849184,
+  "prompt_hash": "6b686eba712c78cf823a2b83c7bf3533",
+  "token_usage": {
+    "input_tokens": 827,
+    "output_tokens": 734,
+    "total_tokens": 1561
+  },
+  "model_name": null
+}

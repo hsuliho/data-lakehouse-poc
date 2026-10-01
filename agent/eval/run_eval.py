@@ -52,6 +52,8 @@ def main():
     ap.add_argument("--ids", default="")
     ap.add_argument("--category", default="", help="only these categories, e.g. kpi,day")
     ap.add_argument("--failed-from", default="", help="only the questions that failed in this results file")
+    ap.add_argument("--holdout", choices=["only", "exclude"], default="",
+                    help="only: the questions no prompt change was derived from. exclude: the rest.")
     ap.add_argument("--skip-preflight", action="store_true", help="do not run the canary queries first")
     ap.add_argument("--resume", default="", help="a results file to continue: runs already in it are skipped")
     args = ap.parse_args()
@@ -60,6 +62,13 @@ def main():
         if problems := preflight():
             raise SystemExit("PREFLIGHT FAILED, nothing was run (no model requests spent):\n  " + "\n  ".join(problems))
         print("preflight OK: the semantic layer and the warehouse return the known answers")
+    meta_path = HERE / "questions.meta.json"
+    if meta_path.exists():                                 # the expectations were frozen against one warehouse state
+        want = json.loads(meta_path.read_text()).get("fingerprint")
+        if want and FINGERPRINT and want != FINGERPRINT:
+            raise SystemExit(f"the warehouse has changed since the expectations were derived "
+                             f"(fingerprint {FINGERPRINT}, expected {want}). Nothing was run, no model requests spent.\n"
+                             f"  re-derive first:  python -m agent.eval.derive_questions")
     questions = json.loads((HERE / "questions.json").read_text())
     if args.ids:
         questions = [q for q in questions if q["id"] in args.ids.split(",")]
@@ -68,7 +77,9 @@ def main():
     if args.failed_from:                                   # re-running only the failures makes the score look better
         failed = {json.loads(l)["id"] for l in open(args.failed_from) if json.loads(l).get("verdict") not in (None, "correct")}
         questions = [q for q in questions if q["id"] in failed]
-    subset = bool(args.ids or args.category or args.failed_from)
+    if args.holdout:
+        questions = [q for q in questions if q.get("holdout", False) == (args.holdout == "only")]
+    subset = bool(args.ids or args.category or args.failed_from or args.holdout)
     arms = ["semantic", "raw"] if args.arm == "both" else [args.arm]
     out = Path(args.resume).resolve() if args.resume else HERE / "results" / f"{datetime.now():%Y%m%d_%H%M%S}.jsonl"
     done = {(r["id"], r["arm"], r["run"]) for r in map(json.loads, open(out))} if args.resume else set()

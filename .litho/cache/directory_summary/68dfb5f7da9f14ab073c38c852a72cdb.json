@@ -1,0 +1,65 @@
+{
+  "data": {
+    "summary": "The recipes directory contains configuration files for data cataloging and ingestion pipelines, specifically integrating dbt artifacts, semantic layers, and Iceberg REST catalogs. These configurations define how metadata, lineages, and physical tables are ingested into DataHub from various data platform components.",
+    "importance_score": 0.8,
+    "key_files": [
+      "iceberg.yml",
+      "dbt.yml",
+      "dbt_semantic.yml"
+    ],
+    "file_insights": [
+      {
+        "name": "dbt.yml",
+        "summary": "Configuration for dbt source ingestion into DataHub.",
+        "code_purpose": "config",
+        "source_summary": "YAML configuration file specifying dbt source ingestion parameters such as manifest_path, catalog_path, and run_results_paths.",
+        "detailed_description": "Defines configuration for ingesting dbt artifacts into DataHub, including manifest, catalog, run results, and sources paths. Sets target platform to iceberg and maps metadata like owners and tags.",
+        "responsibilities": [
+          "Configure dbt artifact ingestion paths",
+          "Define target platform and environment settings",
+          "Map metadata attributes like owner"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.8
+      },
+      {
+        "name": "dbt_semantic.yml",
+        "summary": "Configuration for ingesting semantic layer contract views from dbt.",
+        "code_purpose": "config",
+        "source_summary": "YAML configuration file pointing to dbt_semantic artifacts like manifest and catalog with target platform iceberg.",
+        "detailed_description": "Defines configuration for the semantic layer's contract views in DataHub using dbt artifacts. Focuses on ingesting specific published models without overwriting the main dbt project entities.",
+        "responsibilities": [
+          "Configure semantic layer dbt ingestion",
+          "Manage artifact paths for dbt_semantic project"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.8
+      },
+      {
+        "name": "iceberg.yml",
+        "summary": "Configuration for direct physical table ingestion from the Iceberg REST catalog.",
+        "code_purpose": "config",
+        "source_summary": "YAML configuration file detailing the iceberg source ingestion with REST catalog URI, S3 parameters, and namespace allow filters.",
+        "detailed_description": "Defines configuration for ingesting physical tables directly from the Iceberg REST catalog used by Trino and Spark. Specifies S3 endpoints, access credentials, and namespace allow patterns.",
+        "responsibilities": [
+          "Configure Iceberg REST catalog connection",
+          "Specify S3 storage credentials and endpoint parameters",
+          "Define allowed namespace patterns for ingestion"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.85
+      }
+    ]
+  },
+  "timestamp": 1790849199,
+  "prompt_hash": "68dfb5f7da9f14ab073c38c852a72cdb",
+  "token_usage": {
+    "input_tokens": 1134,
+    "output_tokens": 674,
+    "total_tokens": 1808
+  },
+  "model_name": null
+}

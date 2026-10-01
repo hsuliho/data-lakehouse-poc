@@ -1,0 +1,111 @@
+{
+  "data": {
+    "summary": "The scd2 directory contains SQL scripts for managing Slowly Changing Dimension Type 2 (SCD2) tables in an Iceberg data warehouse. It defines dimension table structures and rebuilds historical version tracking for raw data.",
+    "importance_score": 0.85,
+    "key_files": [
+      "create_dim.sql",
+      "rebuild.sql"
+    ],
+    "file_insights": [
+      {
+        "name": "create_dim.sql",
+        "summary": "",
+        "code_purpose": "database",
+        "source_summary": "Creates a namespace and an Iceberg table with surrogate keys, business keys, dynamic attributes, valid_from/valid_to timestamps, is_current flag, and load timestamps.",
+        "detailed_description": "Defines the Iceberg dimension table structure for Slowly Changing Dimension Type 2 (SCD2) tracking. Includes surrogate key, business key, tracking attributes, validity timestamps, and a current record flag.",
+        "responsibilities": [
+          "Define dimension schema for SCD2 data warehouse tables",
+          "Set up surrogate and business key columns",
+          "Include validity window and status tracking columns"
+        ],
+        "interfaces": [
+          {
+            "name": "dbo.IF",
+            "interface_type": "sql_table",
+            "parameters": [
+              {
+                "name": "valid_from",
+                "param_type": "TIMESTAMP"
+              },
+              {
+                "name": "valid_to",
+                "param_type": "TIMESTAMP"
+              },
+              {
+                "name": "is_current",
+                "param_type": "BOOLEAN"
+              }
+            ],
+            "return_type": "void"
+          }
+        ],
+        "dependencies": [],
+        "importance_score": 0.8
+      },
+      {
+        "name": "rebuild.sql",
+        "summary": "",
+        "code_purpose": "database",
+        "source_summary": "Contains SQL script logic to rebuild the version history of keys touched during delivery from the raw history table, setting valid_from and valid_to intervals appropriately.",
+        "detailed_description": "Rebuilds the complete history of keys touched by delivery based on raw history, complying with ADR 0015. Ensures the result depends only on raw data and determines version bounds based on record changes and deletes.",
+        "responsibilities": [
+          "Rebuild SCD2 history for touched keys based on raw data",
+          "Handle version boundaries, record modifications, and deletions",
+          "Maintain idempotency and historical consistency in data warehouse tables"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "raw",
+            "is_external": false,
+            "dependency_type": "use"
+          },
+          {
+            "name": "SELECT",
+            "is_external": false,
+            "dependency_type": "use"
+          },
+          {
+            "name": "e",
+            "is_external": false,
+            "dependency_type": "use"
+          },
+          {
+            "name": "f",
+            "is_external": false,
+            "dependency_type": "use"
+          },
+          {
+            "name": "c",
+            "is_external": false,
+            "dependency_type": "use"
+          },
+          {
+            "name": "dwh_spark.{dim",
+            "is_external": false,
+            "dependency_type": "use"
+          },
+          {
+            "name": "scd2_touched",
+            "is_external": false,
+            "dependency_type": "use"
+          },
+          {
+            "name": "SET",
+            "is_external": false,
+            "dependency_type": "use"
+          }
+        ],
+        "importance_score": 0.85
+      }
+    ]
+  },
+  "timestamp": 1790849353,
+  "prompt_hash": "04aca97e1c0d351445cc1be1b8ab4005",
+  "token_usage": {
+    "input_tokens": 1097,
+    "output_tokens": 680,
+    "total_tokens": 1777
+  },
+  "model_name": null
+}

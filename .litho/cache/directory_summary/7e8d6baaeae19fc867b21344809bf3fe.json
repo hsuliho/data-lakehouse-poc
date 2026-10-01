@@ -1,0 +1,78 @@
+{
+  "data": {
+    "summary": "The marts directory contains core analytics data models and summary tables (DWD and DWS layers) built using dbt. It processes orders and calculates aggregated revenue and category rankings for business reporting.",
+    "importance_score": 0.9,
+    "key_files": [
+      "fact_orders.sql",
+      "dws_daily_revenue.sql",
+      "ads_category_revenue_rank.sql"
+    ],
+    "file_insights": [
+      {
+        "name": "ads_category_revenue_rank.sql",
+        "summary": "Ranks product categories by total revenue and order count.",
+        "code_purpose": "model",
+        "source_summary": "SQL query selecting category, sum of revenue, sum of order counts, and revenue rank from dws_daily_revenue, grouped by category.",
+        "detailed_description": "Calculates category-level revenue and order counts, ranking categories by total revenue using window functions. It serves as an analytical advertising or category performance mart layer.",
+        "responsibilities": [
+          "Compute category-wise revenue aggregation",
+          "Compute category order counts",
+          "Rank categories based on revenue using window functions"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "dws_daily_revenue",
+            "is_external": false,
+            "dependency_type": "use"
+          }
+        ],
+        "importance_score": 0.85
+      },
+      {
+        "name": "dws_daily_revenue.sql",
+        "summary": "Computes incremental daily revenue metrics aggregated by day and category.",
+        "code_purpose": "model",
+        "source_summary": "Incremental SQL model with delete+insert strategy partitioning revenue_date, summarizing order data by day and category.",
+        "detailed_description": "Maintains daily revenue metrics summarized by day and category using incremental updates. It aggregates data from underlying order facts to build a data warehouse summary (DWS) layer.",
+        "responsibilities": [
+          "Incremental daily revenue aggregation",
+          "Partition daily revenue records by day and category",
+          "Process changed fact rows efficiently"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "fact_orders",
+            "is_external": false,
+            "dependency_type": "use"
+          }
+        ],
+        "importance_score": 0.9
+      },
+      {
+        "name": "fact_orders.sql",
+        "summary": "Extracts order item details incrementally for downstream data warehouse consumption.",
+        "code_purpose": "model",
+        "source_summary": "Incremental SQL model using merge strategy, tracking order items with frozen unit prices and update timestamps.",
+        "detailed_description": "Extracts individual order item records incrementaly, capturing freeze prices and change tracking timestamps. It forms the data warehouse detail (DWD) layer for downstream models.",
+        "responsibilities": [
+          "Extract order items with frozen unit price",
+          "Support incremental merges based on updated_at timestamp",
+          "Optimize partition pruning using dynamic filtering"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.95
+      }
+    ]
+  },
+  "timestamp": 1790849135,
+  "prompt_hash": "7e8d6baaeae19fc867b21344809bf3fe",
+  "token_usage": {
+    "input_tokens": 1111,
+    "output_tokens": 706,
+    "total_tokens": 1817
+  },
+  "model_name": null
+}

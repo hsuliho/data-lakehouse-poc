@@ -1,0 +1,50 @@
+{
+  "data": {
+    "summary": "The dbt_semantic directory contains the core dbt configuration and connection profile files required to initialize and manage the semantic layer project on Trino.",
+    "importance_score": 0.75,
+    "key_files": [
+      "dbt_project.yml",
+      "profiles.yml"
+    ],
+    "file_insights": [
+      {
+        "name": "dbt_project.yml",
+        "summary": "Defines the core configuration and project settings for the dbt semantic project.",
+        "code_purpose": "config",
+        "source_summary": "Defines the dbt project metadata, version, profile connection, and model paths, setting views as the default materialization.",
+        "detailed_description": "Configures the dbt project properties, profile bindings, model paths, and materialization defaults for the semantic layer.",
+        "responsibilities": [
+          "Define project name and version",
+          "Specify model paths for dbt models",
+          "Configure default materialization strategies for models"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.7
+      },
+      {
+        "name": "profiles.yml",
+        "summary": "Configures database connection profiles and targets for running the dbt semantic layer on Trino.",
+        "code_purpose": "config",
+        "source_summary": "Contains database configuration profiles specifying connection properties to Trino for analyst read queries and engineer build operations.",
+        "detailed_description": "Defines profiles, target environments, and connection properties (such as Trino connection details for query and build targets) for dbt and MetricFlow.",
+        "responsibilities": [
+          "Configure database connection profiles for Trino",
+          "Define query and build execution targets",
+          "Specify authentication users and database connection parameters"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.7
+      }
+    ]
+  },
+  "timestamp": 1790849213,
+  "prompt_hash": "ee56bedf2488762e94926863790802b4",
+  "token_usage": {
+    "input_tokens": 917,
+    "output_tokens": 460,
+    "total_tokens": 1377
+  },
+  "model_name": null
+}

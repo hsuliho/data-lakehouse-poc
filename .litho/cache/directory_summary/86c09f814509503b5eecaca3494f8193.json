@@ -1,0 +1,144 @@
+{
+  "data": {
+    "summary": "The figures directory contains Python scripts and a Node.js utility for programmatically generating consistent SVG architecture diagrams, data models, and agent workflow visualizations for documentation.",
+    "importance_score": 0.4,
+    "key_files": [
+      "lib.py",
+      "fig1_architecture.py",
+      "fig2_star.py",
+      "fig3_qa_agent.py",
+      "fig4_diag_agent.py"
+    ],
+    "file_insights": [
+      {
+        "name": "fig1_architecture.py",
+        "summary": "Generates Figure 1 SVG depicting the overall architecture of the data pipeline and diagnosis agent.",
+        "code_purpose": "lib",
+        "source_summary": "Initializes an Svg canvas and draws structured boxes, text labels, and directional arrows representing the system's architecture and orchestration flow.",
+        "detailed_description": "Defines the architectural overview figure (Figure 1) for the project, illustrating the data landing, orchestration, and diagnosis agents using a custom SVG builder.",
+        "responsibilities": [
+          "Generate architectural layout SVG",
+          "Define data source and orchestrator boxes"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "lib",
+            "is_external": false,
+            "dependency_type": "import"
+          }
+        ],
+        "importance_score": 0.5
+      },
+      {
+        "name": "fig2_star.py",
+        "summary": "Generates Figure 2 SVG showcasing the star schema for orders and dimensions.",
+        "code_purpose": "lib",
+        "source_summary": "Creates an SVG graphic detailing the order items fact table alongside customer and product SCD2 dimensions.",
+        "detailed_description": "Generates Figure 2 illustrating the star schema model including fact and SCD2 dimension tables.",
+        "responsibilities": [
+          "Generate star schema diagram SVG",
+          "Display fact and dimension table relationships"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "lib",
+            "is_external": false,
+            "dependency_type": "import"
+          }
+        ],
+        "importance_score": 0.5
+      },
+      {
+        "name": "fig3_qa_agent.py",
+        "summary": "Generates Figure 3 SVG visualizing the QA agent process workflow.",
+        "code_purpose": "lib",
+        "source_summary": "Creates an SVG flowchart demonstrating user queries being processed through a LangGraph LLM loop and corresponding tool nodes.",
+        "detailed_description": "Generates Figure 3 illustrating the question-answering agent's loop and tool invocation flow.",
+        "responsibilities": [
+          "Generate QA agent workflow diagram SVG",
+          "Represent LLM loops and tool nodes"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "lib",
+            "is_external": false,
+            "dependency_type": "import"
+          }
+        ],
+        "importance_score": 0.5
+      },
+      {
+        "name": "fig4_diag_agent.py",
+        "summary": "Generates Figure 4 SVG outlining the diagnostic agent execution steps.",
+        "code_purpose": "lib",
+        "source_summary": "Draws an SVG layout representing deterministic diagnostic steps and evidence collection prior to LLM synthesis.",
+        "detailed_description": "Generates Figure 4 detailing the diagnosis agent's sequential deterministic checks and synthesis steps.",
+        "responsibilities": [
+          "Generate diagnosis agent workflow SVG",
+          "Outline step-by-step troubleshooting verification checks"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "lib",
+            "is_external": false,
+            "dependency_type": "import"
+          }
+        ],
+        "importance_score": 0.5
+      },
+      {
+        "name": "lib.py",
+        "summary": "Provides shared SVG generation utilities and styling palettes for rendering project figures.",
+        "code_purpose": "lib",
+        "source_summary": "Defines the Svg class with methods for drawing structured boxes, arrows, polygons, and text labels with a shared color scheme.",
+        "detailed_description": "Provides helper classes and styling functions (such as Svg boxes, arrows, text, and color palettes) to ensure consistent visual formatting across all architecture figures.",
+        "responsibilities": [
+          "Define SVG builder class Svg",
+          "Provide styling palettes and coordinate helpers",
+          "Export SVG file saving utilities"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.7
+      },
+      {
+        "name": "render.js",
+        "summary": "Node.js script to batch convert SVG architecture figures into PNG images.",
+        "code_purpose": "tool",
+        "source_summary": "Iterates over provided SVG file paths, reads their content, renders them to PNGs using Resvg, and writes the results.",
+        "detailed_description": "Automation script utilizing Resvg to convert SVG architectural figures into PNG image files.",
+        "responsibilities": [
+          "Read SVG files from arguments",
+          "Render SVGs to PNG format using Resvg",
+          "Write output PNG files to disk"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "@resvg/resvg-js",
+            "is_external": true,
+            "dependency_type": "require"
+          },
+          {
+            "name": "fs",
+            "is_external": true,
+            "dependency_type": "require"
+          }
+        ],
+        "importance_score": 0.4
+      }
+    ]
+  },
+  "timestamp": 1790849289,
+  "prompt_hash": "86c09f814509503b5eecaca3494f8193",
+  "token_usage": {
+    "input_tokens": 2183,
+    "output_tokens": 1134,
+    "total_tokens": 3317
+  },
+  "model_name": null
+}

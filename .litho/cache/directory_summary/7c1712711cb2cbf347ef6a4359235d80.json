@@ -1,0 +1,109 @@
+{
+  "data": {
+    "summary": "The diagnose directory contains the intelligent diagnosis agent framework, providing deterministic evidence gathering, fault-injection evaluations, regression testing, and LLM/rule-based diagnostic tools for data pipeline alerts.",
+    "importance_score": 0.88,
+    "key_files": [
+      "__main__.py",
+      "evidence.py",
+      "tools.py",
+      "faults.py",
+      "regress.py"
+    ],
+    "file_insights": [
+      {
+        "name": "__init__.py",
+        "summary": "Package initialization file.",
+        "code_purpose": "util",
+        "source_summary": "Empty initialization module.",
+        "detailed_description": "Placeholder initialization file for the diagnose package.",
+        "responsibilities": [
+          "Package initialization"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.1
+      },
+      {
+        "name": "__main__.py",
+        "summary": "Main CLI entry point for the diagnosis agent.",
+        "code_purpose": "command",
+        "source_summary": "Defines the DDL for diagnosis storage and provides main CLI functionality to diagnose pipeline alerts.",
+        "detailed_description": "Main entry point for running the diagnosis agent via command line. Parses arguments, executes diagnostics, and stores results into the database.",
+        "responsibilities": [
+          "CLI argument parsing",
+          "Executing agent diagnostics",
+          "Storing diagnosis reports"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.85
+      },
+      {
+        "name": "evidence.py",
+        "summary": "Deterministic checks and evidence gathering mechanisms for diagnostics.",
+        "code_purpose": "tool",
+        "source_summary": "Contains deterministic check functions, health/delivery probes, and classification rules for pipeline diagnostics.",
+        "detailed_description": "Provides deterministic checks, checklists, and evidence gathering functions for the diagnosis agent. Implements rule-based classification and playback/recording mechanisms.",
+        "responsibilities": [
+          "Gathering diagnostic evidence",
+          "Rule-based classification",
+          "Recording and replaying diagnostic runs"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.9
+      },
+      {
+        "name": "faults.py",
+        "summary": "Fault-injection evaluation framework for validating diagnostic accuracy.",
+        "code_purpose": "test",
+        "source_summary": "Provides fault injection utilities and test scenarios to validate accuracy of various diagnostic arms.",
+        "detailed_description": "Implements fault-injection evaluation framework to test the diagnosis agent against real pipeline failures and known root causes.",
+        "responsibilities": [
+          "Fault injection simulation",
+          "Verifying agent diagnosis against expected causes",
+          "Managing test fixtures and state restoration"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.8
+      },
+      {
+        "name": "regress.py",
+        "summary": "Regression testing runner against recorded diagnostic fixtures.",
+        "code_purpose": "test",
+        "source_summary": "Implements regression runner using recorded fixtures from faults to ensure consistent agent behavior.",
+        "detailed_description": "Runs regressions of the diagnosis agent against recorded evidence fixtures without touching live resources.",
+        "responsibilities": [
+          "Regression testing using fixtures",
+          "Evaluating model and rule arms safely"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.75
+      },
+      {
+        "name": "tools.py",
+        "summary": "Read-only tools used by the diagnosis agent for pipeline inspection.",
+        "code_purpose": "tool",
+        "source_summary": "Defines langchain tools for inspecting runs, querying SQL, reading landing files, and checking service health.",
+        "detailed_description": "Implements read-only tools for the diagnosis agent including run inspection, SQL execution, landing file readers, and Docker status checks.",
+        "responsibilities": [
+          "Read-only diagnostic tool definitions",
+          "Database and container inspection for agents"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.85
+      }
+    ]
+  },
+  "timestamp": 1790849082,
+  "prompt_hash": "7c1712711cb2cbf347ef6a4359235d80",
+  "token_usage": {
+    "input_tokens": 2617,
+    "output_tokens": 952,
+    "total_tokens": 3569
+  },
+  "model_name": null
+}

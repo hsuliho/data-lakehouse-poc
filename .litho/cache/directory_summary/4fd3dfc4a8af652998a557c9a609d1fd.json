@@ -1,0 +1,39 @@
+{
+  "data": {
+    "summary": "The macros directory contains reusable SQL macros for the data transformation pipeline, focusing on time zone handling and conversions.",
+    "importance_score": 0.8,
+    "key_files": [
+      "time.sql"
+    ],
+    "file_insights": [
+      {
+        "name": "time.sql",
+        "summary": "SQL macro file providing time zone and UTC conversion rules for data pipelines.",
+        "code_purpose": "util",
+        "source_summary": "Contains SQL/Jinja macro definitions for date and time rules, specifically implementing utc_date and related time conversion functions.",
+        "detailed_description": "Defines SQL macros for standardizing time zone handling across the project, ensuring all stored times are instants (timestamptz) and handling conversions between UTC and session local time.",
+        "responsibilities": [
+          "Standardize time zone conversions",
+          "Define UTC date and time manipulation macros"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "the",
+            "is_external": false,
+            "dependency_type": "use"
+          }
+        ],
+        "importance_score": 0.85
+      }
+    ]
+  },
+  "timestamp": 1790849227,
+  "prompt_hash": "4fd3dfc4a8af652998a557c9a609d1fd",
+  "token_usage": {
+    "input_tokens": 910,
+    "output_tokens": 285,
+    "total_tokens": 1195
+  },
+  "model_name": null
+}

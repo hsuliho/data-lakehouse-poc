@@ -1,0 +1,128 @@
+{
+  "data": {
+    "core_dependencies": [
+      {
+        "from": "orchestration",
+        "to": "marts",
+        "dependency_type": "Module",
+        "importance": 5,
+        "description": "Orchestration triggers transformation pipelines built with dbt models"
+      },
+      {
+        "from": "scripts",
+        "to": "scd2",
+        "dependency_type": "Module",
+        "importance": 5,
+        "description": "Scripts drive the data loading and SCD2 transformations"
+      },
+      {
+        "from": "agent",
+        "to": "models",
+        "dependency_type": "Module",
+        "importance": 4,
+        "description": "Agent tools query the semantic layer and data warehouse models"
+      },
+      {
+        "from": "diagnose",
+        "to": "orchestration",
+        "dependency_type": "Module",
+        "importance": 4,
+        "description": "Diagnosis agent inspects pipeline state and execution logs"
+      },
+      {
+        "from": "eval",
+        "to": "agent",
+        "dependency_type": "Module",
+        "importance": 4,
+        "description": "Evaluation harnesses test agent models and query correctness"
+      },
+      {
+        "from": "recipes",
+        "to": "models",
+        "dependency_type": "Module",
+        "importance": 4,
+        "description": "DataHub recipes ingest metadata from dbt and Iceberg catalogs"
+      },
+      {
+        "from": "superset",
+        "to": "trino",
+        "dependency_type": "Module",
+        "importance": 3,
+        "description": "Superset connects to Trino for business intelligence reporting"
+      }
+    ],
+    "architecture_layers": [
+      {
+        "name": "Data and Infrastructure Layer",
+        "components": [
+          "batch1",
+          "batch2",
+          "batch3",
+          "batch4",
+          "batch5",
+          "dt=2026-01-29",
+          "dt=2026-01-30",
+          "dt=2026-01-31",
+          "jars",
+          "spark",
+          "catalog",
+          "trino"
+        ],
+        "level": 1
+      },
+      {
+        "name": "Transformation and Modeling Layer",
+        "components": [
+          "staging",
+          "marts",
+          "models",
+          "scd2",
+          "scd2_batch",
+          "macros",
+          "reports",
+          "dbt_trino",
+          "dbt_spark",
+          "dbt_semantic"
+        ],
+        "level": 2
+      },
+      {
+        "name": "Orchestration and Pipeline Layer",
+        "components": [
+          "orchestration",
+          "scripts",
+          "checks_batch_era",
+          "datahub",
+          "recipes"
+        ],
+        "level": 3
+      },
+      {
+        "name": "Application, Agent, and Presentation Layer",
+        "components": [
+          "agent",
+          "diagnose",
+          "eval",
+          "verify",
+          "superset",
+          "figures"
+        ],
+        "level": 4
+      }
+    ],
+    "key_insights": [
+      "The project follows a clean lakehouse architecture separating storage, transformation, orchestration, and application layers.",
+      "Orchestration (Dagster) and scripts tightly control the data ingestion, SCD2 loading, and dbt transformation runs.",
+      "The AI agent and diagnosis components integrate deeply with the data warehouse models and semantic layer for text-to-SQL and pipeline troubleshooting.",
+      "Data cataloging via DataHub successfully bridges dbt models and Iceberg physical tables using explicit ingestion recipes."
+    ]
+  },
+  "timestamp": 1790849762,
+  "prompt_hash": "36904084eee5dde345898f07d8ce2d84",
+  "token_usage": {
+    "input_tokens": 6966,
+    "output_tokens": 625,
+    "total_tokens": 7591
+  },
+  "model_name": null
+}

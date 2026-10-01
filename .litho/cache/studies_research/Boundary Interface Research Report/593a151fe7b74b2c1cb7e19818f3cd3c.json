@@ -1,0 +1,83 @@
+{
+  "data": {
+    "cli_boundaries": [
+      {
+        "command": "./datahub/dh.sh",
+        "description": "DataHub Docker Compose 服务管理包装脚本，用于简化 DataHub 快速启动和运维。",
+        "arguments": [
+          {
+            "name": "command",
+            "description": "DataHub 管理命令（up, down, ps, logs, pull 等）",
+            "required": false,
+            "default_value": "up",
+            "value_type": "STRING"
+          }
+        ],
+        "options": [],
+        "examples": [
+          "./datahub/dh.sh up",
+          "./datahub/dh.sh logs"
+        ],
+        "source_location": ""
+      }
+    ],
+    "api_boundaries": [
+      {
+        "endpoint": "docker-compose",
+        "method": "EXEC",
+        "description": "DataHub 快速启动 Docker 服务管理接口（通过 bash 脚本包装 docker-compose）",
+        "request_format": "CLI Arguments",
+        "response_format": "Text / Container Status",
+        "authentication": "None",
+        "source_location": "./datahub/dh.sh"
+      }
+    ],
+    "router_boundaries": [],
+    "integration_suggestions": [
+      {
+        "integration_type": "Configuration",
+        "description": "dbt 数据转换与建模集成配置（支持 Trino 与 Spark 后端）",
+        "example_code": "dbt run --profiles-dir . --project-dir .",
+        "best_practices": [
+          "使用 profiles.yml 配置不同的开发、测试和生产目标环境",
+          "通过环境变量动态注入数据库连接的主机、端口和凭证"
+        ]
+      },
+      {
+        "integration_type": "Configuration",
+        "description": "Apache Spark 与 Trino 接入 Apache Iceberg 数据湖仓配置",
+        "example_code": "spark.sql.extensions=org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions",
+        "best_practices": [
+          "配置 Iceberg REST Catalog URI 及 MinIO S3 兼容存储端点",
+          "确保启用 path-style 访问并正确设置 AWS 凭证"
+        ]
+      },
+      {
+        "integration_type": "Configuration",
+        "description": "Dagster 数据工作流与资产编排实例配置",
+        "example_code": "dagster instance info",
+        "best_practices": [
+          "配置 Dagster 实例的运行队列和并发限制",
+          "禁用遥测以保护隐私"
+        ]
+      },
+      {
+        "integration_type": "Configuration",
+        "description": "DataHub 元数据采集方案（Recipes 配置）",
+        "example_code": "datahub ingest -c datahub/recipes/iceberg.yml",
+        "best_practices": [
+          "配置 DataHub 资产与 dbt 元数据管道的自动采集和同步"
+        ]
+      }
+    ],
+    "confidence_score": 9.2
+  },
+  "timestamp": 1790849800,
+  "prompt_hash": "593a151fe7b74b2c1cb7e19818f3cd3c",
+  "token_usage": {
+    "input_tokens": 5160,
+    "output_tokens": 533,
+    "total_tokens": 5693
+  },
+  "model_name": null
+}

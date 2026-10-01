@@ -1,0 +1,7 @@
+{
+ "derived_at": "2026-10-01T18:41:10",
+ "fingerprint": "33900617",
+ "questions": 26,
+ "holdout": 8,
+ "note": "expected values derived from ODS and the dimension version intervals only; a different fingerprint means the warehouse changed and these values must be re-derived"
+}

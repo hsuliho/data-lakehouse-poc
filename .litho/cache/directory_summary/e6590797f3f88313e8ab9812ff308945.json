@@ -1,0 +1,63 @@
+{
+  "data": {
+    "summary": "The results directory stores JSONL log files detailing the outcomes of various fault injection and pipeline test runs. Each file records test parameters, pipeline success, error causes, and evidence for debugging and evaluation.",
+    "importance_score": 0.4,
+    "key_files": [
+      "faults_20260921_133001.jsonl",
+      "faults_20260921_135653.jsonl",
+      "faults_20260921_185307.jsonl"
+    ],
+    "file_insights": [
+      {
+        "name": "faults_20260921_133001.jsonl",
+        "summary": "Stores test execution results and fault analysis logs for a specific timestamp.",
+        "code_purpose": "specificfeature",
+        "source_summary": "JSONL file containing execution logs and error causes for fault scenarios.",
+        "detailed_description": "Contains JSON lines representing fault test execution results, including control health checks, pipeline status, and confidence levels.",
+        "responsibilities": [
+          "Store fault detection execution logs",
+          "Record pipeline success and health checks"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.5
+      },
+      {
+        "name": "faults_20260921_135653.jsonl",
+        "summary": "Stores test execution logs focusing on data check failures in SCD2 processes.",
+        "code_purpose": "specificfeature",
+        "source_summary": "JSONL format containing diagnostic and failure logs for scd2 overlap faults.",
+        "detailed_description": "Records pipeline test results where data checks failed, detailing specific table overlaps and validation errors.",
+        "responsibilities": [
+          "Log data check failures and pipeline states",
+          "Track specific table validation errors"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.5
+      },
+      {
+        "name": "faults_20260921_185307.jsonl",
+        "summary": "Stores execution logs and infrastructure failure metrics for Trino service issues.",
+        "code_purpose": "specificfeature",
+        "source_summary": "JSONL format containing system and infrastructure error logs.",
+        "detailed_description": "Logs fault test results and error causes related to infrastructure failures such as Trino connection issues.",
+        "responsibilities": [
+          "Record infrastructure failure telemetry",
+          "Log connection errors and service health status"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.5
+      }
+    ]
+  },
+  "timestamp": 1790849087,
+  "prompt_hash": "e6590797f3f88313e8ab9812ff308945",
+  "token_usage": {
+    "input_tokens": 1133,
+    "output_tokens": 572,
+    "total_tokens": 1705
+  },
+  "model_name": null
+}

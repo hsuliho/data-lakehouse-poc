@@ -1,0 +1,92 @@
+{
+  "data": {
+    "summary": "The models directory contains data transformation models, source definitions, and semantic layer configurations (such as MetricFlow time spine and semantic YAML files) forming the analytics engineering layer.",
+    "importance_score": 0.85,
+    "key_files": [
+      "orders_semantic.sql",
+      "semantic.yml",
+      "metricflow_time_spine.sql",
+      "_sources.yml"
+    ],
+    "file_insights": [
+      {
+        "name": "_sources.yml",
+        "summary": "Defines source database and schema configuration for data warehouse tables.",
+        "code_purpose": "config",
+        "source_summary": "Defines YAML version 2 source configuration for a published database using Iceberg schema dwh_spark with the fact_orders table.",
+        "detailed_description": "Defines the source database and schema configuration for Iceberg and Spark tables, specifically pointing to the fact_orders table.",
+        "responsibilities": [
+          "Define source database and schema",
+          "Map fact_orders table"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.7
+      },
+      {
+        "name": "metricflow_time_spine.sql",
+        "summary": "SQL model generating a daily calendar time spine for MetricFlow semantic layer.",
+        "code_purpose": "model",
+        "source_summary": "SQL query that uses unnest and sequence to generate dates from 2024-01-01 to 2028-12-31 as date_day.",
+        "detailed_description": "Generates a time spine table containing one row per calendar day from 2024 to 2028, which is required by MetricFlow for handling days with no data and ratio metrics.",
+        "responsibilities": [
+          "Generate daily calendar rows",
+          "Support MetricFlow time-based metrics"
+        ],
+        "interfaces": [
+          {
+            "name": "",
+            "interface_type": "sql_query",
+            "parameters": [],
+            "return_type": "table"
+          }
+        ],
+        "dependencies": [],
+        "importance_score": 0.75
+      },
+      {
+        "name": "orders_semantic.sql",
+        "summary": "SQL model transforming order items data as a contract between warehouse and semantic layer.",
+        "code_purpose": "model",
+        "source_summary": "SQL query selecting specific columns for order items and computing localized dates based on order timestamps.",
+        "detailed_description": "Acts as the contract between the warehouse and the semantic layer, defining order items with PII stripped out and timezone conversions handled for Taipei and UTC timezones.",
+        "responsibilities": [
+          "Extract order item data without PII",
+          "Compute Taipei and UTC order dates at query time"
+        ],
+        "interfaces": [
+          {
+            "name": "",
+            "interface_type": "sql_query",
+            "parameters": [],
+            "return_type": "table"
+          }
+        ],
+        "dependencies": [],
+        "importance_score": 0.85
+      },
+      {
+        "name": "semantic.yml",
+        "summary": "YAML configuration file defining semantic models and metrics mapping for the semantic layer.",
+        "code_purpose": "config",
+        "source_summary": "YAML configuration file defining the orders_semantic model properties, semantic_model settings, and column entities for MetricFlow.",
+        "detailed_description": "Configures the semantic model for order items, specifying entities, columns, aggregation time dimensions, and ownership for MetricFlow.",
+        "responsibilities": [
+          "Configure semantic model metadata",
+          "Map primary and foreign entities for order items"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.85
+      }
+    ]
+  },
+  "timestamp": 1790849219,
+  "prompt_hash": "7793a67ba2f61bd606f39b89077c4f1c",
+  "token_usage": {
+    "input_tokens": 1103,
+    "output_tokens": 797,
+    "total_tokens": 1900
+  },
+  "model_name": null
+}

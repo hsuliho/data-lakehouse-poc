@@ -1,0 +1,220 @@
+{
+  "data": {
+    "summary": "The eval directory contains the evaluation harness for testing the intelligent agent, including question sets, preflight health checks, evaluation execution runners, and reporting tools.",
+    "importance_score": 0.85,
+    "key_files": [
+      "run_eval.py",
+      "questions.json",
+      "preflight.py",
+      "report.py",
+      "derive_questions.py"
+    ],
+    "file_insights": [
+      {
+        "name": "__init__.py",
+        "summary": "Package initialization.",
+        "code_purpose": "other",
+        "source_summary": "Empty file.",
+        "detailed_description": "Initialization file for the eval package.",
+        "responsibilities": [
+          "Package marker"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.2
+      },
+      {
+        "name": "derive_questions.py",
+        "summary": "Derives questions and writes questions.json.",
+        "code_purpose": "tool",
+        "source_summary": "Writes questions.json using database queries against ODS.",
+        "detailed_description": "Derives evaluation questions by running queries against ODS. Writes the questions out to questions.json.",
+        "responsibilities": [
+          "Derive evaluation questions",
+          "Write questions to json"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "json",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "sys",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "pathlib.Path",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "load",
+            "is_external": false,
+            "dependency_type": "import"
+          }
+        ],
+        "importance_score": 0.8
+      },
+      {
+        "name": "preflight.py",
+        "summary": "Preflight checks before evaluation.",
+        "code_purpose": "test",
+        "source_summary": "Defines preflight canary queries to check system status.",
+        "detailed_description": "Executes canary queries with frozen known answers before evaluation. Ensures the semantic layer and database are healthy.",
+        "responsibilities": [
+          "Run preflight checks",
+          "Validate semantic layer integrity"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "json",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "pathlib.Path",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "agent.tools_raw.run_sql",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "agent.tools_semantic.query_metric",
+            "is_external": false,
+            "dependency_type": "import"
+          }
+        ],
+        "importance_score": 0.85
+      },
+      {
+        "name": "questions.json",
+        "summary": "Evaluation question dataset.",
+        "code_purpose": "config",
+        "source_summary": "JSON array of question objects with categories and expectations.",
+        "detailed_description": "Contains the frozen set of questions and expected answers for agent evaluation.",
+        "responsibilities": [
+          "Store evaluation questions and expected answers"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.9
+      },
+      {
+        "name": "report.py",
+        "summary": "Generates reports from evaluation result logs.",
+        "code_purpose": "tool",
+        "source_summary": "Aggregates results from jsonl files and prints a summary report.",
+        "detailed_description": "Summarizes one or more evaluation result files by calculating accuracy per arm/category, failure classes, tokens, and time.",
+        "responsibilities": [
+          "Summarize result files",
+          "Calculate accuracy and metrics"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "json",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "sys",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "collections.Counter",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "collections.defaultdict",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "pathlib.Path",
+            "is_external": false,
+            "dependency_type": "import"
+          }
+        ],
+        "importance_score": 0.8
+      },
+      {
+        "name": "run_eval.py",
+        "summary": "Runs evaluation suite and grades results.",
+        "code_purpose": "test",
+        "source_summary": "Executes questions against the agent and grades answers.",
+        "detailed_description": "Runs the evaluation question set against one or more agent arms, grading answers against frozen expectations and recording results.",
+        "responsibilities": [
+          "Run evaluation question sets",
+          "Grade answers against expectations",
+          "Log results"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "argparse",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "json",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "re",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "time",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "datetime.datetime",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "pathlib.Path",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "agent.usage",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "agent.config.MODELS",
+            "is_external": false,
+            "dependency_type": "import"
+          },
+          {
+            "name": "agent.graph.run_question",
+            "is_external": false,
+            "dependency_type": "import"
+          }
+        ],
+        "importance_score": 0.9
+      }
+    ]
+  },
+  "timestamp": 1790849095,
+  "prompt_hash": "4c88773b3538d439c073105845e749ad",
+  "token_usage": {
+    "input_tokens": 1872,
+    "output_tokens": 1160,
+    "total_tokens": 3032
+  },
+  "model_name": null
+}

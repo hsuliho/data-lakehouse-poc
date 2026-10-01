@@ -1,0 +1,96 @@
+{
+  "data": {
+    "summary": "The scd2_batch directory contains SQL scripts implementing Slowly Changing Dimension Type 2 (SCD2) batch loading strategies, utilizing staging and merge patterns to track historical data changes.",
+    "importance_score": 0.85,
+    "key_files": [
+      "single_merge.sql",
+      "stage.sql",
+      "two_step.sql"
+    ],
+    "file_insights": [
+      {
+        "name": "single_merge.sql",
+        "summary": "",
+        "code_purpose": "database",
+        "source_summary": "Executes a single atomic MERGE statement into the target dimension table using a unioned staging dataset.",
+        "detailed_description": "Performs a single atomic MERGE operation to handle SCD Type 2 dimension updates by creating a dual-stream union where one stream closes the active version and another inserts the new version.",
+        "responsibilities": [
+          "Close current version of updated records",
+          "Insert new version of updated records atomically"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "scd2_stage",
+            "is_external": false,
+            "dependency_type": "use"
+          },
+          {
+            "name": "SET",
+            "is_external": false,
+            "dependency_type": "use"
+          }
+        ],
+        "importance_score": 0.9
+      },
+      {
+        "name": "stage.sql",
+        "summary": "",
+        "code_purpose": "database",
+        "source_summary": "Defines staging selection criteria to capture new, interrupted, or modified records for SCD Type 2 processing.",
+        "detailed_description": "Filters and stages rows that require new versions based on brand-new keys, interrupted current versions, or updated tracked attributes.",
+        "responsibilities": [
+          "Identify rows requiring new versions",
+          "Filter out-of-order or unchanged records"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "batch",
+            "is_external": false,
+            "dependency_type": "use"
+          },
+          {
+            "name": "dwh_spark.{dim",
+            "is_external": false,
+            "dependency_type": "use"
+          }
+        ],
+        "importance_score": 0.9
+      },
+      {
+        "name": "two_step.sql",
+        "summary": "",
+        "code_purpose": "database",
+        "source_summary": "Executes a two-step pattern closing active records with a MERGE and opening new versions with an INSERT statement.",
+        "detailed_description": "Executes a two-step process to perform SCD Type 2 updates, first closing current versions and then opening new versions via an insert statement.",
+        "responsibilities": [
+          "Close current dimension versions in step 1",
+          "Insert new dimension versions in step 2"
+        ],
+        "interfaces": [],
+        "dependencies": [
+          {
+            "name": "SET",
+            "is_external": false,
+            "dependency_type": "use"
+          },
+          {
+            "name": "dwh_spark.{dim",
+            "is_external": false,
+            "dependency_type": "use"
+          }
+        ],
+        "importance_score": 0.9
+      }
+    ]
+  },
+  "timestamp": 1790849163,
+  "prompt_hash": "0dcfe3a0e7bc1812d59267a36244c752",
+  "token_usage": {
+    "input_tokens": 1309,
+    "output_tokens": 630,
+    "total_tokens": 1939
+  },
+  "model_name": null
+}

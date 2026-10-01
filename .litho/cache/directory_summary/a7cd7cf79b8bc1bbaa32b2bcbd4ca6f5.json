@@ -1,0 +1,33 @@
+{
+  "data": {
+    "summary": "The archive_batch_era directory contains test or evaluation data configurations, specifically housing JSON questions and expected metric values for testing purposes.",
+    "importance_score": 0.5,
+    "key_files": [
+      "questions.json"
+    ],
+    "file_insights": [
+      {
+        "name": "questions.json",
+        "summary": "Defines a set of evaluation questions and expected values for metrics testing.",
+        "code_purpose": "config",
+        "source_summary": "A JSON array containing question objects with IDs, categories, text questions, and expected answers including statuses, expected values, and tolerance levels.",
+        "detailed_description": "This file contains a JSON-formatted list of questions, expected values, and tolerance levels used for evaluation, testing, or metrics verification regarding metrics like revenue, orders, and average order value.",
+        "responsibilities": [
+          "Define evaluation questions and categories",
+          "Store expected test/validation values and tolerance parameters"
+        ],
+        "interfaces": [],
+        "dependencies": [],
+        "importance_score": 0.5
+      }
+    ]
+  },
+  "timestamp": 1790849098,
+  "prompt_hash": "a7cd7cf79b8bc1bbaa32b2bcbd4ca6f5",
+  "token_usage": {
+    "input_tokens": 886,
+    "output_tokens": 299,
+    "total_tokens": 1185
+  },
+  "model_name": null
+}
