@@ -1,0 +1,6 @@
+{
+  "_comment": "Verifier-side annotations. questions.json stays frozen as the eval's golden set; what the VERIFIER needs in order to judge a question lives here. 'derived' = the expected value is computed by the model from tool results, so no tool will ever return it. 'ranges' = the calendar ranges a correct run must query, for questions that name a period in words ('last week') instead of dates; TODAY is 2026-02-01, a Sunday, and a week runs Monday to Sunday (agent/config.py TODAY_NOTE).",
+  "day_last_week": {"ranges": [["2026-01-19", "2026-01-25"]]},
+  "day_wow": {"derived": true, "ranges": [["2026-01-19", "2026-01-25"], ["2026-01-12", "2026-01-18"]],
+              "note": "a percentage change: fetch both weeks, then divide"}
+}

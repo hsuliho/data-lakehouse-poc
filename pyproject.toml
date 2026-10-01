@@ -23,6 +23,8 @@ agent = [
     "langgraph-checkpoint-sqlite==3.1.1",
     "langchain-google-genai==4.4.0",
     "python-dotenv==1.2.3",
+    "langfuse>=4",             # self-hosted tracing (ADR 0019); inactive unless LANGFUSE_PUBLIC_KEY is set
+    "langchain>=1.4.2",      # required by langfuse.langchain (langchain-core alone is not enough)
 ]
 orchestration = [
     "dagster>=1.13.23",

@@ -12,6 +12,9 @@ from agent.config import MODELS
 from agent.graph import run_question
 
 HERE = Path(__file__).parent
+_fp = HERE.parent.parent / ".fingerprint.json"
+# the warehouse state the expectations were frozen against: two evaluations are only comparable on the same data
+FINGERPRINT = __import__("hashlib").sha256(_fp.read_bytes()).hexdigest()[:8] if _fp.exists() else None
 
 
 def to_number(v) -> float:
@@ -47,6 +50,8 @@ def main():
     ap.add_argument("--arm", choices=["semantic", "raw", "both"], default="both")
     ap.add_argument("--n", type=int, default=1)
     ap.add_argument("--ids", default="")
+    ap.add_argument("--category", default="", help="only these categories, e.g. kpi,day")
+    ap.add_argument("--failed-from", default="", help="only the questions that failed in this results file")
     ap.add_argument("--skip-preflight", action="store_true", help="do not run the canary queries first")
     ap.add_argument("--resume", default="", help="a results file to continue: runs already in it are skipped")
     args = ap.parse_args()
@@ -58,6 +63,12 @@ def main():
     questions = json.loads((HERE / "questions.json").read_text())
     if args.ids:
         questions = [q for q in questions if q["id"] in args.ids.split(",")]
+    if args.category:
+        questions = [q for q in questions if q["category"] in args.category.split(",")]
+    if args.failed_from:                                   # re-running only the failures makes the score look better
+        failed = {json.loads(l)["id"] for l in open(args.failed_from) if json.loads(l).get("verdict") not in (None, "correct")}
+        questions = [q for q in questions if q["id"] in failed]
+    subset = bool(args.ids or args.category or args.failed_from)
     arms = ["semantic", "raw"] if args.arm == "both" else [args.arm]
     out = Path(args.resume).resolve() if args.resume else HERE / "results" / f"{datetime.now():%Y%m%d_%H%M%S}.jsonl"
     done = {(r["id"], r["arm"], r["run"]) for r in map(json.loads, open(out))} if args.resume else set()
@@ -76,12 +87,15 @@ def main():
                     return
                 r = run_question(arm, q["question"], thread_id=f"{q['id']}-{arm}-{run}")
                 verdict = grade(q, r)
-                rec = {"id": q["id"], "category": q["category"], "arm": arm, "run": run, "verdict": verdict, **r}
+                rec = {"id": q["id"], "category": q["category"], "arm": arm, "run": run, "verdict": verdict,
+                       "fingerprint": FINGERPRINT, "subset": subset, **r}
                 with open(out, "a") as f:
                     f.write(json.dumps(rec, ensure_ascii=False) + "\n")
                 print(f"[{i:3}/{total}] {q['id']:14} {arm:8} run{run} -> {verdict:12} {r.get('seconds', '?'):>5}s  tools={r.get('steps', '-')}  in={r.get('input_tokens', '-')} out={r.get('output_tokens', '-')}  llm_calls={r.get('llm_calls', '-')} 429s={len(r.get('rate_limit_waits', []))} throttled={r.get('throttle_seconds', '-')}s", flush=True)
                 time.sleep(0.5)
     print("results:", out)
+    if subset:
+        print("NOTE: this was a SUBSET of the question set. The score is not comparable with a full run.")
 
 
 if __name__ == "__main__":

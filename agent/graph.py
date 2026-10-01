@@ -1,5 +1,7 @@
 """LangGraph agent: model <-> tools loop that ends when the model calls `submit_answer`, plus a human-in-the-loop
 clarification step (interrupt) when the submitted answer is a question back to the user."""
+import hashlib
+import os
 import re
 import sys
 import time
@@ -18,11 +20,14 @@ from agent.diagnose.tools import DIAGNOSE_PLAIN_TOOLS, DIAGNOSE_TOOLS, submit_di
 from agent.tools_common import submit_answer
 from agent.tools_raw import RAW_TOOLS
 from agent.tools_semantic import SEMANTIC_TOOLS
+from agent.verify.tools import SUGGEST_TOOLS, VERIFY_TOOLS, submit_proposals, submit_verdict
 
 ARMS = {"semantic": (SEMANTIC_TOOLS, prompts.SEMANTIC), "raw": (RAW_TOOLS, prompts.RAW),
-        "diagnose": (DIAGNOSE_TOOLS, prompts.DIAGNOSE), "diagnose_plain": (DIAGNOSE_PLAIN_TOOLS, prompts.DIAGNOSE_PLAIN)}
-FINAL_TOOL = {"diagnose": submit_diagnosis, "diagnose_plain": submit_diagnosis}
-FINALS = ("submit_answer", "submit_diagnosis")                 # the tool that ends a run; which one an arm gets is FINAL_TOOL
+        "diagnose": (DIAGNOSE_TOOLS, prompts.DIAGNOSE), "diagnose_plain": (DIAGNOSE_PLAIN_TOOLS, prompts.DIAGNOSE_PLAIN),
+        "verify": (VERIFY_TOOLS, prompts.VERIFY),      # no tools: the evidence is in the prompt, so it is one model call
+        "suggest": (SUGGEST_TOOLS, prompts.SUGGEST)}
+FINAL_TOOL = {"diagnose": submit_diagnosis, "diagnose_plain": submit_diagnosis, "verify": submit_verdict, "suggest": submit_proposals}
+FINALS = ("submit_answer", "submit_diagnosis", "submit_verdict", "submit_proposals")                 # the tool that ends a run; which one an arm gets is FINAL_TOOL
 
 # rate-limit bookkeeping for the current run: a 429 is retried after the delay the server suggests, and the wait is reported
 _waits: ContextVar[list] = ContextVar("waits", default=[])
@@ -121,6 +126,30 @@ class ModelPool:
         raise RuntimeError("no model can answer today. " + "; ".join(tried or [f"{m}: {usage._load()['unavailable'].get(m, 'request limit reached')}" for m in MODELS]))
 
 
+def tracing(arm: str, thread_id: str) -> dict:
+    """Langfuse callbacks when LANGFUSE_PUBLIC_KEY is set (ADR 0019: self-hosted, http://localhost:3100).
+    Without it, or if the SDK cannot start, the agent runs exactly as before: tracing must never fail a run."""
+    if not os.environ.get("LANGFUSE_PUBLIC_KEY"):
+        return {}
+    try:
+        from langfuse.langchain import CallbackHandler
+        return {"callbacks": [CallbackHandler()], "metadata": {"langfuse_session_id": thread_id, "langfuse_tags": [arm]}}
+    except Exception as e:                                                       # missing package, unreachable server ...
+        print(f"langfuse tracing off: {type(e).__name__}: {e}", file=sys.stderr)
+        return {}
+
+
+def flush_traces() -> None:
+    """Langfuse batches in a background thread; a short-lived CLI or eval process must flush before it exits."""
+    if not os.environ.get("LANGFUSE_PUBLIC_KEY"):
+        return
+    try:
+        from langfuse import get_client
+        get_client().flush()
+    except Exception:
+        pass
+
+
 def build_agent(arm: str, interactive: bool = False, llm=None):
     tools, system = ARMS[arm]
     final = FINAL_TOOL.get(arm, submit_answer)
@@ -163,6 +192,11 @@ def build_agent(arm: str, interactive: bool = False, llm=None):
     return g.compile(checkpointer=MemorySaver())
 
 
+def prompt_hash(arm: str) -> str:
+    """Identifies the system prompt a run used. Comparing two evaluations is only meaningful when this matches."""
+    return hashlib.sha256(ARMS[arm][1].encode()).hexdigest()[:8]
+
+
 def run_question(arm: str, question: str, thread_id: str = "run", llm=None) -> dict:
     """Non-interactive: one question, one answer, plus a trace of every tool call and the token usage."""
     graph = build_agent(arm, interactive=False, llm=llm)
@@ -171,9 +205,12 @@ def run_question(arm: str, question: str, thread_id: str = "run", llm=None) -> d
     _throttled.set(throttled)
     _models_used.set(models)
     try:
-        state = graph.invoke({"messages": [HumanMessage(question)]}, {"configurable": {"thread_id": thread_id}, "recursion_limit": MAX_STEPS})
+        state = graph.invoke({"messages": [HumanMessage(question)]},
+                             {"configurable": {"thread_id": thread_id}, "recursion_limit": MAX_STEPS, **tracing(arm, thread_id)})
     except Exception as e:                                                       # step limit, API failure ...
-        return {"arm": arm, "question": question, "error": f"{type(e).__name__}: {str(e)[:1500]}", "models": sorted(set(models)), "rate_limit_waits": waits, "seconds": round(time.time() - t0, 1)}
+        return {"arm": arm, "question": question, "prompt_hash": prompt_hash(arm), "error": f"{type(e).__name__}: {str(e)[:1500]}", "models": sorted(set(models)), "rate_limit_waits": waits, "seconds": round(time.time() - t0, 1)}
+    finally:
+        flush_traces()
     msgs, calls, tin, tout = state["messages"], [], 0, 0
     for m in msgs:
         if isinstance(m, AIMessage):
@@ -184,6 +221,6 @@ def run_question(arm: str, question: str, thread_id: str = "run", llm=None) -> d
             calls[-1].setdefault("results", []).append(str(m.content)[:400])
     ans = submitted(msgs)
     final_text = extract_text(msgs[-1].content) if isinstance(msgs[-1], AIMessage) else ""
-    return {"arm": arm, "question": question, "answer": ans, "raw_answer": (str(ans) if ans else final_text), "tool_calls": calls,
+    return {"arm": arm, "question": question, "answer": ans, "prompt_hash": prompt_hash(arm), "raw_answer": (str(ans) if ans else final_text), "tool_calls": calls,
             "steps": len(calls), "llm_calls": len(throttled), "models": sorted(set(models)), "input_tokens": tin, "output_tokens": tout, "rate_limit_waits": waits,
             "throttle_seconds": round(sum(throttled), 1), "seconds": round(time.time() - t0, 1)}
