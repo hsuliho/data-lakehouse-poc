@@ -48,6 +48,9 @@ check("facts: 'UTC' means the UTC day is expected", f["day_basis"]["expected"] =
 check("rule: a correct run is no_problem_found", cat(rec(verdict="correct")) == "no_problem_found")
 check("rule: an unfinished run is env_error", cat(rec(verdict="error", error="ResourceExhausted: 429")) == "env_error")
 check("rule: the step limit is a flow error", cat(rec(verdict="step_limit")) == "flow_error")
+_sl = E.classify(E.facts(rec(verdict="step_limit", steps=None)))["reason"]
+check("rule: a run that never finished has no tool count, and the reason does not print None",
+      "None" not in _sl and "no tool calls were recorded" in _sl, _sl)
 check("rule: plain text instead of submit is a format error", cat(rec(verdict="format_error")) == "format_error")
 check("rule: the wrong status is a flow error", cat(rec(verdict="wrong_status", id="clarify", question="最近的營收表現如何?")) == "flow_error")
 

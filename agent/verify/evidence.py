@@ -118,7 +118,10 @@ def classify(f: dict) -> dict:
     if f["verdict"] == "error":
         return hi("env_error", f"the run did not finish: {str(f['error'])[:200]}")
     if f["verdict"] == "step_limit":
-        return hi("flow_error", f"the step limit was reached after {f['steps']} tool calls without a submitted answer")
+        # a run that hit the limit never finished, so it has no tool-call count: say so instead of printing None
+        n = f["steps"]
+        return hi("flow_error", "the step limit was reached without a submitted answer"
+                                + (f" ({n} tool calls recorded)" if n is not None else ", so no tool calls were recorded"))
     if f["verdict"] == "format_error":
         return hi("format_error", "the model answered in plain text instead of calling the submit tool")
     if f["verdict"] == "leaked_pii":
