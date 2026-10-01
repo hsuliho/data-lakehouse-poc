@@ -1,0 +1,37 @@
+# Checks that genuinely need nothing: no Docker, no database, no model request. Scripted fake models drive the real
+# graphs, and the agent fixtures are replayed from recorded evidence.
+#
+# NOT here, despite their names: agent/tests/test_offline.py and agent/tests/test_diagnose_offline.py. Both run part of
+# their checks against a live Trino and a live semantic layer (the first queries `mf`, the second proves PII masking
+# with a real `run_sql`), so they are integration tests. Their names say otherwise, which is itself worth fixing --
+# splitting the service-free parts out is a follow-up in docs/TODO.md.
+#
+# Also manual by design, because they rebuild data, stop containers or spend quota: the warehouse equivalence test,
+# the access and PII checks, fault injection, and any real evaluation.
+name: offline checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+env:
+  # agent/config.py refuses to import without a key; every check here is driven by scripted models, so it is never used.
+  GOOGLE_API_KEY: not-used-scripted-models-only
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with: {enable-cache: true}
+      - run: uv sync --group agent --group orchestration
+      - name: verification agent (53)
+        run: uv run python -m agent.tests.test_verify_offline
+      - name: verification replay against frozen failures (43)
+        run: uv run python -m agent.verify regress
+      - name: diagnosis replay against recorded evidence (9)
+        run: uv run python -m agent.diagnose.regress
+      - name: orchestration plan (4)
+        run: uv run python orchestration/test_plan.py
